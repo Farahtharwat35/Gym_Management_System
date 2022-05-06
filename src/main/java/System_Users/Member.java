@@ -7,7 +7,7 @@ public class Member extends Person {
 /* enum to be fixed
    enum membership_type {  PAYG, OPEN, TERM;}  //membership type
   */
-    private double serial_number;
+    private double serial_number;   
     private int classes_attended;   //n of classes attended or names of the classes???
     //Not sure
     private static List<Member> members = new ArrayList<Member>();
