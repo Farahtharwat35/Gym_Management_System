@@ -6,7 +6,10 @@ public class Employee extends Person {
     private String password;
 //    private List<Member> members;
 
-    //constructor
+    //constructors
+
+    public Employee() { }
+
     public Employee (String name,String national_id , String gender ,String phone_number , String username ,String password) {
         super(name, national_id, gender, phone_number);
         this.username=username;
@@ -32,18 +35,26 @@ public class Employee extends Person {
     public void setPassword(String password) {
         this.password = password;
     }
-/*
-    public List<Member> getMembers() {return members;}
-*/
-    public void addMember() {
-        Member addedMember= new Member();
+
+    //adding a new member method
+    public static void addMember() {
+        Scanner myScanner = new Scanner(System.in);
+        System.out.println("Please Enter the member's name : ");
+        String name = myScanner.next();
+        System.out.println("Please Enter the member's ID : ");
+        String national_id = myScanner.next();
+        System.out.println("Please Enter the member's gender : ");
+        String gender = myScanner.next();
+        System.out.println("Please Enter the member's phone number : ");
+        String phone_number = myScanner.next();
+
+
+        //creating object of the member
+        Member addedMember= new Member(name, national_id, gender, phone_number /*, enum membership_type*/);
+        addedMember.addMemberToList(addedMember);   //adding the member to the arraylist
     }
-    public void removeMember(Member removedMember) {
 
-        //Member addedMember= new Member();
-    }
-
-
+//login to be done
     public void login () {
         boolean Sucess=false;
         while(!Sucess){
