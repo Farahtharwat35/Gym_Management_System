@@ -3,7 +3,7 @@ import java.util.Scanner;
 public class Administrator extends Person {
    private String password;
    private String username;
-    public Administrator (String name,String phone_number,String national_id,String gender,String password) {
+    public Administrator (String name,String national_id,String gender,String phone_number) {
         super(name, phone_number, national_id, gender);
     }
     public Administrator (String password,String username){
@@ -11,18 +11,18 @@ public class Administrator extends Person {
         this.username=username;
     }
 
-    public String get_username () {
+    public String getUsername () {
         return this.username;
     }
 
-    public String get_password () {
+    public String getPassword () {
         return this.password;
     }
 
-    public void set_username (String username) {
+    public void setUsername (String username) {
         this.username=username;
     }
-    public void set_password (String password) {
+    public void setPassword (String password) {
         this.password=password;
     }
 
