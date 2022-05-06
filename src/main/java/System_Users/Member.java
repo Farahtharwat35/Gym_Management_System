@@ -10,7 +10,6 @@ public class Member extends Person {
     private double serial_number;
     private int classes_attended;   //n of classes attended or names of the classes???
     //Not sure
-    //private static List<Member> members = new ArrayList();
     private static List<Member> members = new ArrayList<Member>();
 
 
