@@ -26,6 +26,8 @@ public class Person {
         return this.gender;
     }
 
+    public String getPhone_number() {return phone_number;}
+
     public String get_mobile_hone () {
         return this.phone_number;
     }

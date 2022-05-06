@@ -1,5 +1,7 @@
 package gym_system.gym_management_system;
 
+import System_Users.Employee;
+import System_Users.Member;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -18,6 +20,12 @@ public class HelloApplication extends Application {
     }
 
     public static void main(String[] args) {
-        launch();
+
+
+        System.out.println("Testing Output");
+        //Member Mohamed = new Member("Mohamed","30110210103670","male","01013944186");
+        //Employee mowazaf = new Employee("ahmed","10101010","male","0101010","mowazaf","moazaf");
+
+        //launch();
     }
 }
