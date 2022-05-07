@@ -4,7 +4,7 @@ import java.util.List;
 
 public class Member extends Person {
 
-    public String[] membership_type = {"PAYG","OPEN","TERM" } ;
+    private final String[] membership_type = {"PAYG","OPEN","TERM" } ;
     private int membershipTypeIndex;
     private double serial_number;
     private int classes_attended;   //to be modified into an arraylist
@@ -59,8 +59,8 @@ public class Member extends Person {
     //overriding tostring method
     @Override
     public String toString (){
-        return "Member's name: " + get_name()+ " Gender: " + get_gender()+" phone: " + getPhone_number()+
-                " national ID: "+get_national_id() +" membership: " + membership_type[membershipTypeIndex] ;
+        return "\n"+ "Member's name: " + get_name()+ " Gender: " + get_gender()+" phone: " + getPhone_number()+
+                " national ID: "+get_national_id() +" membership: " + membership_type[membershipTypeIndex] +"\n";
     }
 
 
