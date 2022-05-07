@@ -4,25 +4,25 @@ import java.util.List;
 
 public class Member extends Person {
 
-/* enum to be fixed
-   enum membership_type {  PAYG, OPEN, TERM;}  //membership type
-  */
+    public String[] membership_type = {"PAYG","OPEN","TERM" } ;
+    private int membershipTypeIndex;
     private double serial_number;
-    private int classes_attended;   //n of classes attended or names of the classes???
-    //Not sure
-    private static List<Member> members = new ArrayList<Member>();
+    private int classes_attended;   //to be modified into an arraylist
+    private static List<Member> memberList = new ArrayList<Member>();
 
 
 
-    //constructor
+    //constructors
 
     public Member() { }
 
-    public Member(String name, String national_id, String gender, String phone_number  /*, enum membership_type*/) {
+    public Member(String name, String national_id, String gender, String phone_number, int membershipTypeIndex) {
         super(name, national_id, gender, phone_number);
-        //this.membership_type = membership_type;
         this.serial_number = (((int) (Math.random() * (5000 - 1000))) + 1000);  //random number between 1000 and 5000
         this.classes_attended = 0;
+        this.membershipTypeIndex=membershipTypeIndex;
+        this.membership_type[membershipTypeIndex]=membership_type[membershipTypeIndex];
+
     }
 
 
@@ -35,17 +35,16 @@ public class Member extends Person {
         return classes_attended;
     }
 
-    public static List<Member> getMembers() {
-//        System.out.println(members);
-        return members;
+    public static List<Member> getMemberList() {
+        return memberList;
     }
 //adding member to arraylist
     public void addMemberToList(Member addedMember) {
-        members.add(addedMember);
+        memberList.add(addedMember);
     }
 //deleting member
     public void deleteMember(Member removedMember) {
-        members.remove(removedMember);
+        memberList.remove(removedMember);
     }
 
 
@@ -61,7 +60,7 @@ public class Member extends Person {
     @Override
     public String toString (){
         return "Member's name: " + get_name()+ " Gender: " + get_gender()+" phone: " + getPhone_number()+
-                " national ID: "+get_national_id() +" membership: "/* + getmembership*/ ;
+                " national ID: "+get_national_id() +" membership: " + membership_type[membershipTypeIndex] ;
     }
 
 

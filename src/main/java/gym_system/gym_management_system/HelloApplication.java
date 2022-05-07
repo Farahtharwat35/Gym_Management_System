@@ -9,7 +9,8 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-import static System_Users.Member.getMembers;
+import static System_Users.Member.getMemberList;
+//import static System_Users.Member.getMemberList;
 
 public class HelloApplication extends Application {
     @Override
@@ -25,12 +26,9 @@ public class HelloApplication extends Application {
 
 
         System.out.println("Testing Output");
-//        Member Mohamed = new Member("Mohamed","30110210103670","male","01013944186");
-//        Employee mowazaf = new Employee("ahmed","10101010","male","0101010","mowazaf","moazaf");
-//        Employee mowazaf = new Employee();
-//        mowazaf.addMember();
         Employee.addMember();
-        System.out.println(getMembers());
+        Employee.addMember();
+        System.out.println(getMemberList());
 
 
 

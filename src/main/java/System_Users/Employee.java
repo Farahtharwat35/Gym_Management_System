@@ -15,6 +15,7 @@ public class Employee extends Person {
         this.username=username;
         this.password=password;
         this.password=password;
+        System.out.println("Employee Created Successfully");
     }
 
 
@@ -47,10 +48,11 @@ public class Employee extends Person {
         String gender = myScanner.next();
         System.out.println("Please Enter the member's phone number : ");
         String phone_number = myScanner.next();
-
+        System.out.println("Please Enter the membership type, 1 for Pay as you go, 2 for Open membership, 3 for Term membership  : ");
+        int typeIndex = myScanner.nextInt();
 
         //creating object of the member
-        Member addedMember= new Member(name, national_id, gender, phone_number /*, enum membership_type*/);
+        Member addedMember= new Member(name, national_id, gender, phone_number, typeIndex-1);
         addedMember.addMemberToList(addedMember);   //adding the member to the arraylist
     }
 
