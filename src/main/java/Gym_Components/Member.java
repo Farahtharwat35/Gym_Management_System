@@ -1,4 +1,6 @@
-package System_Users;
+package Gym_Components;
+import System_Users.Person;
+
 import java.util.ArrayList;
 import java.util.List;
 

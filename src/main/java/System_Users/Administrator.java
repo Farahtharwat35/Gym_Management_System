@@ -1,5 +1,8 @@
 package System_Users;
+import Gym_Components.Gym_Class;
+import  Gym_Components.Trainer;
 import java.util.Scanner;
+
 public class Administrator extends Person {
    private String password;
    private String username;
@@ -54,5 +57,10 @@ public class Administrator extends Person {
 
         }
 
+    public void assign_trainer (Trainer trainer, Gym_Class gym_class){
+            if (trainer.isAvailable()){
+                gym_class.setTrainer(trainer);
+            }
+    }
     }
 

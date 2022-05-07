@@ -1,7 +1,6 @@
 package gym_system.gym_management_system;
 
 import System_Users.Employee;
-import System_Users.Member;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -9,8 +8,8 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-import static System_Users.Member.getMemberList;
-//import static System_Users.Member.getMemberList;
+import static Gym_Components.Member.getMemberList;
+//import static Gym_Components.Member.getMemberList;
 
 public class HelloApplication extends Application {
     @Override

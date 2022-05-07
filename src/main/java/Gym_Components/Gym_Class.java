@@ -1,27 +1,42 @@
 package Gym_Components;
+import java.time.Instant;
 
-import java.util.List;
-
-public class Class {
+public class Gym_Class {
     private String type;
     private String description;
     private Trainer trainer;
     private int members_limited_number;
     private int members_count;
     //private List<Member> members;
-    private String day;
-    private String time;
+    private Instant start_time;
 
-    public Class (String type,String description,Trainer trainer,int members_limited_number,int members_count,
-     String day, String time) {
+    private Instant end_time;
+
+    public Instant getStart_time() {
+        return start_time;
+    }
+
+    public void setStart_time(Instant start_time) {
+        this.start_time = start_time;
+    }
+
+    public Instant getEnd_time() {
+        return end_time;
+    }
+
+    public void setEnd_time(Instant end_time) {
+        this.end_time = end_time;
+    }
+
+    public Gym_Class(String type, String description, Trainer trainer, int members_limited_number, int members_count , Instant start_time, Instant end_time) {
          this.type=type;
          this.description=description;
          this.trainer=trainer;
          this.members_limited_number=members_limited_number;
          this.members_count=members_count;
-         //this.members=members;
-         this.day=day;
-         this.time=time;
+         this.start_time=start_time;
+         this.end_time=end_time;
+         //this.members=members
     }
 
     public String getType() {
@@ -72,20 +87,6 @@ public class Class {
         //this.members = members;
     //}
 
-    public String getDay() {
-        return day;
-    }
 
-    public void setDay(String day) {
-        this.day = day;
-    }
-
-    public String getTime() {
-        return time;
-    }
-
-    public void setTime(String time) {
-        this.time = time;
-    }
 }
 
