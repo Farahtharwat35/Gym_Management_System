@@ -7,9 +7,9 @@ public class Trainer extends Person {
 
 
     public Trainer (String name,String national_id,String gender,String phone_number){
-        super(name,national_id,gender,phone_number);
-        gymClasses=this.gymClasses;
-        members=this.members;
+        super(name.toUpperCase(Locale.ROOT),national_id,gender,phone_number);
+        this.gymClasses= new Arraylist <Gym_Class>;
+        this.members=new Arraylist <Member>;
     }
 
     public List<Gym_Class> getGymClasses() {

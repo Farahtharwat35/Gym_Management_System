@@ -12,14 +12,14 @@ public class Gym_Class {
 
     private Instant end_time;
 
-    public Gym_Class(String type, String description, Trainer trainer, int members_limited_number, int members_count , Instant start_time, Instant end_time) {
-         this.type=type;
+    private List <Member> class_members;
+    public Gym_Class(String type, String description, int members_limited_number,Instant start_time, Instant end_time) {
+         this.type=type.toUpperCase(Locale.ROOT);
          this.description=description;
-         this.trainer=trainer;
          this.members_limited_number=members_limited_number;
-         this.members_count=members_count;
          this.start_time=start_time;
          this.end_time=end_time;
+         this.class_members = new ArrayList<>();
          //this.members=members
     }
 

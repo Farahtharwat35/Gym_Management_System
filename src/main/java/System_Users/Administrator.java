@@ -2,7 +2,11 @@ package System_Users;
 import Gym_Components.Gym_Class;
 import  Gym_Components.Trainer;
 import java.util.Scanner;
+import java.util.Locale;
 
+// fuction for checking id
+// function for find person
+//make function find class in Main
 public class Administrator extends Person {
    private String password;
    private String username;
@@ -81,15 +85,31 @@ public class Administrator extends Person {
     }
     }
 
-    public void assign_trainer_to_member (Member member) {
-        trainer_members = trainer.getMembers();
-        trainer_members.add(member);
+    public void assign_trainer_to_member (Member member,Trainer trainer) {
+            if (trainer.getMembers().isEmpty()) {
+                trainer.getMembers().add(member);
+                member.setTrainer (trainer)
+                System.out.println("TRAINER ADDED SUCCESSFULLY");
+                break;
+            else {
+                if (member.getTrainer ()!=null){
+                    if (member.getTrainer () == trainer ) {
+                        System.out.println ("TRAINER ALREADY EXISTS")
+                    }
+                    else {
+                        member.setTrainer(trainer);
+                        trainer.getMember().add(member);
+                        System.out.println ("TRAINER ASSINED SUCCESSFULLY")
+                    }
+                }
+            }
+        }
     }
 
     public void add_trainer (String trainer_name,String name,String national_id,String gender,String phone_number){
                 Trainer trainer_name = new Trainer (name,national_id,gender,phone_number);
                 // don't forget to override to string methode here
-                System.out.println ("Added Trainer : " )
+                System.out.println("Added Trainer : " )
     }
 
 //.. public void edit_trainer (String trainer_name,String name,String national_id,String gender,String phone_number){
@@ -109,10 +129,83 @@ public class Administrator extends Person {
         }
 
     }
+    //make function find class in Main
+    public void open_class (List <Gym_Class> classes){
+        String name = "";
+        String day = "";
+        String time = "";
+        Instant start_time =  Instant.parse("");;
+        Instant end_time =  Instant.parse("");
+        String description = "";
+        int maxMemberCount = 0;
 
-    //public void open_class (String type, String description, Trainer trainer, int members_limited_number, int members_count , Instant start_time, Instant end_time){
+        System.out.println("Enter class name");
+        class_name = myScanner.nextLine().toUpperCase(Locale.ROOT);
+        Gym_Class new_class = findClass(class_name,classes);
 
-       // System.out.println ("Trainer deleted successfully")
-   // }
+        if (new_class == null) {
+            System.out.println("Enter class day");
+            day = myScanner.nextLine();
+            System.out.println("Enter class start time");
+            start_time = myScanner.nextLine();
+            System.out.println("Enter class end time");
+            end_time = myScanner.nextLine();
+            System.out.println("Enter class description");
+            description = myScanner.nextLine();
+            System.out.println("Enter class maximum member");
+            maxMemberCount = myScanner.nextInt();
+            myScanner.nextLine();
 
+            classes.add(new (class_name, day,start_time,end_time, description, maxMemberCount));
+        }
+        else {
+            System.out.println("Class : " + class_name + " already exists");
+        }
+    }
+    public void edit_class (List <Gym_Class> classes){
+        System.out.println("Enter class name");
+        class_name = myScanner.nextLine().toUpperCase(Locale.ROOT);
+        Gym_Class edited_class = findClass(class_name,classes);
+        if (new_class == null){
+            System.out.println("No result matches")
+        }
+        else {
+            System.out.println("Edit class name (N)");
+            System.out.println("Edit class start time (S)");
+            System.out.println("Edit class end time (E)");
+            System.out.println("Edit class description (D)");
+            System.out.println("Edit class members limited number (N)");
+            System.out.println("Edit class trainer (T)");
+            Scanner input = new Scanner.(System.in);
+            choice_1 = input.nextLine();
+            choice_2 = input.nextInt();
+
+            switch(choice) {
+                case ("Edit class name (N)"):
+                    edited_class.setType(choice_1);
+                    break;
+                case ("Edit class start time (S) "):
+                    Instant start =Instant.parse(choice_1);
+                    edited_class.setStart_time (start)
+                    break;
+               case ("Edit class start time (S) "):
+                   Instant end =Instant.parse(choice_1);
+                   edited_class.setStart_time(end);
+                    break;
+                case ("Edit class description (D)"):
+                    edited_class.setDescription(choice_1);
+                    break;
+                case ("Edit class members limited number (N)"):
+                    edited_class.setMembers_limited_number(choice_2);
+                    break;
+                case ("Edit class trainer (T)"):
+                    //edit_trainer
+                    break;
+                default:
+                    // code block
+            }
+
+
+        }
+    }
 

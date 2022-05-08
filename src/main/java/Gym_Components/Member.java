@@ -10,10 +10,8 @@ public class Member extends Person {
     private int membershipTypeIndex;
     private double serial_number;
     private int classes_attended;   //to be modified into an arraylist
-    private static List<Member> memberList = new ArrayList<Member>();
 
-
-
+    private Trainer trainer;
     //constructors
 
     public Member() { }
@@ -24,7 +22,7 @@ public class Member extends Person {
         this.classes_attended = 0;
         this.membershipTypeIndex=membershipTypeIndex;
         this.membership_type[membershipTypeIndex]=membership_type[membershipTypeIndex];
-
+        this.trainer=null;
     }
 
 
@@ -56,7 +54,13 @@ public class Member extends Person {
         this.classes_attended = classes_attended;
     }
 
+    public Trainer getTrainer() {
+        return trainer;
+    }
 
+    public void setTrainer(Trainer trainer) {
+        this.trainer = trainer;
+    }
     //showing all object's info
     //overriding tostring method
     @Override
