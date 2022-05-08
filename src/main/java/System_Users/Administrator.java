@@ -1,7 +1,9 @@
 package System_Users;
 import Gym_Components.Gym_Class;
+import Gym_Components.Member;
 import  Gym_Components.Trainer;
 
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -81,21 +83,23 @@ public class Administrator extends Person {
         for (int i=0 ; i<trainer.getGymClasses().size() ; i++ ) {
             if (trainer.getGymClasses().isEmpty()){
                 gym_class.setTrainer(trainer);
-                trainer_classes = trainer.getGymClasses();
+                List<Gym_Class> trainer_classes = trainer.getGymClasses();
                 trainer_classes.add(gym_class);
-                System.out.println("ASSIGN SUCCESS")
+                System.out.println("ASSIGN SUCCESS");
                 break;
             }
-            is_available=((gym_class.getStart_time().isBefore(trainer.getGymClasses().get(i).getStart_time())&&(gym_class.getEnd_time().isBefore(trainer.getGymClasses().get(i).getStart_time()) )|| gym_class.getStart_time().isAfter((trainer.getGymClasses().get(i).getStart_time()));
+            is_available=((gym_class.getStart_time().isBefore(trainer.getGymClasses().get(i).getStart_time())
+                    &&(gym_class.getEnd_time().isBefore(trainer.getGymClasses().get(i).getStart_time()) )
+                    || gym_class.getStart_time().isAfter((trainer.getGymClasses().get(i).getStart_time()))));
         }
         if (is_available){
             gym_class.setTrainer(trainer);
-            trainer_classes = trainer.getGymClasses();
+            List<Gym_Class> trainer_classes = trainer.getGymClasses();
             trainer_classes.add(gym_class);
-            System.out.println("ASSIGN SUCCESS")
+            System.out.println("ASSIGN SUCCESS");
         }
         else {
-            System.out.println("ASSIGN FAIL")
+            System.out.println("ASSIGN FAIL");
         }
     }
 
@@ -110,33 +114,33 @@ public class Administrator extends Person {
 //
 
 
-}
 
-    public void assign_trainer_to_member (Member member,Trainer trainer) {
+
+    public void assign_trainer_to_member (Member member, Trainer trainer) {
             if (trainer.getMembers().isEmpty()) {
                 trainer.getMembers().add(member);
-                member.setTrainer (trainer)
+                member.setTrainer(trainer);
                 System.out.println("TRAINER ADDED SUCCESSFULLY");
-                break;
+            }
             else {
                 if (member.getTrainer ()!=null){
                     if (member.getTrainer () == trainer ) {
-                        System.out.println ("TRAINER ALREADY EXISTS")
+                        System.out.println ("TRAINER ALREADY EXISTS");
                     }
                     else {
                         member.setTrainer(trainer);
-                        trainer.getMember().add(member);
-                        System.out.println ("TRAINER ASSINED SUCCESSFULLY")
+                        trainer.getMembers().add(member);
+                        System.out.println ("TRAINER ASSINED SUCCESSFULLY");
                     }
                 }
             }
         }
-    }
 
-    public void add_trainer (String trainer_name,String name,String national_id,String gender,String phone_number){
-                Trainer trainer_name = new Trainer (name,national_id,gender,phone_number);
+    public void add_trainer (String trainer_name,String name,
+                             String national_id,String gender,String phone_number){
+                Trainer trainer = new Trainer (name,national_id,gender,phone_number);
                 // don't forget to override to string methode here
-                System.out.println("Added Trainer : " )
+                System.out.println("Added Trainer : " );
     }
 
 //.. public void edit_trainer (String trainer_name,String name,String national_id,String gender,String phone_number){
@@ -145,14 +149,14 @@ public class Administrator extends Person {
       //  System.out.println ("Added Trainer : " )
 //.. }
 
-    public String delete_trainer(Trainer trainer){
+    public void delete_trainer(Trainer trainer){
          trainer=null;
         // don't forget to override to string methode here
         if (trainer==null){
-            System.out.println ("Trainer deleted successfully")
+            System.out.println ("Trainer deleted successfully");
         }
         else {
-            System.out.println ("Trainer delete Fail")
+            System.out.println ("Trainer delete Fail");
         }
 
     }
@@ -165,25 +169,35 @@ public class Administrator extends Person {
         Instant end_time =  Instant.parse("");
         String description = "";
         int maxMemberCount = 0;
-
+         Scanner myScanner =new Scanner(System.in);
         System.out.println("Enter class name");
-        class_name = myScanner.nextLine().toUpperCase(Locale.ROOT);
-        Gym_Class new_class = findClass(class_name,classes);
+        String class_name = myScanner.nextLine().toUpperCase(Locale.ROOT);
+        boolean is_new_class =true;
+        for(Gym_Class c : classes){
+                      if (c.getType().equals(class_name)){
+                          is_new_class=false;
+                          break;
+                      }
+        }
 
-        if (new_class == null) {
+
+
+        if (is_new_class) {
             System.out.println("Enter class day");
             day = myScanner.nextLine();
             System.out.println("Enter class start time");
-            start_time = myScanner.nextLine();
+            String start_time_str = myScanner.nextLine();
+            start_time=Instant.parse(start_time_str);
             System.out.println("Enter class end time");
-            end_time = myScanner.nextLine();
+            String end_time_str = myScanner.nextLine();
+            end_time=Instant.parse(end_time_str);
             System.out.println("Enter class description");
             description = myScanner.nextLine();
             System.out.println("Enter class maximum member");
             maxMemberCount = myScanner.nextInt();
             myScanner.nextLine();
-
-            classes.add(new (class_name, day,start_time,end_time, description, maxMemberCount));
+            //create suitable constructor
+           // classes.add( new Gym_Class(class_name, day,start_time,end_time, description, maxMemberCount));
         }
         else {
             System.out.println("Class : " + class_name + " already exists");
@@ -191,7 +205,9 @@ public class Administrator extends Person {
     }
     public void edit_class (List <Gym_Class> classes){
         System.out.println("Enter class name");
-        class_name = myScanner.nextLine().toUpperCase(Locale.ROOT);
+        Scanner myScanner=new Scanner(System.in)
+
+        String class_name = myScanner.nextLine().toUpperCase(Locale.ROOT);
         Gym_Class edited_class = findClass(class_name,classes);
         if (new_class == null){
             System.out.println("No result matches")
@@ -224,7 +240,8 @@ public class Administrator extends Person {
                     break;
                 case ("Edit class members limited number (N)"):
                     edited_class.setMembers_limited_number(choice_2);
-                    break;
+                    break
+                            ;
                 default:
                     System.out.println("Please enter a valid choice !");
                     // code block
@@ -233,4 +250,5 @@ public class Administrator extends Person {
 
         }
     }
+}
 
