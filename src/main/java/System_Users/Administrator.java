@@ -1,6 +1,9 @@
 package System_Users;
 import Gym_Components.Gym_Class;
 import  Gym_Components.Trainer;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 import java.util.Locale;
 
@@ -10,6 +13,10 @@ import java.util.Locale;
 public class Administrator extends Person {
    private String password;
    private String username;
+   private static List<Gym_Class> gymClassesList = new ArrayList<Gym_Class>();
+
+
+
     public Administrator (String name,String national_id,String gender,String phone_number) {
         super(name, phone_number, national_id, gender);
     }
@@ -32,6 +39,14 @@ public class Administrator extends Person {
     public void setPassword (String password) {
         this.password=password;
     }
+
+    public static List<Gym_Class> getGymClassesList() {
+        return gymClassesList;
+    }
+    public static void setGymClassesList(List<Gym_Class> gymClassesList) {
+        Administrator.gymClassesList = gymClassesList;
+    }
+
 
     public void login () {
 
@@ -83,7 +98,19 @@ public class Administrator extends Person {
             System.out.println("ASSIGN FAIL")
         }
     }
-    }
+
+
+
+//    public static List<Gym_Class> getGymClassesList() {
+//        return gymClassesList;
+//    }
+//    public static void setGymClassesList(List<Gym_Class> gymClassesList) {
+//        Administrator.gymClassesList = gymClassesList;
+//    }
+//
+
+
+}
 
     public void assign_trainer_to_member (Member member,Trainer trainer) {
             if (trainer.getMembers().isEmpty()) {
