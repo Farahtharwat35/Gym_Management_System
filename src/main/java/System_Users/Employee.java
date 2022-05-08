@@ -1,5 +1,6 @@
 package System_Users;
 import Gym_Components.Member;
+import java.util.*;
 
 import java.util.Scanner;
 public class Employee extends Person {
@@ -13,8 +14,7 @@ public class Employee extends Person {
 
     public Employee (String name,String national_id , String gender ,String phone_number , String username ,String password) {
         super(name, national_id, gender, phone_number);
-        this.username=username;
-        this.password=password;
+        this.username=username.toUpperCase(Locale.ROOT);
         this.password=password;
         System.out.println("Employee Created Successfully");
     }

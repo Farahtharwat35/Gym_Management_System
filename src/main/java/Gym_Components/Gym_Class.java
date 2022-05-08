@@ -1,5 +1,7 @@
 package Gym_Components;
 import java.time.Instant;
+import java.util.ArrayList;
+import java.util.*;
 
 public class Gym_Class {
     private String type;
@@ -63,6 +65,9 @@ public class Gym_Class {
         this.members_count = members_count;
     }
 
+    public Instant getStart_time() {
+        return start_time;
+    }
 
     public void setStart_time(Instant start_time) {
         this.start_time = start_time;
@@ -76,8 +81,12 @@ public class Gym_Class {
         this.end_time = end_time;
     }
 
-    public Instant getStart_time() {
-        return start_time;
+    public List<Member> getClass_members() {
+        return class_members;
+    }
+
+    public void setClass_members(List<Member> class_members) {
+        this.class_members = class_members;
     }
 }
 
