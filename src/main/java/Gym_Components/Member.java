@@ -4,25 +4,26 @@ import System_Users.Person;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class Member extends Person {
 
     private final String[] membership_type = {"PAYG","OPEN","TERM" } ;
     private int membershipTypeIndex;
     private double serial_number;
-    private int classes_attended;   //to be modified into an arraylist
-    private static List<Member> memberList = new ArrayList<Member>();
+    private List<Gym_Class> attendedList = new ArrayList<Gym_Class>();
+
+
 
 
 
     //constructors
 
     public Member() { }
-
     public Member(String name, String national_id, String gender, String phone_number, int membershipTypeIndex) {
         super(name, national_id, gender, phone_number);
+        //rand n generation, may change it later
         this.serial_number = (((int) (Math.random() * (5000 - 1000))) + 1000);  //random number between 1000 and 5000
-        this.classes_attended = 0;
-        this.membershipTypeIndex=membershipTypeIndex;
+        this.membershipTypeIndex=membershipTypeIndex-1;
         this.membership_type[membershipTypeIndex]=membership_type[membershipTypeIndex];
 
     }
@@ -32,30 +33,23 @@ public class Member extends Person {
     public double getSerial_number() {
         return serial_number;
     }
-
-    public int getClasses_attended() {
-        return classes_attended;
+    public String getMembership_type(int index) {
+        return membership_type[index];
     }
 
-    public static List<Member> getMemberList() {
-        return memberList;
+    public List<Gym_Class> getAttendedClasses() {
+        return attendedList;
     }
-//adding member to arraylist
-    public void addMemberToList(Member addedMember) {
-        memberList.add(addedMember);
-    }
-//deleting member
-    public void deleteMember(Member removedMember) {
-        memberList.remove(removedMember);
+    public void setMemberClasses(List<Gym_Class> memberClasses) {
+        this.attendedList = memberClasses;
     }
 
-
-
-    //setters
-    public void setClasses_attended(int classes_attended) {
-        this.classes_attended = classes_attended;
+    public List<Gym_Class> getAttendedList() {
+        return attendedList;
     }
-
+//    public void setAttendedList(List<Gym_Class> attendedList) {
+//        this.attendedList = attendedList;
+//    }
 
     //showing all object's info
     //overriding tostring method

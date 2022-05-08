@@ -1,5 +1,8 @@
 package Gym_Components;
 import java.time.Instant;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
 
 public class Gym_Class {
     private String type;
@@ -12,31 +15,15 @@ public class Gym_Class {
 
     private Instant end_time;
 
-    public Instant getStart_time() {
-        return start_time;
-    }
-
-    public void setStart_time(Instant start_time) {
-        this.start_time = start_time;
-    }
-
-    public Instant getEnd_time() {
-        return end_time;
-    }
-
-    public void setEnd_time(Instant end_time) {
-        this.end_time = end_time;
-    }
-
-    public Gym_Class(String type, String description, Trainer trainer, int members_limited_number, int members_count , Instant start_time, Instant end_time) {
-         this.type=type;
-         this.description=description;
-         this.trainer=trainer;
-         this.members_limited_number=members_limited_number;
-         this.members_count=members_count;
-         this.start_time=start_time;
-         this.end_time=end_time;
-         //this.members=members
+    private List<Member> class_members;
+    public Gym_Class(String type, String description, int members_limited_number,Instant start_time, Instant end_time) {
+        this.type=type.toUpperCase(Locale.ROOT);
+        this.description=description;
+        this.members_limited_number=members_limited_number;
+        this.start_time=start_time;
+        this.end_time=end_time;
+        this.class_members = new ArrayList<>();
+        //this.members=members
     }
 
     public String getType() {
@@ -79,14 +66,36 @@ public class Gym_Class {
         this.members_count = members_count;
     }
 
-    //public List<Member> getMembers() {
-        //return members;
-    //}
 
-    //public void setMembers(List<Member> members) {
-        //this.members = members;
-    //}
+    public void setStart_time(Instant start_time) {
+        this.start_time = start_time;
+    }
+
+    public Instant getEnd_time() {
+        return end_time;
+    }
+
+    public void setEnd_time(Instant end_time) {
+        this.end_time = end_time;
+    }
+
+    public Instant getStart_time() {
+        return start_time;
+    }
+
+
+    public void addMemberToClass(Member member){
+        class_members.add(member);
+
+
+    }
+
+    @Override
+    public String toString (){
+        return "Class: " +getDescription()+ " type: " + getType()+ "\n";
+    }
+
+
 
 
 }
-
