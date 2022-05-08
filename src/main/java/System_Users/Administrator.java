@@ -185,7 +185,7 @@ public class Administrator extends Person {
                     edited_class.setType(choice_1);
                     break;
                 case ("Edit class start time (S) "):
-                    Instant start =Instant.parse(choice_1);
+                    Instant start =Instant.parse(choice_1);,
                     edited_class.setStart_time (start)
                     break;
                case ("Edit class start time (S) "):
@@ -198,10 +198,8 @@ public class Administrator extends Person {
                 case ("Edit class members limited number (N)"):
                     edited_class.setMembers_limited_number(choice_2);
                     break;
-                case ("Edit class trainer (T)"):
-                    //edit_trainer
-                    break;
                 default:
+                    System.out.println("Please enter a valid choice !");
                     // code block
             }
 
