@@ -2,35 +2,30 @@ package Gym_Components;
 import System_Users.Person;
 
 public class Trainer extends Person {
-    private Gym_Class[] gymClasses;
-    private Member [] members;
-    private boolean available;
+    private List<Gym_Class> gymClasses;
+    private List <Member> members;
 
-    public Trainer (String name,String national_id,String gender,String phone_number, Gym_Class[] gymClasses,Member [] members){
+
+    public Trainer (String name,String national_id,String gender,String phone_number){
         super(name,national_id,gender,phone_number);
-        available=true;
         gymClasses=this.gymClasses;
         members=this.members;
     }
 
-    public Gym_Class[] getClasses() {
+    public List<Gym_Class> getGymClasses() {
         return gymClasses;
     }
 
-    public void setClasses(Gym_Class[] gymClasses) {
+    public void setGymClasses(List<Gym_Class> gymClasses) {
         this.gymClasses = gymClasses;
     }
 
-    public Member[] getMembers() {
+    public List<Member> getMembers() {
         return members;
     }
 
-    public void setMembers(Member[] members) {
+    public void setMembers(List<Member> members) {
         this.members = members;
-    }
-
-    public boolean isAvailable() {
-        return available;
     }
 
     public void setAvailable(boolean available) {

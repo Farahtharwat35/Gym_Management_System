@@ -58,9 +58,61 @@ public class Administrator extends Person {
         }
 
     public void assign_trainer (Trainer trainer, Gym_Class gym_class){
-            if (trainer.isAvailable()){
+        boolean is_available = false;
+        for (int i=0 ; i<trainer.getGymClasses().size() ; i++ ) {
+            if (trainer.getGymClasses().isEmpty()){
                 gym_class.setTrainer(trainer);
+                trainer_classes = trainer.getGymClasses();
+                trainer_classes.add(gym_class);
+                System.out.println("ASSIGN SUCCESS")
+                break;
             }
+            is_available=((gym_class.getStart_time().isBefore(trainer.getGymClasses().get(i).getStart_time())&&(gym_class.getEnd_time().isBefore(trainer.getGymClasses().get(i).getStart_time()) )|| gym_class.getStart_time().isAfter((trainer.getGymClasses().get(i).getStart_time()));
+        }
+        if (is_available){
+            gym_class.setTrainer(trainer);
+            trainer_classes = trainer.getGymClasses();
+            trainer_classes.add(gym_class);
+            System.out.println("ASSIGN SUCCESS")
+        }
+        else {
+            System.out.println("ASSIGN FAIL")
+        }
     }
     }
+
+    public void assign_trainer_to_member (Member member) {
+        trainer_members = trainer.getMembers();
+        trainer_members.add(member);
+    }
+
+    public void add_trainer (String trainer_name,String name,String national_id,String gender,String phone_number){
+                Trainer trainer_name = new Trainer (name,national_id,gender,phone_number);
+                // don't forget to override to string methode here
+                System.out.println ("Added Trainer : " )
+    }
+
+//.. public void edit_trainer (String trainer_name,String name,String national_id,String gender,String phone_number){
+      //  Trainer trainer_name = new Trainer (name,national_id,gender,phone_number);
+        // don't forget to override to string methode here
+      //  System.out.println ("Added Trainer : " )
+//.. }
+
+    public String delete_trainer(Trainer trainer){
+         trainer=null;
+        // don't forget to override to string methode here
+        if (trainer==null){
+            System.out.println ("Trainer deleted successfully")
+        }
+        else {
+            System.out.println ("Trainer delete Fail")
+        }
+
+    }
+
+    //public void open_class (String type, String description, Trainer trainer, int members_limited_number, int members_count , Instant start_time, Instant end_time){
+
+       // System.out.println ("Trainer deleted successfully")
+   // }
+
 
