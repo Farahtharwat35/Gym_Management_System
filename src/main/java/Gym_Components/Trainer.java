@@ -9,13 +9,13 @@ import java.util.Locale;
 
 public class Trainer extends Person {
     private List<Gym_Class> gymClasses;
-    private List<Member> members;
+    private List<Member> assigned_members;
 
 
     public Trainer(String name, String national_id, String gender, String phone_number) {
         super(name.toUpperCase(Locale.ROOT), national_id, gender, phone_number);
         this.gymClasses = new ArrayList();
-        this.members = new ArrayList();
+        this.assigned_members= new ArrayList();
 
 
     }
@@ -29,10 +29,10 @@ public class Trainer extends Person {
     }
 
     public List<Member> getMembers() {
-        return members;
+        return assigned_members;
     }
 
     public void setMembers(List<Member> members) {
-        this.members = members;
+        this.assigned_members = members;
     }
 }

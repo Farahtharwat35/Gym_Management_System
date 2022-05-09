@@ -39,9 +39,9 @@ class GymSystem {
 ////System.out.println(class1.getStart_time());
 //    admin1.assign_trainer_to_class(trainer1,class1);
 //    System.out.println(trainer1.getGymClasses());
-//        while (true) {
-//            admin1.login(admins);
-//        }
+        while (true) {
+            admin1.login(admins);
+        }
 
 
 // Employee methods
