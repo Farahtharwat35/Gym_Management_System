@@ -206,15 +206,15 @@ public void edit_trainer (List <Trainer> trainer){
 
 
         if (new_class==null) {
-            System.out.println("Enter class day");
+            System.out.println("Enter class day :");
             day = myScanner.nextLine();
-            System.out.println("Enter class start time");
+            System.out.println("Enter class start time :");
             start_time = Instant.parse(myScanner.nextLine());
-            System.out.println("Enter class end time");
+            System.out.println("Enter class end time :");
             end_time = Instant.parse(myScanner.nextLine());
-            System.out.println("Enter class description");
+            System.out.println("Enter class description : ");
             description = myScanner.nextLine();
-            System.out.println("Enter class maximum member");
+            System.out.println("Enter class maximum member  : ");
             maxMemberCount = myScanner.nextInt();
             myScanner.nextLine();
 
@@ -397,7 +397,37 @@ public void edit_trainer (List <Trainer> trainer){
             }
         }
         return null;
-    } }
+    }
 
-//    private void add_trainer (List <Person> )
-//}
+    private void add_trainer (List <Trainer> trainers) {
+        String name = "";
+        String national_id = "";
+        String phone_number = "";
+        String gender = "";
+        Scanner myScanner =new Scanner(System.in);
+        System.out.println("Enter trainer nationalId:");
+        national_id = myScanner.nextLine();
+        Trainer new_trainer = findTrainer(trainers,national_id);
+
+        if (new_trainer==null) {
+            System.out.println("Enter trainer name :");
+            name = myScanner.nextLine();
+            System.out.println("Enter trainer gender :");
+            gender = myScanner.nextLine();
+            System.out.println("Enter trainer phone number :");
+            phone_number = myScanner.nextLine();
+            trainers.add(new Trainer(name, national_id, gender,phone_number));
+        }
+        else {
+            System.out.println("Trainer : " + new_trainer + " already exists");
+        }
+
+    }
+    // function in Main takes the reply and displays the menu or stays in the view
+    private String signout () {
+        System.out.println("Do you really want to sign out ? Y/N ") ;
+        Scanner signout =new Scanner(System.in);
+        String reply = signout.nextLine();
+        return (reply);
+    }
+}
