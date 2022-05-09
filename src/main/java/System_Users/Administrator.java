@@ -23,7 +23,7 @@ public class Administrator extends Person {
 
 
 
-    public Administrator (String name,String national_id,String gender,String phone_number) {
+    public Administrator (String name,String national_id,String gender,String phone_number,String password ,String username) {
         super(name, phone_number, national_id, gender);
         this.password=password;
         this.username=username.toUpperCase(Locale.ROOT);
@@ -58,27 +58,31 @@ public class Administrator extends Person {
             Scanner Username = new Scanner(System.in);
             System.out.println("Please Enter Username : ");
             String user = Username.next().toUpperCase(Locale.ROOT);
-            Scanner Password = new Scanner(System.in);
             System.out.println("Please Enter Password : ");
+            Scanner Password = new Scanner(System.in);
             String pass = Password.next();
+            boolean valid_data = false;
         for (int i=0; i<administrator.size() ; i++ ) {
             if (administrator.get(i).getUsername().equals(user) && administrator.get(i).getPassword().equals(pass)) {
                 System.out.println("Logged In");
-                // here will relate the view to a function in Main
-            } else if (username.equals(user)) {
-                System.out.println("Invalid Password!");
-            } else if (password.equals(pass)) {
-                System.out.println("Invalid Username!");
-            } else {
-                System.out.println("Invalid Username And Password!");
+                valid_data = true;
+                break;
+            } // here will relate the view to a function in Main
             }
-        }
+            if (valid_data){
+                System.out.println("Welcome!");
+            }
+            else {
+                    System.out.println("Invalid Username And Password!");
+                }
+
+
         }
 // will do function for finding trainer by national id in Main
 // will do function for finding class in Main from array list
     public void assign_trainer_to_class (Trainer trainer, Gym_Class gym_class){
         List<Gym_Class> trainer_classes = null;
-        boolean is_available = false;
+        boolean is_available = true;
         for (int i=0 ; i<trainer.getGymClasses().size() ; i++ ) {
             if (trainer.getGymClasses().isEmpty()){
                 gym_class.setTrainer(trainer);
@@ -86,8 +90,10 @@ public class Administrator extends Person {
                 trainer_classes.add(gym_class);
                 System.out.println("ASSIGN SUCCESS");
                 break;
+            } else if ((((gym_class.getStart_time().isBefore(trainer.getGymClasses().get(i).getStart_time()))&&(gym_class.getEnd_time().isBefore(trainer.getGymClasses().get(i).getStart_time())))||gym_class.getStart_time().isAfter(trainer.getGymClasses().get(i).getStart_time()))) {
+                is_available=false;
+                break;
             }
-            is_available=(((gym_class.getStart_time().isBefore(trainer.getGymClasses().get(i).getStart_time()))&&(gym_class.getEnd_time().isBefore(trainer.getGymClasses().get(i).getStart_time())))||gym_class.getStart_time().isAfter(trainer.getGymClasses().get(i).getStart_time()));
         }
         if (is_available){
             gym_class.setTrainer(trainer);
@@ -129,13 +135,14 @@ public class Administrator extends Person {
         }
 
 
-public void edit_trainer (List <Person> trainer){
-    System.out.println("Enter trainer name");
+public void edit_trainer (List <Trainer> trainer){
+
+
+    System.out.println("Enter trainer nationalId");
     Scanner myScanner = new Scanner(System.in);
-    String trainer_name = myScanner.nextLine().toUpperCase(Locale.ROOT);
-    trainer_name = myScanner.nextLine().toUpperCase(Locale.ROOT);
-    Trainer edited_trainer = findperson(trainer_name,trainer);
-    if (trainer == null){
+    String trainer_id = myScanner.nextLine().toUpperCase(Locale.ROOT);
+    Trainer edited_trainer = findTrainer(trainer,trainer_id);
+    if (edited_trainer== null){
         System.out.println("No result matches");
     }
     else {
@@ -148,22 +155,22 @@ public void edit_trainer (List <Person> trainer){
         Scanner second_input= new Scanner(System.in);
 
         switch(choice) {
-            case ("Edit trainer name (N)"):
+            case ("N"):
                 System.out.println("Please enter a trainer name :");
                 String name = second_input.nextLine();
                 edited_trainer.set_name(name);
                 break;
-            case ("Edit trainer NationalId (I)"):
+            case ("I"):
                 System.out.println("Please enter trainer new NationalID :");
                 String nationalID= second_input.nextLine();
                 edited_trainer.set_national_id (nationalID);
                 break;
-            case ("Edit trainer gender (G)"):
+            case ("G"):
                 System.out.println("Please enter trainer gender :");
                 String gender= second_input.nextLine();
                 edited_trainer.set_gender(gender);
                 break;
-            case ("Edit trainer phone_number (P)"):
+            case ("P"):
                 System.out.println("Please trainer phone_number : ");
                 String phone_number= second_input.nextLine();
                 edited_trainer.set_phone_number(phone_number);
@@ -185,7 +192,7 @@ public void edit_trainer (List <Person> trainer){
         Scanner myScanner =new Scanner(System.in);
         System.out.println("Enter class name");
         String class_name = myScanner.nextLine().toUpperCase(Locale.ROOT);
-        Gym_Class new_class = findClass(class_name,classes);
+        Gym_Class new_class = findClass(classes,class_name);
         
         // String class_name = myScanner.nextLine().toUpperCase(Locale.ROOT);
         // boolean is_new_class =true;
@@ -223,7 +230,7 @@ public void edit_trainer (List <Person> trainer){
         Scanner myScanner = new Scanner(System.in);
         String class_name = myScanner.nextLine().toUpperCase(Locale.ROOT);
         class_name = myScanner.nextLine().toUpperCase(Locale.ROOT);
-        Gym_Class edited_class = findClass(class_name,classes);
+        Gym_Class edited_class = findClass(classes,class_name);
         if (edited_class == null){
             System.out.println("No result matches");
         }
@@ -239,29 +246,29 @@ public void edit_trainer (List <Person> trainer){
             Scanner second_input= new Scanner(System.in);
 
             switch(choice) {
-                case ("Edit class name (N)"):
+                case ("N"):
                     System.out.println("Please enter a Class name :");
                     String class_type = second_input.nextLine();
                     edited_class.setType(class_type);
                     break;
-                case ("Edit class start time (S) "):
+                case ("S"):
                     System.out.println("Please enter a start time for the Class :");
                     String start_time= second_input.nextLine();
                     Instant start =Instant.parse(start_time);
                     edited_class.setStart_time (start);
                     break;
-               case ("Edit class end time (S) "):
+               case ("E"):
                    System.out.println("Please enter an end time for the Class :");
                    String end_time= second_input.nextLine();
                    Instant end =Instant.parse(end_time);
                    edited_class.setStart_time(end);
                     break;
-                case ("Edit class description (D)"):
+                case ("D"):
                     System.out.println("Please enter a description : ");
                     String description= second_input.nextLine();
                     edited_class.setDescription(description);
                     break;
-                case ("Edit class members limited number (N)"):
+                case ("M"):
                     System.out.println("Please enter a maximum number : ");
                     int maxnumber= second_input.nextInt();
                     edited_class.setMembers_limited_number(maxnumber);
@@ -296,7 +303,7 @@ public void edit_trainer (List <Person> trainer){
                 "-------------------------------------------------------------\n");
     }
 
-    public void view_all_members_infos (List <Person> members) {
+    public void view_all_members_infos (List <Member> members) {
         if (!members.isEmpty()) {
             System.out.println("\n---------------------------------------------------------------------" +
                     "-------------------------------------------------------------\n");
@@ -318,7 +325,7 @@ public void edit_trainer (List <Person> trainer){
             System.out.println("There are no members available !");
         }
     }
-    public void view_members_in_specific_membership (String membership, List<Person> members) {
+    public void view_members_in_specific_membership (String membership, List<Member> members) {
         List<Member> membersInSpecificMemberShip = new ArrayList<>();
 
         for (int i = 0; i < members.size(); i++) {
@@ -373,4 +380,24 @@ public void edit_trainer (List <Person> trainer){
         System.out.println("\nNo Such Class " + delete_class.getType() + " Found\n");
         return false;
     }
-}
+    public Trainer findTrainer (List <Trainer> trainers , String national_id ) {
+        for (Trainer P : trainers ) {
+            if (P.get_national_id().equals(national_id))
+            {
+                return P;
+            }
+
+        }
+        return null;
+    }
+    private Gym_Class findClass (List <Gym_Class> gym_classes , String class_name ) {
+        for (Gym_Class C : gym_classes ) {
+            if (C.getType().equals(class_name)) {
+                return C ;
+            }
+        }
+        return null;
+    } }
+
+//    private void add_trainer (List <Person> )
+//}

@@ -28,6 +28,19 @@ public class Gym_Class {
         //this.members=members
     }
 
+   static public Instant get_instant () {
+        String date;
+        String time;
+        System.out.println(" Please Enter date , example : YYYY-MM-DD ");
+        Scanner input = new Scanner(System.in);
+        date= input.next();
+       System.out.println(" Please Enter time , example : HH:MM ");
+        time= input.next();
+        return (Instant.parse(date+"T"+time+":00.00Z"));
+
+
+    }
+
     public String getType() {
         return type;
     }
