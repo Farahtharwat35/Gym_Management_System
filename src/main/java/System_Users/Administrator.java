@@ -3,12 +3,8 @@ import Gym_Components.Gym_Class;
 import Gym_Components.Member;
 import  Gym_Components.Trainer;
 import java.time.Instant;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
-import java.util.Locale;
 import java.util.*;
-import java.time.Instant;
+
 
 
 // fuction for checking id
@@ -16,6 +12,7 @@ import java.time.Instant;
 //make function find class in Main
 // will do function for finding trainer by national id in Main
 // will do function for finding class in Main from array list
+// function in Main takes the reply and displays the menu or stays in the view
 public class Administrator extends Person {
    private String password;
    private String username;
@@ -105,14 +102,6 @@ public class Administrator extends Person {
             System.out.println("ASSIGN FAIL");
         }
     }
-
-
-
-
-
-
-
-
     public void assign_trainer_to_member (Member member, Trainer trainer) {
             if (trainer.getMembers().isEmpty()) {
                 trainer.getMembers().add(member);
