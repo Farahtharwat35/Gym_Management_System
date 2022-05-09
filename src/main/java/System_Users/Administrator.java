@@ -19,7 +19,6 @@ public class Administrator extends Person {
    private static List<Gym_Class> gymClassesList = new ArrayList<Gym_Class>();
 
 
-
     public Administrator (String name,String national_id,String gender,String phone_number,String password ,String username) {
         super(name, phone_number, national_id, gender);
         this.password=password;

@@ -7,22 +7,28 @@ import System_Users.Person;
 import System_Users.Employee;
 import java.time.Instant;
 import java.util.*;
-public class Main {
-    public static void main (String[] args) {
-        List <Employee> employees = new ArrayList<>();
-        List <Trainer> trainers =new ArrayList<>();
-        List <Administrator> admins= new ArrayList<>();
-        List <Gym_Class> gym_classes =new ArrayList<>();
+
+class GymSystem {
+
+    List <Employee> employees = new ArrayList<>();
+    List <Trainer> trainers =new ArrayList<>();
+    List <Administrator> admins = new ArrayList<>();
+    List <Gym_Class> gym_classes =new ArrayList<>();
+
+
+    public void run_system ()
+
+    {
         /**
          * admin methods
          *
          */
 // phone number handling
-        Administrator admin1=new Administrator("Farah" ,"3020", "female","0101000" , "123" , "farouha" );
-        Administrator admin2=new Administrator("sara" ,"358", "female","0101000" , "189" , "sarsoura" );
+        Administrator admin1 = new Administrator("Farah", "3020", "female", "0101000", "123", "farouha");
+        Administrator admin2 = new Administrator("sara", "358", "female", "0101000", "189", "sarsoura");
         admins.add(admin1);
         admins.add(admin2);
-        Trainer trainer1=new Trainer("Ahmed" ,"302050", "female","01010600");
+        Trainer trainer1 = new Trainer("Ahmed", "302050", "female", "01010600");
         trainers.add(trainer1);
 //System.out.println(admin1.findTrainer(trainers , "302050"));
 //admin1.edit_trainer(trainers);
@@ -33,10 +39,9 @@ public class Main {
 ////System.out.println(class1.getStart_time());
 //    admin1.assign_trainer_to_class(trainer1,class1);
 //    System.out.println(trainer1.getGymClasses());
-        while (true){
-            admin1.login(admins);}
-
-
+//        while (true) {
+//            admin1.login(admins);
+//        }
 
 
 // Employee methods
@@ -58,10 +63,16 @@ public class Main {
 //        System.out.println(Employee.viewMemberList());
 
 
+    }
+}
 
 
-        //launch();
 
+
+public class Main {
+    public static void main (String[] args) {
+        GymSystem Gym_Management_System= new GymSystem();
+        Gym_Management_System.run_system();
     }
 }
 
