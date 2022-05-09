@@ -2,7 +2,9 @@ package System_Users;
 import Gym_Components.Gym_Class;
 import Gym_Components.Member;
 import  Gym_Components.Trainer;
-import System_Users.Person;
+import java.time.Instant;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 import java.util.Locale;
 import java.util.*;
@@ -17,15 +19,16 @@ import java.time.Instant;
 public class Administrator extends Person {
    private String password;
    private String username;
-    public Administrator (String name,String national_id,String gender,String phone_number,String password,String username) {
+   private static List<Gym_Class> gymClassesList = new ArrayList<Gym_Class>();
+
+
+
+    public Administrator (String name,String national_id,String gender,String phone_number) {
         super(name, phone_number, national_id, gender);
         this.password=password;
         this.username=username.toUpperCase(Locale.ROOT);
     }
-    public Administrator (String password,String username){
-
-    }
-
+    
     public String getUsername () {
         return this.username;
     }
@@ -42,7 +45,15 @@ public class Administrator extends Person {
     }
 
     // down cast administartor to person to be easy in personfinder()
+    public static List<Gym_Class> getGymClassesList() {
+        return gymClassesList;
+    }
+    public static void setGymClassesList(List<Gym_Class> gymClassesList) {
+        Administrator.gymClassesList = gymClassesList;
+    }
+
     public void login (List <Administrator> administrator) {
+
 
             Scanner Username = new Scanner(System.in);
             System.out.println("Please Enter Username : ");
@@ -90,6 +101,12 @@ public class Administrator extends Person {
     }
 
 
+
+
+
+
+
+
     public void assign_trainer_to_member (Member member, Trainer trainer) {
             if (trainer.getMembers().isEmpty()) {
                 trainer.getMembers().add(member);
@@ -111,12 +128,6 @@ public class Administrator extends Person {
             }
         }
 
-
-//    public void add_trainer (String trainer_name,String name,String national_id,String gender,String phone_number){
-//                Trainer trainer_name = new Trainer (name,national_id,gender,phone_number);
-//                // don't forget to override to string methode here
-//                System.out.println("Added Trainer : " )
-//    }
 
 public void edit_trainer (List <Person> trainer){
     System.out.println("Enter trainer name");
@@ -159,20 +170,9 @@ public void edit_trainer (List <Person> trainer){
                 break;
             default:
                 System.out.println("Please enter a valid choice !");
-        }
-    }
-}
+        }}}
 
-//    public void delete_trainer(List <Trainer> trainers ){
-//         trainer=null;
-//        // don't forget to override to string methode here
-//        if (trainer==null){
-//            System.out.println ("Trainer deleted successfully");
-//        }
-//        else {
-//            System.out.println ("Trainer delete Fail");
-//        }
-//    }
+    
     //make function find class in Main
     public void open_class (List <Gym_Class> classes){
         String name = "";
@@ -182,13 +182,23 @@ public void edit_trainer (List <Person> trainer){
         Instant end_time;
         String description = "";
         int maxMemberCount = 0;
-
+        Scanner myScanner =new Scanner(System.in);
         System.out.println("Enter class name");
-        Scanner myScanner = new Scanner(System.in);
         String class_name = myScanner.nextLine().toUpperCase(Locale.ROOT);
         Gym_Class new_class = findClass(class_name,classes);
+        
+        // String class_name = myScanner.nextLine().toUpperCase(Locale.ROOT);
+        // boolean is_new_class =true;
+        // for(Gym_Class c : classes){
+        //               if (c.getType().equals(class_name)){
+        //                   is_new_class=false;
+        //                   break;
+        //               }
+        // }
 
-        if (new_class == null) {
+
+
+        if (new_class==null) {
             System.out.println("Enter class day");
             day = myScanner.nextLine();
             System.out.println("Enter class start time");

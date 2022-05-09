@@ -3,6 +3,10 @@ import System_Users.Person;
 import java.util.*;
 
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
+
 public class Trainer extends Person {
     private List<Gym_Class> gymClasses;
     private List<Member> members;
@@ -12,6 +16,8 @@ public class Trainer extends Person {
         super(name.toUpperCase(Locale.ROOT), national_id, gender, phone_number);
         this.gymClasses = new ArrayList();
         this.members = new ArrayList();
+
+
     }
 
     public List<Gym_Class> getGymClasses() {

@@ -2,6 +2,8 @@ package Gym_Components;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.*;
+import java.util.List;
+import java.util.Locale;
 
 public class Gym_Class {
     private String type;
@@ -14,15 +16,16 @@ public class Gym_Class {
 
     private Instant end_time;
 
-    private List <Member> class_members;
+
+    private List<Member> class_members;
     public Gym_Class(String type, String description, int members_limited_number,Instant start_time, Instant end_time) {
-         this.type=type.toUpperCase(Locale.ROOT);
-         this.description=description;
-         this.members_limited_number=members_limited_number;
-         this.start_time=start_time;
-         this.end_time=end_time;
-         this.class_members = new ArrayList<>();
-         //this.members=members
+        this.type=type.toUpperCase(Locale.ROOT);
+        this.description=description;
+        this.members_limited_number=members_limited_number;
+        this.start_time=start_time;
+        this.end_time=end_time;
+        this.class_members = new ArrayList<>();
+        //this.members=members
     }
 
     public String getType() {
@@ -73,6 +76,21 @@ public class Gym_Class {
         this.start_time = start_time;
     }
 
+
+
+    public void addMemberToClass(Member member){
+        class_members.add(member);
+
+
+    }
+
+    @Override
+    public String toString (){
+        return "Class: " +getDescription()+ " type: " + getType()+ "\n";
+    }
+
+
+
     public Instant getEnd_time() {
         return end_time;
     }
@@ -89,4 +107,3 @@ public class Gym_Class {
         this.class_members = class_members;
     }
 }
-
