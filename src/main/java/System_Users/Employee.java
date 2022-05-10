@@ -253,25 +253,6 @@ public class Employee extends Person {
 
 
 
-//    public Employee employeeLogin() {
-//        Scanner Username = new Scanner(System.in);
-//        System.out.println("Please Enter Username : ");
-//        String user = Username.next().toUpperCase(Locale.ROOT);
-//        System.out.println("Please Enter Password : ");
-//        Scanner Password = new Scanner(System.in);
-//        String pass = Password.next();
-//        for (Employee P : employees) {
-//            if (P.getUsername().equals(user) && P.getPassword().equals(pass)) {
-//                System.out.println("Welcome "+P.get_name());
-//                return P;
-//            }
-//            else {
-//                System.out.println("Invalid Username or Password!");
-//            }
-//        }
-//        return  null;
-//    }
-
 
 
 

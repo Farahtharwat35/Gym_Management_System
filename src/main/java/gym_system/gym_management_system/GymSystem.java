@@ -5,6 +5,7 @@ import Gym_Components.Member;
 import Gym_Components.Trainer;
 import System_Users.Administrator;
 import System_Users.Employee;
+import System_Users.Person;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +14,7 @@ import java.util.Scanner;
 
 public class GymSystem {
 
-    Employee loggedInEmployee = null;  //the one Employee logged into the system
+    Person loggedInPerson = null;  //the one Employee logged into the system
     public static List<Employee> employees = new ArrayList<>();
     public static List<Trainer> trainers = new ArrayList<>();
     public static List<Administrator> admins = new ArrayList<>();
@@ -22,27 +23,46 @@ public class GymSystem {
 
 
 
+//
+//
+//    public void employeeLogin() {
+//        Scanner Username = new Scanner(System.in);
+//        System.out.println("Please Enter Username : ");
+//        String user = Username.next().toUpperCase(Locale.ROOT);
+//        System.out.println("Please Enter Password : ");
+//        Scanner Password = new Scanner(System.in);
+//        String pass = Password.next();
+//        boolean areCredentialsRight = false;
+//            for (Employee P : employees) {
+//                if (P.getUsername().equals(user) && P.getPassword().equals(pass)) {
+//                    System.out.println("Logged In");
+//                    loggedInPerson=(Person)P;
+//                }
+//                else {
+//                    System.out.println("Invalid Username or Password!");
+//                }
+//            }
+//
+//    }
 
 
-    public void employeeLogin() {
+    public Employee employeeLogin() {
         Scanner Username = new Scanner(System.in);
         System.out.println("Please Enter Username : ");
         String user = Username.next().toUpperCase(Locale.ROOT);
         System.out.println("Please Enter Password : ");
         Scanner Password = new Scanner(System.in);
         String pass = Password.next();
-        boolean areCredentialsRight = false;
-            for (Employee P : employees) {
-                if (P.getUsername().equals(user) && P.getPassword().equals(pass)) {
-                    System.out.println("Logged In");
-                    loggedInEmployee=P;
-                }
-                else {
-                    System.out.println("Invalid Username or Password!");
-                }
+        for (Employee P : employees) {
+            if (P.getUsername().equals(user) && P.getPassword().equals(pass)) {
+                System.out.println("Welcome "+P.get_name());
+                return P;
             }
-
+        }
+        System.out.println("Invalid Username or Password!");
+        return  null;
     }
+
 
     private void employeeRegister() {
         String name = "";
@@ -125,12 +145,16 @@ public class GymSystem {
 //        employees.add(employee1);
         employeeRegister();
         employeeLogin();
-        loggedInEmployee.addMember();
-        loggedInEmployee.get_name();
-        loggedInEmployee.editMember();
-        loggedInEmployee.addMember();
-        loggedInEmployee.addMemberToClass(fitness);
-        loggedInEmployee.viewMembersInGymClass();
+       Employee e=null;
+       while(e ==null){
+       e=employeeLogin();
+       }
+        e.addMember();
+        e.get_name();
+        e.editMember();
+        e.addMember();
+        e.addMemberToClass(fitness);
+        e.viewMembersInGymClass();
 
 //        employee1.findMember("1234");
 //        employee1.addMemberToClass(fitness);
