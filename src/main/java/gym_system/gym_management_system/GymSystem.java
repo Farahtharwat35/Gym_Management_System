@@ -14,7 +14,6 @@ import java.util.Scanner;
 
 public class GymSystem {
 
-    Person loggedInPerson = null;  //the one Employee logged into the system
     public static List<Employee> employees = new ArrayList<>();
     public static List<Trainer> trainers = new ArrayList<>();
     public static List<Administrator> admins = new ArrayList<>();
@@ -145,16 +144,14 @@ public class GymSystem {
 //        employees.add(employee1);
         employeeRegister();
         employeeLogin();
-       Employee e=null;
-       while(e ==null){
-       e=employeeLogin();
-       }
-        e.addMember();
-        e.get_name();
-        e.editMember();
-        e.addMember();
-        e.addMemberToClass(fitness);
-        e.viewMembersInGymClass();
+        Employee loggedInEmployee=null;     //the one Employee logged into the system
+        while(loggedInEmployee ==null){ loggedInEmployee = employeeLogin();}
+        loggedInEmployee.addMember();
+        loggedInEmployee.get_name();
+        loggedInEmployee.editMember();
+        loggedInEmployee.addMember();
+        loggedInEmployee.addMemberToClass(fitness);
+        loggedInEmployee.viewMembersInGymClass();
 
 //        employee1.findMember("1234");
 //        employee1.addMemberToClass(fitness);
