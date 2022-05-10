@@ -418,6 +418,8 @@ public void edit_trainer (List <Trainer> trainer){
         }
 
     }
+
+
     // function in Main takes the reply and displays the menu or stays in the view
     private String signout () {
         System.out.println("Do you really want to sign out ? Y/N ") ;

@@ -17,7 +17,7 @@ public class Gym_Class {
     private Instant end_time;
 
 
-    private List<Member> class_members;
+    private static List<Member> class_members;
     public Gym_Class(String type, String description, int members_limited_number,Instant start_time, Instant end_time) {
         this.type=type.toUpperCase(Locale.ROOT);
         this.description=description;
@@ -112,11 +112,17 @@ public class Gym_Class {
         this.end_time = end_time;
     }
 
-    public List<Member> getClass_members() {
+    public static List<Member> getClass_members() {
         return class_members;
     }
+
 
     public void setClass_members(List<Member> class_members) {
         this.class_members = class_members;
     }
+
+    public void EmployeeRemoveClass_members(Member member) {
+        class_members.remove(member);
+    }
+
 }
