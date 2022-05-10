@@ -342,6 +342,7 @@ public void edit_trainer (List <Trainer> trainer){
             System.out.println("There are no members currently in the class");
         }
 }
+//Too Long ??
     public boolean delete_trainer(Trainer trainer, List<Person> trainers_gym ) {
         for (int i = 0; i < trainers_gym.size(); i++) {
             Trainer delete_trainer = (Trainer) trainers_gym.get(i);
@@ -411,6 +412,8 @@ public void edit_trainer (List <Trainer> trainer){
         }
 
     }
+
+
     // function in Main takes the reply and displays the menu or stays in the view
     private String signout () {
         System.out.println("Do you really want to sign out ? Y/N ") ;

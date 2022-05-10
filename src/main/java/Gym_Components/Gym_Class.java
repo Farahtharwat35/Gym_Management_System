@@ -116,7 +116,13 @@ public class Gym_Class {
         return class_members;
     }
 
+
     public void setClass_members(List<Member> class_members) {
         this.class_members = class_members;
     }
+
+    public void EmployeeRemoveClass_members(Member member) {
+        class_members.remove(member);
+    }
+
 }
