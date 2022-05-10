@@ -313,9 +313,8 @@ public void edit_trainer (List <Trainer> trainer){
             System.out.println("There are no members available !");
         }
     }
-    public void view_members_in_specific_membership (String membership, List<Member> members) {
-        List<Member> membersInSpecificMemberShip = new ArrayList<>();
-
+    public void view_members_in_specific_membership (List<Member> members) {
+        String m
         for (int i = 0; i < members.size(); i++) {
             Member member = (Member) members.get(i);
 //    to rizk        if (member.getMembershipType().equals(membership)){
@@ -342,32 +341,40 @@ public void edit_trainer (List <Trainer> trainer){
             System.out.println("There are no members currently in the class");
         }
 }
-    public boolean delete_trainer(Trainer trainer, List<Person> trainers_gym ) {
-        for (int i = 0; i < trainers_gym.size(); i++) {
-            Trainer delete_trainer = (Trainer) trainers_gym.get(i);
-            if (delete_trainer.get_national_id().equals(trainer.get_national_id())){
-                trainers_gym.remove(trainer);
-                System.out.println("\nTrainer: " +
-                        trainer.get_name() +" has been deleted successfully ! \n");
-                return true;
+    public void delete_trainer(List<Trainer> trainers_gym ) {
+        System.out.println("Please enter trainer nationalId :");
+        Scanner delete_trainer_id =new Scanner();
+        String trainer_id= delete_trainer_id.nextLine();
+        Trainer delete_trainer=findTrainer(trainers_gym,trainer_id);
+        if (delete_trainer!=null) {
+            for (int i = 0; i < trainers_gym.size(); i++) {
+                    trainers_gym.remove(delete_trainer);
+                    System.out.println("\nTrainer: " +
+                            delete_trainer.get_name() + " has been deleted successfully ! \n");
+                    return true;
             }
         }
-        System.out.println("\nNo Such Trainer " + trainer.get_name() +" "+
-              " Found\n");
-        return false;
-
+        else {
+        System.out.println("\nNo Such Trainer " + delete_trainer.get_name() + " "+
+              " Found\n"); }
     }
-    public boolean delete_class(Gym_Class delete_class, List<Gym_Class> gym_classes) {
-        for (Gym_Class classes : gym_classes){
-            if (classes.getType().equals(delete_class.getType())){
-                System.out.println("\nClass: " + delete_class.getType() + " has been removed successfully !\n");
+    public void delete_class(List<Gym_Class> gym_classes) {
+        System.out.println("Please enter class type :");
+        Scanner class_type_input  =new Scanner();
+        String class_type = class_type_input.nextLine();
+        Gym_Class delete_class =findClass(gym_classes,class_type);
+        if (delete_class !=null) {
+            for (int i = 0; i < gym_classes.size(); i++) {
                 gym_classes.remove(delete_class);
-                return true;
+                System.out.println("\nClass: " +
+                        delete_class.getType() + " has been deleted successfully ! \n");
             }
         }
-        System.out.println("\nNo Such Class " + delete_class.getType() + " Found\n");
-        return false;
+        else {
+            System.out.println("\nNo Such Class " + " "+
+                    " Found\n"); }
     }
+
     public Trainer findTrainer (List <Trainer> trainers , String national_id ) {
         for (Trainer P : trainers ) {
             if (P.get_national_id().equals(national_id))
