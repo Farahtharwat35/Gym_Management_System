@@ -13,6 +13,7 @@ import java.util.Scanner;
 
 public class GymSystem {
 
+    Employee loggedInEmployee = null;  //the one Employee logged into the system
     public static List<Employee> employees = new ArrayList<>();
     public static List<Trainer> trainers = new ArrayList<>();
     public static List<Administrator> admins = new ArrayList<>();
@@ -20,7 +21,10 @@ public class GymSystem {
     public static List<Gym_Class> gym_classes = new ArrayList<>();
 
 
-    public void employeeLogin(List<Employee> employees) {
+
+
+
+    public void employeeLogin() {
         Scanner Username = new Scanner(System.in);
         System.out.println("Please Enter Username : ");
         String user = Username.next().toUpperCase(Locale.ROOT);
@@ -28,17 +32,16 @@ public class GymSystem {
         Scanner Password = new Scanner(System.in);
         String pass = Password.next();
         boolean areCredentialsRight = false;
-        while (areCredentialsRight == false) {
             for (Employee P : employees) {
                 if (P.getUsername().equals(user) && P.getPassword().equals(pass)) {
                     System.out.println("Logged In");
-                    areCredentialsRight = true;
-                } // here will relate the view to a function in Main
+                    loggedInEmployee=P;
+                }
                 else {
                     System.out.println("Invalid Username or Password!");
                 }
             }
-        }
+
     }
 
     private void employeeRegister() {
@@ -116,13 +119,24 @@ public class GymSystem {
         gym_classes.add(fitness);
         Member member1= new Member("member1", "1111", "male", "0101010",2);
         members.add(member1);
-        Member member2= new Member("member2", "2222", "female", "0101010",1);
-        members.add(member2);
-        Employee employee1= new Employee("employee1","`12345","employee1","employee1","employee1","employee1");
-        employees.add(employee1);
-        employee1.addMemberToClass(fitness);
-//        member1.viewMemberClasses();
-        System.out.println(gym_classes);
+//        Member member2= new Member("member2", "2222", "female", "0101010",1);
+//        members.add(member2);
+//        Employee employee1= new Employee("employee1","`12345","employee1","employee1","employee1","employee1");
+//        employees.add(employee1);
+        employeeRegister();
+        employeeLogin();
+        loggedInEmployee.addMember();
+        loggedInEmployee.get_name();
+        loggedInEmployee.editMember();
+        loggedInEmployee.addMember();
+        loggedInEmployee.addMemberToClass(fitness);
+        loggedInEmployee.viewMembersInGymClass();
+
+//        employee1.findMember("1234");
+//        employee1.addMemberToClass(fitness);
+//        employee1.viewMemberClasses();
+
+//        System.out.println(gym_classes);
 
 
 

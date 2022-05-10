@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Scanner;
 
 import static Gym_Components.Member.membershipTypeOptions;
+import static gym_system.gym_management_system.GymSystem.gym_classes;
 import static gym_system.gym_management_system.GymSystem.members;
 
 
@@ -65,7 +66,7 @@ public class Employee extends Person {
         return null;
     }
 
-    private void addMember() {
+    public void addMember() {
         String memberName = "";
         String memberNational_id = "";
         String memberPhoneNumber = "";
@@ -177,9 +178,10 @@ public class Employee extends Person {
         Scanner myScanner = new Scanner(System.in);
         System.out.println("Please enter the member's national ID");
         national_id = myScanner.nextLine();
-         Member tmp = findMember(national_id);
-        gym_class.addMemberToClass(tmp);    //findmember returns the member
-        tmp.getMemberAttendedClasses().add(gym_class);
+         Member addedMember = findMember(national_id);
+        gym_class.addMemberToClass(addedMember);    //findmember returns the member if it exists
+        addedMember.getMemberAttendedClasses().add(gym_class);
+        gym_class.addMemberToClass(addedMember);
     }
 
     public static void removeMemberFromClass( Gym_Class gym_class) {
@@ -192,9 +194,34 @@ public class Employee extends Person {
         tmp.getMemberAttendedClasses().remove(gym_class);
     }
 
-    public static void viewMemberClasses(Member memberOfClass) {
+    public static void viewMemberClasses() {
+        String national_id;
+        Scanner myScanner = new Scanner(System.in);
+        System.out.println("Please enter the member's national ID");
+        national_id = myScanner.nextLine();
+        Member memberOfClass = findMember(national_id);
         System.out.println(memberOfClass.getMemberAttendedClasses());
     }
+
+
+
+
+    //view all members in a specific gym class
+    public void viewMembersInGymClass() {
+        Scanner myScanner = new Scanner(System.in);
+        System.out.println("Write the gym class:");
+        String className = myScanner.next().toUpperCase(Locale.ROOT);
+        for (Gym_Class P : gym_classes) {
+            if (P.getType().equals(className)) {
+                System.out.println("Members of the selected gym class:    ");
+                Gym_Class.getClass_members();
+            }
+            else {
+                System.out.println("Invalid Class Name!");
+            }
+        }
+    }
+
 
 
     //view all members of a specific membership type
@@ -212,15 +239,6 @@ public class Employee extends Person {
     }
 
 
-    //view all members in a specific gym class
-    public void membersInGymClass() {
-        System.out.println("Members of the selected membership type:    ");
-        for (Member P : GymSystem.members) {
-            System.out.println(P.get_name() + "/n");
-        }
-    }
-
-
     //view a member info
     public void viewMemberInfo() {
         String national_id;
@@ -234,28 +252,27 @@ public class Employee extends Person {
     }
 
 
-//
-////login to be done
-//    public void login () {
-//        boolean Sucess=false;
-//        while(!Sucess){
-//            Scanner Username = new Scanner(System.in);
-//            System.out.println("Please Enter Username : ");
-//            String user = Username.next();
-//
-//            Scanner Password = new Scanner(System.in);
-//            System.out.println("Please Enter Password : ");
-//            String pass = Password.next();
-//
-//            if (username.equals(user) && password.equals(pass)) {
-//                System.out.println("Logged In");
-//                Sucess=true;
+
+//    public Employee employeeLogin() {
+//        Scanner Username = new Scanner(System.in);
+//        System.out.println("Please Enter Username : ");
+//        String user = Username.next().toUpperCase(Locale.ROOT);
+//        System.out.println("Please Enter Password : ");
+//        Scanner Password = new Scanner(System.in);
+//        String pass = Password.next();
+//        for (Employee P : employees) {
+//            if (P.getUsername().equals(user) && P.getPassword().equals(pass)) {
+//                System.out.println("Welcome "+P.get_name());
+//                return P;
 //            }
 //            else {
 //                System.out.println("Invalid Username or Password!");
 //            }
 //        }
+//        return  null;
 //    }
+
+
 
 
 
