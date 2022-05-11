@@ -13,14 +13,13 @@ import gym_system.gym_management_system.GymSystem;
 // will do function for finding trainer by national id in Main
 // will do function for finding class in Main from array list
 // function in Main takes the reply and displays the menu or stays in the view
-public class Administrator extends Person {
+public class Administrator  {
    private String password;
    private String username;
    private static List<Gym_Class> gymClassesList = new ArrayList<Gym_Class>();
 
 
-    public Administrator (String name,String national_id,String gender,String phone_number,String password ,String username) {
-        super(name, phone_number, national_id, gender);
+    public Administrator (String password ,String username) {
         this.password=password;
         this.username=username.toUpperCase(Locale.ROOT);
     }
@@ -48,41 +47,18 @@ public class Administrator extends Person {
         Administrator.gymClassesList = gymClassesList;
     }
 
-    public void login (List <Administrator> administrator) {
 
-            Scanner input = new Scanner(System.in);
-            System.out.println("Please Enter Username : ");
-            String username = input.next().toUpperCase(Locale.ROOT);
-            System.out.println("Please Enter Password : ");
-            String pass = input.next();
-            boolean valid_data = false;
-        for (int i=0; i<administrator.size() ; i++ ) {
-            if (administrator.get(i).getUsername().equals(username) && administrator.get(i).getPassword().equals(pass)) {
-                System.out.println("Logged In");
-                valid_data = true;
-                break;
-            } // here will relate the view to a function in Main
-            }
-            if (valid_data){
-                System.out.println("Welcome!");
-            }
-            else {
-                    System.out.println("Invalid Username And Password!");
-                }
-
-
-        }
 // will do function for finding trainer by national id in Main
 // will do function for finding class in Main from array list
-    public void assign_trainer_to_class (List <Trainer> gym_trainer,List <Gym_Class> gym_classses) {
+    public void assign_trainer_to_class () {
         System.out.println("Please enter trainer NationalID :");
         Scanner input =new Scanner(System.in);
         String trainer_id=input.nextLine();
         System.out.println("Please enter class type :");
         String class_type= input.nextLine();
-        Trainer assigned_trainer=findTrainer(gym_trainer,trainer_id);
+        Trainer assigned_trainer=findTrainer(trainer_id);
         List<Gym_Class> assigned_trainer_classes=assigned_trainer.getGymClasses();
-        Gym_Class assigned_class=findClass(gym_classses,class_type);
+        Gym_Class assigned_class=findClass(class_type);
         boolean is_available = true;
         if (assigned_class==null || assigned_trainer==null) {
             System.out.println ("No such trainer or class found ! Please try again !");
@@ -108,14 +84,14 @@ public class Administrator extends Person {
             System.out.println("ASSIGN FAIL");
         } }
     }
-    public void assign_trainer_to_member (List <Member> members , List<Trainer> trainers) {
+    public void assign_trainer_to_member () {
             Scanner input = new Scanner(System.in);
             System.out.println("Please enter trainer nationalId :");
             String trainer_national_id = input.next();
             System.out.println("Please enter member nationalId :");
              String member_national_id = input.next();
-            Trainer assigned_trainer=findTrainer(trainers,trainer_national_id);
-            Member assigned_member= findMember(members,member_national_id);
+            Trainer assigned_trainer=findTrainer(trainer_national_id);
+            Member assigned_member= findMember(member_national_id);
         if (assigned_trainer==null || assigned_member==null) {
             System.out.println ("No such trainer or member found ! Please try again !");
         }
@@ -141,13 +117,13 @@ public class Administrator extends Person {
         }
 
 
-public void edit_trainer (List <Trainer> trainer){
+public void edit_trainer (){
 
 
     System.out.println("Enter trainer nationalId : ");
     Scanner myScanner = new Scanner(System.in);
     String trainer_id = myScanner.nextLine().toUpperCase(Locale.ROOT);
-    Trainer edited_trainer = findTrainer(trainer,trainer_id);
+    Trainer edited_trainer = findTrainer(trainer_id);
     if (edited_trainer== null){
         System.out.println("No result matches");
     }
@@ -187,7 +163,7 @@ public void edit_trainer (List <Trainer> trainer){
 
     
     //make function find class in Main
-    public void open_class (List <Gym_Class> classes){
+    public void open_class (){
         String name = "";
         String day = "";
         String time = "";
@@ -198,7 +174,7 @@ public void edit_trainer (List <Trainer> trainer){
         Scanner myScanner =new Scanner(System.in);
         System.out.println("Enter class name : ");
         String class_name = myScanner.nextLine().toUpperCase(Locale.ROOT);
-        Gym_Class new_class = findClass(classes,class_name);
+        Gym_Class new_class = findClass(class_name);
 
         if (new_class==null) {
             System.out.println("Enter class day :");
@@ -213,19 +189,19 @@ public void edit_trainer (List <Trainer> trainer){
             maxMemberCount = myScanner.nextInt();
             myScanner.nextLine();
 
-            classes.add(new Gym_Class(class_name, description, maxMemberCount,start_time,end_time));
+           GymSystem.getGym_classes().add(new Gym_Class(class_name, description, maxMemberCount,start_time,end_time));
         }
         else {
             System.out.println("Class : " + class_name + " already exists");
         }
     }
     // for entring a number ; we do exceptions?
-    public void edit_class (List <Gym_Class> classes){
+    public void edit_class (){
         System.out.println("Enter class name");
         Scanner myScanner = new Scanner(System.in);
         String class_name = myScanner.nextLine().toUpperCase(Locale.ROOT);
         class_name = myScanner.nextLine().toUpperCase(Locale.ROOT);
-        Gym_Class edited_class = findClass(classes,class_name);
+        Gym_Class edited_class = findClass(class_name);
         if (edited_class == null){
             System.out.println("No result matches");
         }
@@ -274,11 +250,11 @@ public void edit_trainer (List <Trainer> trainer){
         }
     }
     // after making the function of view_member in specific class in Main (it sorts te classes list and returns the class to this function)
-    public void view_members_in_specific_class (List<Gym_Class> gym_classes) {
+    public void view_members_in_specific_class () {
         Scanner input =new Scanner(System.in);
         System.out.println("Please enter a valid class type : ");
         String specific_class= input.nextLine();
-        Gym_Class assigned_class=findClass(gym_classes,specific_class);
+        Gym_Class assigned_class=findClass(specific_class);
         if (assigned_class==null) {
             System.out.println ("No such class found ! Please try again !");
         }
@@ -305,8 +281,8 @@ public void edit_trainer (List <Trainer> trainer){
                 "-------------------------------------------------------------\n");
     }
 
-    public void view_all_members_infos (List <Member> members) {
-        if (!members.isEmpty()) {
+    public void view_all_members_infos () {
+        if (!GymSystem.getMembers().isEmpty()) {
             System.out.println("\n---------------------------------------------------------------------" +
                     "-------------------------------------------------------------\n");
             System.out.format("%16s%16s%16s\n", "First Name",
@@ -316,7 +292,7 @@ public void edit_trainer (List <Trainer> trainer){
                     "Phone_Number"
                     );
 
-            for (Person member : members) {
+            for (Person member : GymSystem.getMembers()) {
                 System.out.format("%16s%16s%16s\n", member.get_name(),
                         member.get_name(),
                         member.get_national_id());
@@ -328,7 +304,7 @@ public void edit_trainer (List <Trainer> trainer){
         }
     }
 
-    public void membersOfMembershipType() {
+    public void view_members_in_specific_membership () {
         Scanner myScanner = new Scanner(System.in);
         System.out.println("Enter the membership, \"Pay as You go\", \"Open\" or \"Term\" membership :");
         String enteredMembership = myScanner.next();
@@ -344,9 +320,9 @@ public void edit_trainer (List <Trainer> trainer){
 //        System.out.println("Please enter a valid membership : Pay as You go,Open,Term ");
 //        for (int i = 0; i < members.size(); i++) {
 //            Member member = (Member) members.get(i);
-////    to rizk        if (member.getMembershipType().equals(membership)){
-////                membersInSpecificMemberShip.add(member);
-////            }
+//  to rizk        if (member.getMembershipType().equals(membership)){
+//              membersInSpecificMemberShip.add(member);
+//         }
 //        }
 //        if (!membersInSpecificMemberShip.isEmpty()) {
 //            System.out.println("\n---------------------------------------------------------------------" +
@@ -368,14 +344,14 @@ public void edit_trainer (List <Trainer> trainer){
 //            System.out.println("There are no members currently in the class");
 //        }
 //    }
-    public void delete_trainer(List<Trainer> trainers_gym ) {
+    public void delete_trainer( ) {
         System.out.println("Please enter trainer nationalId :");
         Scanner delete_trainer_id =new Scanner(System.in);
         String trainer_id= delete_trainer_id.nextLine();
-        Trainer delete_trainer=findTrainer(trainers_gym,trainer_id);
+        Trainer delete_trainer=findTrainer(trainer_id);
         if (delete_trainer!=null) {
-            for (int i = 0; i < trainers_gym.size(); i++) {
-                    trainers_gym.remove(delete_trainer);
+            for (int i = 0; i < GymSystem.getTrainers().size(); i++) {
+                    GymSystem.getTrainers().remove(delete_trainer);
                     System.out.println("\nTrainer: " +
                             delete_trainer.get_name() + " has been deleted successfully ! \n");
             }
@@ -384,14 +360,14 @@ public void edit_trainer (List <Trainer> trainer){
         System.out.println("\nNo Such Trainer " + delete_trainer.get_name() + " "+
               " Found\n"); }
     }
-    public void delete_class(List<Gym_Class> gym_classes) {
+    public void delete_class() {
         System.out.println("Please enter class type :");
         Scanner class_type_input  =new Scanner(System.in);
         String class_type = class_type_input.nextLine();
-        Gym_Class delete_class =findClass(gym_classes,class_type);
+        Gym_Class delete_class =findClass(class_type);
         if (delete_class !=null) {
-            for (int i = 0; i < gym_classes.size(); i++) {
-                gym_classes.remove(delete_class);
+            for (int i = 0; i < GymSystem.getGym_classes().size(); i++) {
+                GymSystem.getGym_classes().remove(delete_class);
                 System.out.println("\nClass: " +
                         delete_class.getType() + " has been deleted successfully ! \n");
             }
@@ -401,8 +377,8 @@ public void edit_trainer (List <Trainer> trainer){
                     " Found\n"); }
     }
 
-    public Trainer findTrainer (List <Trainer> trainers , String national_id ) {
-        for (Trainer P : trainers ) {
+    public Trainer findTrainer ( String national_id ) {
+        for (Trainer P : GymSystem.getTrainers() ) {
             if (P.get_national_id().equals(national_id))
             {
                 return P;
@@ -411,8 +387,8 @@ public void edit_trainer (List <Trainer> trainer){
         }
         return null;
     }
-    public Member findMember (List <Member> members , String national_id ) {
-        for (Member M : members ) {
+    public Member findMember ( String national_id ) {
+        for (Member M : GymSystem.getMembers()) {
             if (M.get_national_id().equals(national_id))
             {
                 return M;
@@ -421,8 +397,8 @@ public void edit_trainer (List <Trainer> trainer){
         }
         return null;
     }
-    private Gym_Class findClass (List <Gym_Class> gym_classes , String class_name ) {
-        for (Gym_Class C : gym_classes ) {
+    private Gym_Class findClass ( String class_name ) {
+        for (Gym_Class C : GymSystem.getGym_classes() ) {
             if (C.getType().equals(class_name)) {
                 return C ;
             }
@@ -430,7 +406,7 @@ public void edit_trainer (List <Trainer> trainer){
         return null;
     }
 
-    public void add_trainer (List <Trainer> trainers) {
+    public void add_trainer () {
         String name = "";
         String national_id = "";
         String phone_number = "";
@@ -438,7 +414,7 @@ public void edit_trainer (List <Trainer> trainer){
         Scanner myScanner =new Scanner(System.in);
         System.out.println("Enter trainer nationalId:");
         national_id = myScanner.nextLine();
-        Trainer new_trainer = findTrainer(trainers,national_id);
+        Trainer new_trainer = findTrainer(national_id);
 
         if (new_trainer==null) {
             System.out.println("Enter trainer name :");
@@ -447,7 +423,7 @@ public void edit_trainer (List <Trainer> trainer){
             gender = myScanner.nextLine();
             System.out.println("Enter trainer phone number :");
             phone_number = myScanner.nextLine();
-            trainers.add(new Trainer(name, national_id, gender,phone_number));
+            GymSystem.getTrainers().add(new Trainer(name, national_id, gender,phone_number));
         }
         else {
             System.out.println("Trainer : " + new_trainer + " already exists");
@@ -457,10 +433,5 @@ public void edit_trainer (List <Trainer> trainer){
 
 
     // function in Main takes the reply and displays the menu or stays in the view
-    public String signout () {
-        System.out.println("Do you really want to sign out ? Y/N ") ;
-        Scanner signout =new Scanner(System.in);
-        String reply = signout.nextLine();
-        return reply;
-    }
+
 }

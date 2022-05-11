@@ -72,7 +72,7 @@ public class Member extends Person {
     @Override
     public String toString (){
         return "\n"+ "Member's name: " + get_name()+ " Gender: " + get_gender()+" phone: " + getPhone_number()+
-                " national ID: "+get_national_id() +" membership: " + membership_type +"\n";
+                " national ID: "+get_national_id() +" membership: " + getMembership_type() +"\n";
     }
 
 

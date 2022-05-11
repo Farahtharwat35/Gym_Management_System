@@ -16,8 +16,6 @@ public class GymSystem {
   protected  static List<Employee> employees = new ArrayList<>();
   protected static List<Trainer> trainers = new ArrayList<>();
 
-   protected static List<Administrator> admins = new ArrayList<>();
-
   protected static List<Member> members = new ArrayList<Member>();
    protected static List<Gym_Class> gym_classes = new ArrayList<>();
 
@@ -29,9 +27,7 @@ public class GymSystem {
         return trainers;
     }
 
-    public static List<Administrator> getAdmins() {
-        return admins;
-    }
+    Administrator admin1 = new Administrator( "123", "farouha");
 
     public static List<Member> getMembers() {
         return members;
@@ -41,20 +37,21 @@ public class GymSystem {
         return gym_classes;
     }
 
+    Employee loggedInEmployee=null;
+
     /**
      * Employee methods
      *
      */
 
     public Employee employeeLogin() {
-        Scanner Username = new Scanner(System.in);
+        Scanner input = new Scanner(System.in);
         System.out.println("Please Enter the Employee's Username : ");
-        String user = Username.next().toUpperCase(Locale.ROOT);
+        String Username= input.next().toUpperCase(Locale.ROOT);;
         System.out.println("Please Enter the Employee's Password : ");
-        Scanner Password = new Scanner(System.in);
-        String pass = Password.next();
+        String Password= input.next();
         for (Employee P : employees) {
-            if (P.getUsername().equals(user) && P.getPassword().equals(pass)) {
+            if (P.getUsername().equals(Username) && P.getPassword().equals(Password)) {
                 System.out.println("Welcome "+P.get_name());
                 return P;
             }
@@ -106,18 +103,39 @@ public class GymSystem {
      * Admin Methods
      */
 
+    public boolean  adminLogin() {
+        Scanner input = new Scanner(System.in);
+        System.out.println("Please Enter Admin Username : ");
+        String Username= input.next().toUpperCase(Locale.ROOT);;
+        System.out.println("Please Enter Admin Password : ");
+        String Password= input.next();
+            if (admin1.getUsername().equals(Username) && admin1.getPassword().equals(Password)) {
+                System.out.println("Welcome "+ admin1.getUsername());
+                return true;
 
-
+        }
+        System.out.println("Invalid Username or Password!");
+        return  false;
+    }
+//    public String signout () {
+//        System.out.println("Do you really want to sign out ? Y/N ") ;
+//        Scanner signout =new Scanner(System.in);
+//        String reply = signout.nextLine();
+//        if (reply=="Y"){
+//            if (loggedInEmployee!=null){
+//            loggedInEmployee = null;
+//        } else if (adminLogin()=true) {
+//
+//            }
+//        }
     public void run_system() {
 /**
  * Running Admin:
  *
  */
 // phone number handling
-        Administrator admin1 = new Administrator("Farah", "3020", "female", "0101000", "123", "farouha");
-        Administrator admin2 = new Administrator("sara", "358", "female", "0101000", "189", "sarsoura");
-        admins.add(admin1);
-        admins.add(admin2);
+
+
         Trainer trainer1 = new Trainer("Ahmed", "302050", "female", "01010600");
         trainers.add(trainer1);
 //System.out.println(admin1.findTrainer(trainers , "302050"));
@@ -129,9 +147,9 @@ public class GymSystem {
 ////System.out.println(class1.getStart_time());
 //    admin1.assign_trainer_to_class(trainer1,class1);
 //    System.out.println(trainer1.getGymClasses());
-//        while (true) {
-//            admin1.login(admins);
-//        }
+
+            adminLogin();
+
 //
 
 /**
@@ -139,7 +157,6 @@ public class GymSystem {
  *
  */
 
-        System.out.println("Testing Output");
         Gym_Class fitness= new Gym_Class("fitness","fitness",5, null, null);
         gym_classes.add(fitness);
         Member member1= new Member("member1", "1111", "male", "0101010","Pay as You go");
@@ -150,7 +167,7 @@ public class GymSystem {
 //        employees.add(employee1);
         employeeRegister();
         employeeLogin();
-        Employee loggedInEmployee=null;     //the one Employee logged into the system
+            //the one Employee logged into the system
         while(loggedInEmployee ==null){ loggedInEmployee = employeeLogin();}
         loggedInEmployee.addMember();
         loggedInEmployee.membersOfMembershipType();
