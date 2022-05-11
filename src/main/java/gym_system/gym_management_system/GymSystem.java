@@ -14,15 +14,35 @@ import java.util.Scanner;
 
 public class GymSystem {
 
-    public static List<Employee> employees = new ArrayList<>();
-    public static List<Trainer> trainers = new ArrayList<>();
-    public static List<Administrator> admins = new ArrayList<>();
-    public static List<Member> members = new ArrayList<Member>();
-    public static List<Gym_Class> gym_classes = new ArrayList<>();
+  protected  static List<Employee> employees = new ArrayList<>();
+  protected static List<Trainer> trainers = new ArrayList<>();
 
+   protected static List<Administrator> admins = new ArrayList<>();
 
+  protected static List<Member> members = new ArrayList<Member>();
+   protected static List<Gym_Class> gym_classes = new ArrayList<>();
 
-//
+    public static List<Employee> getEmployees() {
+        return employees;
+    }
+
+    public static List<Trainer> getTrainers() {
+        return trainers;
+    }
+
+    public static List<Administrator> getAdmins() {
+        return admins;
+    }
+
+    public static List<Member> getMembers() {
+        return members;
+    }
+
+    public static List<Gym_Class> getGym_classes() {
+        return gym_classes;
+    }
+
+    //
 //
 //    public void employeeLogin() {
 //        Scanner Username = new Scanner(System.in);
