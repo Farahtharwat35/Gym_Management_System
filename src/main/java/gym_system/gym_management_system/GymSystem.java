@@ -5,12 +5,11 @@ import Gym_Components.Member;
 import Gym_Components.Trainer;
 import System_Users.Administrator;
 import System_Users.Employee;
-import System_Users.Person;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Scanner;
+import System_Users.Person;
 
 public class GymSystem {
 
@@ -42,28 +41,10 @@ public class GymSystem {
         return gym_classes;
     }
 
-    //
-//
-//    public void employeeLogin() {
-//        Scanner Username = new Scanner(System.in);
-//        System.out.println("Please Enter Username : ");
-//        String user = Username.next().toUpperCase(Locale.ROOT);
-//        System.out.println("Please Enter Password : ");
-//        Scanner Password = new Scanner(System.in);
-//        String pass = Password.next();
-//        boolean areCredentialsRight = false;
-//            for (Employee P : employees) {
-//                if (P.getUsername().equals(user) && P.getPassword().equals(pass)) {
-//                    System.out.println("Logged In");
-//                    loggedInPerson=(Person)P;
-//                }
-//                else {
-//                    System.out.println("Invalid Username or Password!");
-//                }
-//            }
-//
-//    }
-
+    /**
+     * Employee methods
+     *
+     */
 
     public Employee employeeLogin() {
         Scanner Username = new Scanner(System.in);
@@ -121,12 +102,17 @@ public class GymSystem {
         return null;
     }
 
+    /**
+     * Admin Methods
+     */
+
+
 
     public void run_system() {
-        /**
-         * admin methods
-         *
-         */
+/**
+ * Running Admin:
+ *
+ */
 // phone number handling
         Administrator admin1 = new Administrator("Farah", "3020", "female", "0101000", "123", "farouha");
         Administrator admin2 = new Administrator("sara", "358", "female", "0101000", "189", "sarsoura");
@@ -149,7 +135,7 @@ public class GymSystem {
 //
 
 /**
- * Employee Methods
+ * Running Employee
  *
  */
 
@@ -167,9 +153,12 @@ public class GymSystem {
         Employee loggedInEmployee=null;     //the one Employee logged into the system
         while(loggedInEmployee ==null){ loggedInEmployee = employeeLogin();}
         loggedInEmployee.addMember();
-        loggedInEmployee.viewMemberInfo();
-        loggedInEmployee.editMember();
-        loggedInEmployee.deleteMember();
+        loggedInEmployee.membersOfMembershipType();
+//        loggedInEmployee.viewMemberInfo();
+//
+//        loggedInEmployee.editMember();
+//        loggedInEmployee.deleteMember();
+//        loggedInEmployee.membersOfMembershipType();
 //        loggedInEmployee.get_name();
 //        loggedInEmployee.editMember();
 //        loggedInEmployee.addMember();

@@ -52,6 +52,16 @@ public class Employee extends Person {
     }
 
 
+    //finding gym class method only used by the other two methods
+    public static Gym_Class findGymClass(String gymClassName) {
+        for (Gym_Class P : GymSystem.getGym_classes()) {
+            if (P.getType().equals(gymClassName)) {
+                return P;
+            }
+        }
+        return null;
+    }
+
     //  finding/ adding/removing members
     //finding method only used by the other two methods
     public static Member findMember(String national_id) {
@@ -173,9 +183,12 @@ public class Employee extends Person {
 
 
     //adding/removing members from gym_classes
-    public static void addMemberToClass( Gym_Class gym_class) {
-        String national_id;
+    public static void addMemberToClass() {
+        String national_id,gymClassName;
         Scanner myScanner = new Scanner(System.in);
+        System.out.println("Please enter the Class name");
+        gymClassName = myScanner.nextLine();
+        Gym_Class gym_class = findGymClass(gymClassName);
         System.out.println("Please enter the member's national ID");
         national_id = myScanner.nextLine();
          Member addedMember = findMember(national_id);
@@ -184,14 +197,19 @@ public class Employee extends Person {
         gym_class.addMemberToClass(addedMember);
     }
 
-    public static void removeMemberFromClass( Gym_Class gym_class) {
-        String national_id;
+    public static void removeMemberFromClass() {
+        String gymClassName,national_id;
+        System.out.println("Please enter the Class name");
         Scanner myScanner = new Scanner(System.in);
+        System.out.println("Please enter the Class name");
+        gymClassName = myScanner.nextLine();
+        Gym_Class gym_class = findGymClass(gymClassName);
         System.out.println("Please enter the member's national ID");
         national_id = myScanner.nextLine();
-        Member tmp = findMember(national_id);
-        gym_class.EmployeeRemoveClass_members(tmp);
-        tmp.getMemberAttendedClasses().remove(gym_class);
+        Member memberToBeRemoved = findMember(national_id);
+
+        gym_class.EmployeeRemoveClass_members(memberToBeRemoved);
+        memberToBeRemoved.getMemberAttendedClasses().remove(gym_class);
     }
 
     public static void viewMemberClasses() {
@@ -266,3 +284,27 @@ public class Employee extends Person {
 
 
 }
+
+
+//to be deleted
+//
+//
+//    public void employeeLogin() {
+//        Scanner Username = new Scanner(System.in);
+//        System.out.println("Please Enter Username : ");
+//        String user = Username.next().toUpperCase(Locale.ROOT);
+//        System.out.println("Please Enter Password : ");
+//        Scanner Password = new Scanner(System.in);
+//        String pass = Password.next();
+//        boolean areCredentialsRight = false;
+//            for (Employee P : employees) {
+//                if (P.getUsername().equals(user) && P.getPassword().equals(pass)) {
+//                    System.out.println("Logged In");
+//                    loggedInPerson=(Person)P;
+//                }
+//                else {
+//                    System.out.println("Invalid Username or Password!");
+//                }
+//            }
+//
+//    }
