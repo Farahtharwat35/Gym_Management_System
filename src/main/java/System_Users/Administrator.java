@@ -274,29 +274,32 @@ public void edit_trainer (List <Trainer> trainer){
         }
     }
     // after making the function of view_member in specific class in Main (it sorts te classes list and returns the class to this function)
-    public void view_members_in_specific_class () {
+    public void view_members_in_specific_class (List<Gym_Class> gym_classes) {
         Scanner input =new Scanner(System.in);
         System.out.println("Please enter a valid class type : ");
         String specific_class= input.nextLine();
-        for (int i=0 , )
+        Gym_Class assigned_class=findClass(gym_classes,specific_class);
+        if (assigned_class==null) {
+            System.out.println ("No such class found ! Please try again !");
+        }
         System.out.println("\n---------------------------------------------------------------------" +
                 "-------------------------------------------------------------\n");
 
-        System.out.format("%40s\n", "Class name: " + specific_class.getType());
-        System.out.format("%60s\n", "Class description: " + specific_class.getDescription());
-        if (!specific_class.getClass_members().isEmpty()) {
+        System.out.format("%40s\n", "Class name: " + assigned_class.getType());
+        System.out.format("%60s\n", "Class description: " + assigned_class.getDescription());
+        if (!assigned_class.getClass_members().isEmpty()) {
             System.out.format("%16s%16s%16s%32s\n", "First Name",
                     "Last Name",
                     "National ID",
                     "Membership Type");
-            for (int i = 0; i < specific_class.getClass_members().size(); i++) {
+            for (int i = 0; i < assigned_class.getClass_members().size(); i++) {
                 System.out.format("%16s%16s%16s%32s\n",
-                        specific_class.getClass_members().get(i).get_name(),
-                        specific_class.getClass_members().get(i).get_national_id());
+                        assigned_class.getClass_members().get(i).get_name(),
+                        assigned_class.getClass_members().get(i).get_national_id());
                        //membership //specific_class.getClass_members().get(i).get_name(),
             }
         }else {
-            System.out.println("There are no members currently in the class");
+            System.out.println("There are no members currently in this class");
         }
         System.out.println("\n---------------------------------------------------------------------" +
                 "-------------------------------------------------------------\n");
@@ -363,7 +366,6 @@ public void edit_trainer (List <Trainer> trainer){
                     trainers_gym.remove(delete_trainer);
                     System.out.println("\nTrainer: " +
                             delete_trainer.get_name() + " has been deleted successfully ! \n");
-                    return true;
             }
         }
         else {
@@ -416,7 +418,7 @@ public void edit_trainer (List <Trainer> trainer){
         return null;
     }
 
-    private void add_trainer (List <Trainer> trainers) {
+    public void add_trainer (List <Trainer> trainers) {
         String name = "";
         String national_id = "";
         String phone_number = "";
@@ -443,10 +445,10 @@ public void edit_trainer (List <Trainer> trainer){
 
 
     // function in Main takes the reply and displays the menu or stays in the view
-    private String signout () {
+    public String signout () {
         System.out.println("Do you really want to sign out ? Y/N ") ;
         Scanner signout =new Scanner(System.in);
         String reply = signout.nextLine();
-        return (reply);
+        return reply;
     }
 }

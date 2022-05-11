@@ -7,9 +7,9 @@ import java.util.List;
 
 public class Member extends Person {
 
-    public static final String[] membershipTypeOptions = {"Pay as You go","Open","Term" } ;
+    private static final String[] membershipTypeOptions = {"Pay as You go","Open","Term" } ;
     private String membership_type ;
-    private int membershipTypeIndex;
+//    private int membershipTypeIndex;
     private double serial_number;
 
     private List<Gym_Class> memberAttendedClasses = new ArrayList<Gym_Class>();
@@ -38,13 +38,13 @@ public class Member extends Person {
     public String getMembership_type() {
         return membership_type;
     }
-    public int getMembershipTypeIndex() {
-        return membershipTypeIndex;
-    }
+//    public int getMembershipTypeIndex() {
+//        return membershipTypeIndex;
+//    }
 
-    public void setMembership_type(int index) {
-        this.membership_type = membershipTypeOptions[index-1] ;
-    }
+//    public void setMembership_type(int index) {
+//        this.membership_type = membershipTypeOptions[index-1] ;
+//    }
 
     public List<Gym_Class> getAttendedClasses() {
         return memberAttendedClasses;
