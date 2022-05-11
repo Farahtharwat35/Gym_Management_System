@@ -67,9 +67,9 @@ public class GymSystem {
 
     public Employee employeeLogin() {
         Scanner Username = new Scanner(System.in);
-        System.out.println("Please Enter Username : ");
+        System.out.println("Please Enter the Employee's Username : ");
         String user = Username.next().toUpperCase(Locale.ROOT);
-        System.out.println("Please Enter Password : ");
+        System.out.println("Please Enter the Employee's Password : ");
         Scanner Password = new Scanner(System.in);
         String pass = Password.next();
         for (Employee P : employees) {
@@ -91,7 +91,7 @@ public class GymSystem {
         String username = "";
         String password = "";
         Scanner myScanner = new Scanner(System.in);
-        System.out.println("Enter Employee's nationalId:");
+        System.out.println("Enter the new Employee's nationalId:");
         national_id = myScanner.nextLine();
         Employee new_employee = findEmployee(employees, national_id);
 
@@ -156,10 +156,10 @@ public class GymSystem {
         System.out.println("Testing Output");
         Gym_Class fitness= new Gym_Class("fitness","fitness",5, null, null);
         gym_classes.add(fitness);
-        Member member1= new Member("member1", "1111", "male", "0101010",2);
+        Member member1= new Member("member1", "1111", "male", "0101010","Pay as You go");
         members.add(member1);
-//        Member member2= new Member("member2", "2222", "female", "0101010",1);
-//        members.add(member2);
+        Member member2= new Member("member2", "2222", "female", "0101010","Open");
+        members.add(member2);
 //        Employee employee1= new Employee("employee1","`12345","employee1","employee1","employee1","employee1");
 //        employees.add(employee1);
         employeeRegister();
@@ -167,11 +167,14 @@ public class GymSystem {
         Employee loggedInEmployee=null;     //the one Employee logged into the system
         while(loggedInEmployee ==null){ loggedInEmployee = employeeLogin();}
         loggedInEmployee.addMember();
-        loggedInEmployee.get_name();
+        loggedInEmployee.viewMemberInfo();
         loggedInEmployee.editMember();
-        loggedInEmployee.addMember();
-        loggedInEmployee.addMemberToClass(fitness);
-        loggedInEmployee.viewMembersInGymClass();
+        loggedInEmployee.deleteMember();
+//        loggedInEmployee.get_name();
+//        loggedInEmployee.editMember();
+//        loggedInEmployee.addMember();
+//        loggedInEmployee.addMemberToClass(fitness);
+//        loggedInEmployee.viewMembersInGymClass();
 
 //        employee1.findMember("1234");
 //        employee1.addMemberToClass(fitness);

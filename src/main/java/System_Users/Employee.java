@@ -10,9 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import static Gym_Components.Member.membershipTypeOptions;
-import static gym_system.gym_management_system.GymSystem.gym_classes;
-import static gym_system.gym_management_system.GymSystem.members;
+
 
 
 public class Employee extends Person {
@@ -57,7 +55,7 @@ public class Employee extends Person {
     //  finding/ adding/removing members
     //finding method only used by the other two methods
     public static Member findMember(String national_id) {
-        for (Member P : members) {
+        for (Member P : GymSystem.getMembers()) {
             if (P.get_national_id().equals(national_id)) {
                 return P;
             }
@@ -74,6 +72,7 @@ public class Employee extends Person {
         int membershipTypeIndex;
 
         Scanner myScanner = new Scanner(System.in);
+        System.out.println("Please fill the following data to add a member:");
         System.out.println("Enter member's nationalId:");
         memberNational_id = myScanner.nextLine();
         Member new_member = findMember(memberNational_id);
@@ -85,9 +84,9 @@ public class Employee extends Person {
             memberGender = myScanner.nextLine();
             System.out.println("Enter member's phone number :");
             memberPhoneNumber = myScanner.nextLine();
-            System.out.println("Choose member's membership, 1 for Pay as you go, 2 for open membership, 3 for Term membership :");
-            membershipTypeIndex = myScanner.nextInt();
-            members.add(new Member(memberName, memberNational_id, memberGender, memberPhoneNumber, membershipTypeIndex));
+            System.out.println("Enter the membership, \"Pay as You go\", \"Open\" or \"Term\" membership :");
+            String enteredMembership = myScanner.nextLine();
+            GymSystem.getMembers().add(new Member(memberName, memberNational_id, memberGender, memberPhoneNumber, enteredMembership));
         } else {
             System.out.println("Member : " + new_member + " already exists");
         }
@@ -133,17 +132,18 @@ public class Employee extends Person {
                     edited_member.set_phone_number(phone_number);
                     break;
                 case ("M"):
-                    System.out.println("Please member's membership type : ");
-                    int membership_index = second_input.nextInt();
-                    switch (membership_index) {
-                        case (1):
-                            edited_member.setMembership_type(1);
+
+                    System.out.println("Enter the membership, \"Pay as You go\", \"Open\" or \"Term\" membership :");
+                    String enteredMembership = myScanner.nextLine();
+                    switch (enteredMembership.toUpperCase(Locale.ROOT)) {
+                        case ("PAYG"):
+                            edited_member.setMembership_type("PAYG");
                             break;
-                        case (2):
-                            edited_member.setMembership_type(2);
+                        case ("OPEN"):
+                            edited_member.setMembership_type("Open");
                             break;
-                        case (3):
-                            edited_member.setMembership_type(3);
+                        case ("TERM"):
+                            edited_member.setMembership_type("Term");
                             break;
                         default:
                             System.out.println("Please enter a valid choice !");
@@ -162,9 +162,9 @@ public class Employee extends Person {
         Scanner myScanner = new Scanner(System.in);
         System.out.println("Enter member's National_ID");
         String national_id = myScanner.nextLine().toUpperCase(Locale.ROOT);
-        for (Member P : members) {
+        for (Member P : GymSystem.getMembers()) {
             if (P.get_national_id().equals(national_id)) {
-                members.remove(P);
+                GymSystem.getMembers().remove(P);
             } else {
                 System.out.println(P.get_name() + "Not Found");
             }
@@ -211,7 +211,7 @@ public class Employee extends Person {
         Scanner myScanner = new Scanner(System.in);
         System.out.println("Write the gym class:");
         String className = myScanner.next().toUpperCase(Locale.ROOT);
-        for (Gym_Class P : gym_classes) {
+        for (Gym_Class P : GymSystem.getGym_classes()) {
             if (P.getType().equals(className)) {
                 System.out.println("Members of the selected gym class:    ");
                 Gym_Class.getClass_members();
@@ -226,29 +226,36 @@ public class Employee extends Person {
 
     //view all members of a specific membership type
     public void membersOfMembershipType() {
-        int index;
+        boolean found = false;
         Scanner myScanner = new Scanner(System.in);
-        System.out.println("Choose the membership, 1 for Pay as you go, 2 for open membership, 3 for Term membership :");
-        index = myScanner.nextInt();
-        System.out.println("Members of" + membershipTypeOptions[index - 1] + " membership type:    ");
-        for (Member P : members) {
-            if (P.getMembershipTypeIndex() == index) {
+        System.out.println("Enter the membership, \"Pay as You go\", \"Open\" or \"Term\" membership :");
+        String enteredMembership = myScanner.next();
+        System.out.println("Members of the selected membership type: ");
+        for (Member P : GymSystem.getMembers()) {
+            if (P.getMembership_type().equals(enteredMembership)) {
                 System.out.println(P.get_name() + "/n");
+                found = true;
             }
         }
+        if(found== false)   System.out.println("No Members currently in the class");
+
     }
 
 
     //view a member info
     public void viewMemberInfo() {
+        boolean found = false;
         String national_id;
         Scanner myScanner = new Scanner(System.in);
-        System.out.println("Please enter the member's national ID");
+        System.out.println("Please enter the member's national ID to view info");
         national_id = myScanner.nextLine();
-        for (Member P : members) {
-            if (P.get_national_id().equals(national_id)) System.out.println(P);
+        for (Member P : GymSystem.getMembers()) {
+            if (P.get_national_id().equals(national_id)){
+                System.out.println(P);
+                found=true;
+            }
         }
-        System.out.println("Not Found");
+        if(found==false)     System.out.println("Member Not Found");
     }
 
 

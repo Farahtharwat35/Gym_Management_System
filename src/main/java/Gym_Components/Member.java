@@ -22,11 +22,11 @@ public class Member extends Person {
     //constructors
 
     public Member() { }
-    public Member(String name, String national_id, String gender, String phone_number, int membershipTypeIndex) {
+    public Member(String name, String national_id, String gender, String phone_number, String membership_type) {
         super(name, national_id, gender, phone_number);
         //rand n generation, may change it later
         this.serial_number = (((int) (Math.random() * (5000 - 1000))) + 1000);  //random number between 1000 and 5000
-        this.membership_type=membershipTypeOptions[membershipTypeIndex-1];
+        this.membership_type=membership_type;
         this.trainer=null;
     }
 
@@ -38,13 +38,11 @@ public class Member extends Person {
     public String getMembership_type() {
         return membership_type;
     }
-//    public int getMembershipTypeIndex() {
-//        return membershipTypeIndex;
-//    }
 
-//    public void setMembership_type(int index) {
-//        this.membership_type = membershipTypeOptions[index-1] ;
-//    }
+
+    public void setMembership_type(String type) {
+        this.membership_type =type ;
+    }
 
     public List<Gym_Class> getAttendedClasses() {
         return memberAttendedClasses;

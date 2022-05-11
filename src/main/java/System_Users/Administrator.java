@@ -327,35 +327,47 @@ public void edit_trainer (List <Trainer> trainer){
             System.out.println("There are no members available !");
         }
     }
-    public void view_members_in_specific_membership (List<Member> members) {
-        Scanner input_membership = new Scanner(System.in);
-        System.out.println("Please enter a valid membership : Pay as You go,Open,Term ");
-        for (int i = 0; i < members.size(); i++) {
-            Member member = (Member) members.get(i);
-//    to rizk        if (member.getMembershipType().equals(membership)){
-//                membersInSpecificMemberShip.add(member);
-//            }
-        }
-        if (!membersInSpecificMemberShip.isEmpty()) {
-            System.out.println("\n---------------------------------------------------------------------" +
-                    "-------------------------------------------------------------\n");
-            System.out.format("%16s%16s%16s%32s\n", "First Name",
-                    "Last Name",
-                    "National ID",
-                    "Membership Type");
 
-            for (Member member : membersInSpecificMemberShip) {
-                System.out.format("%16s%16s%16s%32s\n",
-                        member.get_name(),
-                        member.get_national_id());
-                       //rizk //member.getMembershipType());
+    public void membersOfMembershipType() {
+        Scanner myScanner = new Scanner(System.in);
+        System.out.println("Enter the membership, \"Pay as You go\", \"Open\" or \"Term\" membership :");
+        String enteredMembership = myScanner.next();
+        System.out.println("Members of the selected membership type: ");
+        for (Member P : GymSystem.getMembers()) {
+            if (P.getMembership_type().equals(enteredMembership)) {
+                System.out.println(P.get_name() + "/n");
             }
-            System.out.println("\n---------------------------------------------------------------------" +
-                    "-------------------------------------------------------------\n");
-        }else {
-            System.out.println("There are no members currently in the class");
         }
-}
+    }
+//    public void view_members_in_specific_membership (List<Member> members) {
+//        Scanner input_membership = new Scanner(System.in);
+//        System.out.println("Please enter a valid membership : Pay as You go,Open,Term ");
+//        for (int i = 0; i < members.size(); i++) {
+//            Member member = (Member) members.get(i);
+////    to rizk        if (member.getMembershipType().equals(membership)){
+////                membersInSpecificMemberShip.add(member);
+////            }
+//        }
+//        if (!membersInSpecificMemberShip.isEmpty()) {
+//            System.out.println("\n---------------------------------------------------------------------" +
+//                    "-------------------------------------------------------------\n");
+//            System.out.format("%16s%16s%16s%32s\n", "First Name",
+//                    "Last Name",
+//                    "National ID",
+//                    "Membership Type");
+//
+//            for (Member member : membersInSpecificMemberShip) {
+//                System.out.format("%16s%16s%16s%32s\n",
+//                        member.get_name(),
+//                        member.get_national_id());
+//                       //rizk //member.getMembershipType());
+//            }
+//            System.out.println("\n---------------------------------------------------------------------" +
+//                    "-------------------------------------------------------------\n");
+//        }else {
+//            System.out.println("There are no members currently in the class");
+//        }
+//    }
     public void delete_trainer(List<Trainer> trainers_gym ) {
         System.out.println("Please enter trainer nationalId :");
         Scanner delete_trainer_id =new Scanner(System.in);
