@@ -18,6 +18,9 @@ public class Gym_Class {
 
 
     private List<Member> class_members;
+    public Gym_Class(){
+
+    }
     public Gym_Class(String type, String description, int members_limited_number,Instant start_time, Instant end_time) {
         this.type=type.toUpperCase(Locale.ROOT);
         this.description=description;

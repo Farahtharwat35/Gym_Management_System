@@ -16,6 +16,7 @@ import java.util.*;
 public class Administrator extends Person {
    private String password;
    private String username;
+   private boolean status;
    private static List<Gym_Class> gymClassesList = new ArrayList<Gym_Class>();
 
 
@@ -24,7 +25,11 @@ public class Administrator extends Person {
         this.password=password;
         this.username=username.toUpperCase(Locale.ROOT);
     }
-    
+
+    public boolean isStatus() {
+        return status;
+    }
+
     public String getUsername () {
         return this.username;
     }
@@ -71,6 +76,7 @@ public class Administrator extends Person {
             else {
                     System.out.println("Invalid Username And Password!");
                 }
+            status= valid_data;
 
 
         }
@@ -134,9 +140,9 @@ public void edit_trainer (List <Trainer> trainer){
         System.out.println("No result matches");
     }
     else {
-        System.out.println("Edit trainer name (N)");
-        System.out.println("Edit trainer NationalId (I)");
-        System.out.println("Edit trainer gender (G)");
+        System.out.println("Edit trainer name         (N)");
+        System.out.println("Edit trainer NationalId   (I)");
+        System.out.println("Edit trainer gender       (G)");
         System.out.println("Edit trainer phone_number (P)");
         Scanner first_input = new Scanner(System.in);
         String choice = first_input.nextLine();
@@ -144,24 +150,28 @@ public void edit_trainer (List <Trainer> trainer){
 
         switch(choice) {
             case ("N"):
-                System.out.println("Please enter a trainer name :");
+                System.out.println("Please enter the new name :");
                 String name = second_input.nextLine();
                 edited_trainer.set_name(name);
+                System.out.println("Name changed successfully");
                 break;
             case ("I"):
                 System.out.println("Please enter trainer new NationalID :");
                 String nationalID= second_input.nextLine();
                 edited_trainer.set_national_id (nationalID);
+                System.out.println("ID changed successfully");
                 break;
             case ("G"):
                 System.out.println("Please enter trainer gender :");
                 String gender= second_input.nextLine();
                 edited_trainer.set_gender(gender);
+                System.out.println("Gender changed successfully");
                 break;
             case ("P"):
                 System.out.println("Please trainer phone_number : ");
                 String phone_number= second_input.nextLine();
                 edited_trainer.set_phone_number(phone_number);
+                System.out.println("Phone Number changed successfully");
                 break;
             default:
                 System.out.println("Please enter a valid choice !");
@@ -342,7 +352,7 @@ public void edit_trainer (List <Trainer> trainer){
             System.out.println("There are no members currently in the class");
         }
 }
-    public boolean delete_trainer(Trainer trainer, List<Person> trainers_gym ) {
+    public boolean delete_trainer(Trainer trainer, List<Trainer> trainers_gym ) {
         for (int i = 0; i < trainers_gym.size(); i++) {
             Trainer delete_trainer = (Trainer) trainers_gym.get(i);
             if (delete_trainer.get_national_id().equals(trainer.get_national_id())){
@@ -378,7 +388,7 @@ public void edit_trainer (List <Trainer> trainer){
         }
         return null;
     }
-    private Gym_Class findClass (List <Gym_Class> gym_classes , String class_name ) {
+    public Gym_Class findClass (List <Gym_Class> gym_classes , String class_name ) {
         for (Gym_Class C : gym_classes ) {
             if (C.getType().equals(class_name)) {
                 return C ;
@@ -387,7 +397,7 @@ public void edit_trainer (List <Trainer> trainer){
         return null;
     }
 
-    private void add_trainer (List <Trainer> trainers) {
+    public void add_trainer (List <Trainer> trainers) {
         String name = "";
         String national_id = "";
         String phone_number = "";
@@ -405,6 +415,7 @@ public void edit_trainer (List <Trainer> trainer){
             System.out.println("Enter trainer phone number :");
             phone_number = myScanner.nextLine();
             trainers.add(new Trainer(name, national_id, gender,phone_number));
+            System.out.println("Trainer  " + name + " added successfully");
         }
         else {
             System.out.println("Trainer : " + new_trainer + " already exists");
