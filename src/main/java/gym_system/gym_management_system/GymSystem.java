@@ -13,11 +13,11 @@ import System_Users.Person;
 
 public class GymSystem {
 
-  protected  static List<Employee> employees = new ArrayList<>();
-  protected static List<Trainer> trainers = new ArrayList<>();
+    protected static List<Employee> employees = new ArrayList<>();
+    protected static List<Trainer> trainers = new ArrayList<>();
 
-  protected static List<Member> members = new ArrayList<Member>();
-   protected static List<Gym_Class> gym_classes = new ArrayList<>();
+    protected static List<Member> members = new ArrayList<Member>();
+    protected static List<Gym_Class> gym_classes = new ArrayList<>();
 
     public static List<Employee> getEmployees() {
         return employees;
@@ -27,7 +27,8 @@ public class GymSystem {
         return trainers;
     }
 
-    Administrator admin1 = new Administrator( "123", "farouha");
+    Administrator admin1 = new Administrator("123", "farouha");
+
 
     public static List<Member> getMembers() {
         return members;
@@ -37,28 +38,28 @@ public class GymSystem {
         return gym_classes;
     }
 
-    Employee loggedInEmployee=null;
+    Employee loggedInEmployee = null;
 
     /**
      * Employee methods
-     *
      */
 
     public Employee employeeLogin() {
         Scanner input = new Scanner(System.in);
         System.out.println("Please Enter the following data to login : ");
         System.out.println("Enter the Employee's Username : ");
-        String Username= input.next().toUpperCase(Locale.ROOT);;
+        String Username = input.next().toUpperCase(Locale.ROOT);
+
         System.out.println("Enter the Employee's Password : ");
-        String Password= input.next();
+        String Password = input.next();
         for (Employee P : employees) {
             if (P.getUsername().equals(Username) && P.getPassword().equals(Password)) {
-                System.out.println("Welcome "+P.get_name());
+                System.out.println("Welcome " + P.get_name());
                 return P;
             }
         }
         System.out.println("Invalid Username or Password!");
-        return  null;
+        return null;
     }
 
 
@@ -104,106 +105,248 @@ public class GymSystem {
     /**
      * Admin Methods
      */
-
-    public boolean  adminLogin() {
+    boolean status= false;
+    public boolean adminLogin() {
         Scanner input = new Scanner(System.in);
         System.out.println("Please Enter Admin Username : ");
-        String Username= input.next().toUpperCase(Locale.ROOT);;
+        String Username = input.next().toUpperCase(Locale.ROOT);
         System.out.println("Please Enter Admin Password : ");
-        String Password= input.next();
-            if (admin1.getUsername().equals(Username) && admin1.getPassword().equals(Password)) {
-                System.out.println("Welcome "+ admin1.getUsername());
-                return true;
+        String Password = input.next();
+        if (admin1.getUsername().equals(Username) && admin1.getPassword().equals(Password)) {
+            System.out.println("Welcome " + admin1.getUsername());
+            status = true;
+            return true;
 
         }
         System.out.println("Invalid Username or Password!");
-        return  false;
+        return false;
     }
-//    public String signout () {
-//        System.out.println("Do you really want to sign out ? Y/N ") ;
-//        Scanner signout =new Scanner(System.in);
-//        String reply = signout.nextLine();
-//        if (reply=="Y"){
-//            if (loggedInEmployee!=null){
-//            loggedInEmployee = null;
-//        } else if (adminLogin()=true) {
-//
-//            }
-//        }
+
+
+     public void signout () {
+//         System.out.println("Do you really want to sign out ? Y/N ");
+//         Scanner signout = new Scanner(System.in);
+//         String reply = signout.nextLine();
+//         if (reply == "Y") {
+             loggedInEmployee = null;
+             status = false;
+             System.out.println("Signed out successfully");
+
+         }
+
+
     public void run_system() {
-/**
- * Running Admin:
- *
- */
-// phone number handling
+        Employee employee1 = new Employee("Anas","123","male","1643","anas","123");
+        Employee employee2 = new Employee("Anas","123","male","1643","anass","1234");
+        employees.add(employee1);
+        employees.add(employee2);
+
+        int X;
+        Scanner myScanner = new Scanner(System.in);
+        do {
+
+            System.out.println("Choose position:");
+            System.out.println("Admin    (1)");
+            System.out.println("Employee (2)");
+            X = myScanner.nextInt();
+            if (X == 1) {
+                while(status ==false){ adminLogin();}
+                if (status) {
+                    System.out.println("Choose:");
+                    System.out.println("Trainers Management (1)");
+                    System.out.println("Classes Management  (2)");
+                    System.out.println("Members Management  (3)");
+                    System.out.println("Sign out            (4)");
+                    X = myScanner.nextInt();
+                    if (X == 1) {
+                        System.out.println("Choose:");
+                        System.out.println("Add Trainer              (1)");
+                        System.out.println("Edit Trainer             (2)");
+                        System.out.println("Remove Trainer           (3)");
+                        System.out.println("Assign Trainer to Class  (4)");
+                        System.out.println("Assign Trainer to Member (5)");
+                        System.out.println("Sign out                 (6)");
+                        X = myScanner.nextInt();
+                        switch (X) {
+                            case 1: {
+                                admin1.add_trainer();
+                                break;
+                            }
+                            case 2: {
+                                admin1.edit_trainer();
+                                break;
+                            }
+                            case 3: {
+                                admin1.delete_trainer();
+                                break;
+                            }
+                            case 4: {
+                                admin1.assign_trainer_to_class();
+                                break;
+                            }
+                            case 5: {
+                                admin1.assign_trainer_to_member();
+                                break;
+                            }
+                            case 6: {
+                                signout();
+                                break;
+                            }
+                        }
+                    } else if (X == 2) {
+                        System.out.println("Choose:");
+                        System.out.println("Open Class                            (1)");
+                        System.out.println("Edit Class                            (2)");
+                        System.out.println("Remove Class                          (3)");
+                        System.out.println("View members in a specific class      (4)");
+                        System.out.println("Sign out                              (5)");
+
+                        X = myScanner.nextInt();
+                        switch (X) {
+                            case 1: {
+                                admin1.findClass("YUGA");
+                                break;
+                            }
+                            case 2: {
+                                admin1.edit_class();
+                                break;
+                            }
+                            case 3: {
+                                admin1.delete_class();
+                                break;
+                            }
+                            case 4: {
+                                admin1.view_members_in_specific_class();
+                                break;
+                            }
+                            case 5: {
+                                signout();
+                                break;
+                            }
 
 
-        Trainer trainer1 = new Trainer("Ahmed", "302050", "female", "01010600");
-        trainers.add(trainer1);
-//System.out.println(admin1.findTrainer(trainers , "302050"));
-//admin1.edit_trainer(trainers);
-//System.out.println(trainer1.get_name());
-//Instant start_time = Gym_Class.get_instant();
-//Instant end_time = Gym_Class.get_instant();
-//Gym_Class class1=new Gym_Class("yoga","low",10,start_time,end_time);
-////System.out.println(class1.getStart_time());
-//    admin1.assign_trainer_to_class(trainer1,class1);
-//    System.out.println(trainer1.getGymClasses());
+                        }
+                    } else if (X == 3) {
+                        System.out.println("Choose:");
+                        System.out.println("View members in specific class      (1)");
+                        System.out.println("View members in specific membership (2)");
+                        System.out.println("View all members infos              (3)");
+                        System.out.println("Sign out                            (4)");
 
-//            adminLogin();
+                        X = myScanner.nextInt();
+                        switch (X) {
+                            case 1: {
+                                admin1.view_members_in_specific_class();
+                                break;
+                            }
+                            case 2: {
+                                admin1.view_members_in_specific_membership();
+                                break;
+                            }
+                            case 3: {
+                                admin1.view_all_members_infos();
+                                break;
+                            }
+                            case 4: {
+                                signout();
+                                break;
+                            }
 
-//
+                        }
+                    }
+                    if (X==4){
+                        signout();
+                    }
 
-/**
- * Running Employee
- *
- */
-
-        Gym_Class fitness= new Gym_Class("fitness","fitness",5, null, null);
-        gym_classes.add(fitness);
-        Member member1= new Member("member1", "1111", "male", "0101010","Open");
-        members.add(member1);
-        Member member2= new Member("member2", "2222", "female", "0101010","Open");
-        members.add(member2);
-//        Employee employee1= new Employee("employee1","`12345","employee1","employee1","employee1","employee1");
-//        employees.add(employee1);
-        employeeRegister();
-        employeeLogin();
-        while(loggedInEmployee ==null){ loggedInEmployee = employeeLogin();}
-        loggedInEmployee.addMember();
-        loggedInEmployee.editMember();
-        loggedInEmployee.membersOfMembershipType();
-//        loggedInEmployee.viewMemberInfo();
-//
-//        loggedInEmployee.editMember();
-//        loggedInEmployee.deleteMember();
-//        loggedInEmployee.membersOfMembershipType();
-//        loggedInEmployee.get_name();
-//        loggedInEmployee.editMember();
-//        loggedInEmployee.addMember();
-//        loggedInEmployee.addMemberToClass(fitness);
-//        loggedInEmployee.viewMembersInGymClass();
-
-//        employee1.findMember("1234");
-//        employee1.addMemberToClass(fitness);
-//        employee1.viewMemberClasses();
-
-//        System.out.println(gym_classes);
+                }
 
 
+            } else if (X == 2) {
+                System.out.println("Choose:");
+                System.out.println("Register (1)");
+                System.out.println("login    (2)");
+                X = myScanner.nextInt();
+                if (X == 1) {
+                    employeeRegister();
+                } else if (X == 2) {
+                    while(loggedInEmployee ==null){ loggedInEmployee = employeeLogin();}
+                    if (loggedInEmployee != null) {
+                        System.out.println("Choose:");
+                        System.out.println("Add Member                 (1)");
+                        System.out.println("Edit Member                (2)");
+                        System.out.println("Delete Member              (3)");
+                        System.out.println("Add Member to a Class      (4)");
+                        System.out.println("Remove Member from a Class (5)");
+                        System.out.println("View Members in a class    (6)");
+                        System.out.println("View Members info          (7)");
+                        System.out.println("Sign out                   (8)");
+                        X = myScanner.nextInt();
+                        switch (X) {
+                            case 1: {
+                                loggedInEmployee.addMember();
+                                break;
+                            }
+                            case 2: {
+                                loggedInEmployee.editMember();
+                                break;
+                            }
+                            case 3: {
+                                loggedInEmployee.deleteMember();
+                                break;
+                            }
+                            case 4: {
+                                loggedInEmployee.addMemberToClass();
+                                break;
+                            }
+                            case 5: {
+                                loggedInEmployee.removeMemberFromClass();
+                                break;
+                            }
+                            case 6: {
+                                loggedInEmployee.viewMembersInGymClass();
+                                break;
+                            }
+                            case 7: {
+                                loggedInEmployee.viewMemberInfo();
+                                break;
+                            }
+                            case 8: {
+                                signout();
+                                break;
+                            }
+                        }
+                    }
+
+                }
+            }
+        }while (X!=0);
+        }
 
 
-//        Administrator.getGymClassesList().add(Fitness);
-
-//        Employee.addMemberToList(member);
-//        Employee.addMemberToClass(member,Fitness);
-//        Employee.viewMemberClasses(member);
-//        Member gira= new Member("gira", "99", "male", "0101010",2);
-//        Employee.addMemberToList(gira);
-//        System.out.println(Employee.viewMemberList());
 
 
-    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 }

@@ -397,7 +397,7 @@ public void edit_trainer (){
         }
         return null;
     }
-    private Gym_Class findClass ( String class_name ) {
+    public Gym_Class findClass ( String class_name ) {
         for (Gym_Class C : GymSystem.getGym_classes() ) {
             if (C.getType().equals(class_name)) {
                 return C ;
