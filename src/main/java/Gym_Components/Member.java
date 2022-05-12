@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 public class Member extends Person {
 
-    private static final String[] membershipTypeOptions = {"PAY AS YOU GO","OPEN","TERM" } ;
+  public static final String[] membershipTypeOptions = {"PAY AS YOU GO","OPEN","TERM" } ;
     private String membership_type ;
 //    private int membershipTypeIndex;
     private static int serialNumber =5000;;

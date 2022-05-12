@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import static Gym_Components.Member.membershipTypeOptions;
+import  Gym_Components.Member;
 
 
 public class Employee extends Person {
@@ -250,8 +250,8 @@ public class Employee extends Person {
 
 
     public boolean IsMembershipTypeAvailable(String enteredType){
-        for(int i=0; i<membershipTypeOptions.length; i++){
-            if( enteredType.equals(membershipTypeOptions[i])) return  true;
+        for(int i=0; i<Member.membershipTypeOptions.length; i++){
+            if( enteredType.equals(Member.membershipTypeOptions[i])) return  true;
         }
         System.out.println("Please Enter a valid membership option \"Pay as You go\", \"Open\" or \"Term\" : ");
         return  false;

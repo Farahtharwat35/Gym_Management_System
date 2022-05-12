@@ -204,7 +204,7 @@ public class GymSystem {
                         X = myScanner.nextInt();
                         switch (X) {
                             case 1: {
-                                admin1.findClass("YUGA");
+                                admin1.open_class();
                                 break;
                             }
                             case 2: {
