@@ -295,35 +295,6 @@ public class Employee extends Person {
         if(found==false)     System.out.println("Member Not Found");
     }
 
-
-
-
-
-
-
-
 }
 
 
-//to be deleted
-//
-//
-//    public void employeeLogin() {
-//        Scanner Username = new Scanner(System.in);
-//        System.out.println("Please Enter Username : ");
-//        String user = Username.next().toUpperCase(Locale.ROOT);
-//        System.out.println("Please Enter Password : ");
-//        Scanner Password = new Scanner(System.in);
-//        String pass = Password.next();
-//        boolean areCredentialsRight = false;
-//            for (Employee P : employees) {
-//                if (P.getUsername().equals(user) && P.getPassword().equals(pass)) {
-//                    System.out.println("Logged In");
-//                    loggedInPerson=(Person)P;
-//                }
-//                else {
-//                    System.out.println("Invalid Username or Password!");
-//                }
-//            }
-//
-//    }
