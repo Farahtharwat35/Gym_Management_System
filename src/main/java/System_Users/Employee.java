@@ -104,7 +104,6 @@ public class Employee extends Person {
     }
 
     public void editMember() {
-        System.out.println("Please fill the following data to add a member:");
         System.out.println("Enter member's national ID");
         Scanner myScanner = new Scanner(System.in);
         String member_id = myScanner.nextLine().toUpperCase(Locale.ROOT);
