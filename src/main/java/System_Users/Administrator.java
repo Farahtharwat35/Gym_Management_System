@@ -311,7 +311,7 @@ public void edit_trainer (){
         System.out.println("Members of the selected membership type: ");
         for (Member P : GymSystem.getMembers()) {
             if (P.getMembership_type().equals(enteredMembership)) {
-                System.out.println(P.get_name() + "/n");
+                System.out.println(P.get_name());
             }
         }
     }

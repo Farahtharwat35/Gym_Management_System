@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-
+import static Gym_Components.Member.membershipTypeOptions;
 
 
 public class Employee extends Person {
@@ -96,6 +96,9 @@ public class Employee extends Person {
             memberPhoneNumber = myScanner.nextLine();
             System.out.println("Enter the membership, \"Pay as You go\", \"Open\" or \"Term\" membership :");
             String enteredMembership = myScanner.nextLine();
+            while(IsMembershipTypeAvailable(enteredMembership)==false) {
+                enteredMembership = myScanner.nextLine();
+            }
             GymSystem.getMembers().add(new Member(memberName, memberNational_id, memberGender, memberPhoneNumber, enteredMembership));
         } else {
             System.out.println("Member : " + new_member + " already exists");
@@ -146,13 +149,13 @@ public class Employee extends Person {
                     System.out.println("Enter the membership, \"Pay as You go\", \"Open\" or \"Term\" membership :");
                     String enteredMembership = myScanner.nextLine();
                     switch (enteredMembership.toUpperCase(Locale.ROOT)) {
-                        case ("PAYG"):
+                        case ("Pay as You go"):
                             edited_member.setMembership_type("PAYG");
                             break;
-                        case ("OPEN"):
+                        case ("Open"):
                             edited_member.setMembership_type("Open");
                             break;
-                        case ("TERM"):
+                        case ("Term"):
                             edited_member.setMembership_type("Term");
                             break;
                         default:
@@ -241,6 +244,13 @@ public class Employee extends Person {
     }
 
 
+    public boolean IsMembershipTypeAvailable(String enteredType){
+        for(int i=0; i<membershipTypeOptions.length; i++){
+            if( enteredType.equals(membershipTypeOptions[i])) return  true;
+        }
+        System.out.println("Please Enter a valid membership option \"Pay as You go\", \"Open\" or \"Term\" : ");
+        return  false;
+    }
 
     //view all members of a specific membership type
     public void membersOfMembershipType() {
@@ -251,7 +261,7 @@ public class Employee extends Person {
         System.out.println("Members of the selected membership type: ");
         for (Member P : GymSystem.getMembers()) {
             if (P.getMembership_type().equals(enteredMembership)) {
-                System.out.println(P.get_name() + "/n");
+                System.out.println(P.get_name());
                 found = true;
             }
         }

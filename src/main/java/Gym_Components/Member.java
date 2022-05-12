@@ -3,11 +3,12 @@ import System_Users.Person;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 
 public class Member extends Person {
 
-    private static final String[] membershipTypeOptions = {"Pay as You go","Open","Term" } ;
+    public static final String[] membershipTypeOptions = {"Pay as You go","Open","Term" } ;
     private String membership_type ;
 //    private int membershipTypeIndex;
     private double serial_number;
@@ -26,8 +27,8 @@ public class Member extends Person {
         super(name, national_id, gender, phone_number);
         //rand n generation, may change it later
         this.serial_number = (((int) (Math.random() * (5000 - 1000))) + 1000);  //random number between 1000 and 5000
-        this.membership_type=membership_type;
         this.trainer=null;
+        this.membership_type=membership_type;
     }
 
 
@@ -38,6 +39,7 @@ public class Member extends Person {
     public String getMembership_type() {
         return membership_type;
     }
+
 
 
     public void setMembership_type(String type) {
@@ -71,7 +73,7 @@ public class Member extends Person {
     //overriding tostring method
     @Override
     public String toString (){
-        return "\n"+ "Member's name: " + get_name()+ " Gender: " + get_gender()+" phone: " + getPhone_number()+
+        return "  "+ "Member's name: " + get_name()+ " Gender: " + get_gender()+" phone: " + getPhone_number()+
                 " national ID: "+get_national_id() +" membership: " + getMembership_type();
     }
 
