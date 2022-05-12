@@ -171,6 +171,7 @@ public class GymSystem {
         employeeLogin();
         while(loggedInEmployee ==null){ loggedInEmployee = employeeLogin();}
         loggedInEmployee.addMember();
+        loggedInEmployee.editMember();
         loggedInEmployee.membersOfMembershipType();
 //        loggedInEmployee.viewMemberInfo();
 //
