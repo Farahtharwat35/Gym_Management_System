@@ -11,7 +11,7 @@ public class Member extends Person {
     public static final String[] membershipTypeOptions = {"Pay as You go","Open","Term" } ;
     private String membership_type ;
 //    private int membershipTypeIndex;
-    private double serial_number;
+    private static int serialNumber =5000;;
 
     private List<Gym_Class> memberAttendedClasses = new ArrayList<Gym_Class>();
 
@@ -25,17 +25,18 @@ public class Member extends Person {
     public Member() { }
     public Member(String name, String national_id, String gender, String phone_number, String membership_type) {
         super(name, national_id, gender, phone_number);
-        //rand n generation, may change it later
-        this.serial_number = (((int) (Math.random() * (5000 - 1000))) + 1000);  //random number between 1000 and 5000
+        serialNumber ++;
         this.trainer=null;
         this.membership_type=membership_type;
     }
 
 
     //getters&setters
-    public double getSerial_number() {
-        return serial_number;
+
+    public static int getSerialNumber() {
+        return serialNumber;
     }
+
     public String getMembership_type() {
         return membership_type;
     }
