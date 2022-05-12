@@ -48,11 +48,11 @@ public class Gym_Class {
     }
 
     public String getType() {
-        return type;
+        return type.toUpperCase(Locale.ROOT);
     }
 
     public void setType(String type) {
-        this.type = type;
+        this.type = type.toUpperCase(Locale.ROOT);
     }
 
     public String getDescription() {
