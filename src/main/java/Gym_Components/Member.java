@@ -3,11 +3,12 @@ import System_Users.Person;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 
 public class Member extends Person {
 
-    private static final String[] membershipTypeOptions = {"Pay as You go","Open","Term" } ;
+    private static final String[] membershipTypeOptions = {"PAY AS YOU GO","OPEN","TERM" } ;
     private String membership_type ;
 //    private int membershipTypeIndex;
     private double serial_number;
@@ -26,7 +27,7 @@ public class Member extends Person {
         super(name, national_id, gender, phone_number);
         //rand n generation, may change it later
         this.serial_number = (((int) (Math.random() * (5000 - 1000))) + 1000);  //random number between 1000 and 5000
-        this.membership_type=membership_type;
+        this.membership_type=membership_type.toUpperCase(Locale.ROOT);
         this.trainer=null;
     }
 
@@ -36,12 +37,12 @@ public class Member extends Person {
         return serial_number;
     }
     public String getMembership_type() {
-        return membership_type;
+        return membership_type.toUpperCase(Locale.ROOT);
     }
 
 
     public void setMembership_type(String type) {
-        this.membership_type =type ;
+        this.membership_type =type.toUpperCase(Locale.ROOT) ;
     }
 
     public List<Gym_Class> getAttendedClasses() {

@@ -27,7 +27,11 @@ public class GymSystem {
         return trainers;
     }
 
-    Administrator admin1 = new Administrator( "123", "farouha");
+    protected Administrator admin1 = new Administrator( "123", "farouha");
+
+    public Administrator getAdmin1() {
+        return admin1;
+    }
 
     public static List<Member> getMembers() {
         return members;

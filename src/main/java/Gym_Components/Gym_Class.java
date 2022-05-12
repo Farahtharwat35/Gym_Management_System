@@ -29,16 +29,22 @@ public class Gym_Class {
     }
 
    static public Instant get_instant () {
-        String date;
+        String date=null;
         String time;
-        System.out.println(" Please Enter date , example : YYYY-MM-DD ");
-        Scanner input = new Scanner(System.in);
+       Scanner input= new Scanner(System.in); ;
+        System.out.println("Please Enter date , example : YYYY-MM-DD ");
         date= input.next();
-       System.out.println(" Please Enter time , example : HH:MM ");
+       System.out.println("Please Enter start time , example : HH:MM ");
         time= input.next();
         return (Instant.parse(date+"T"+time+":00.00Z"));
-
-
+    }
+    static public Instant get_instant (Instant mydate) {
+        String date=mydate.toString().substring(0,10);
+        String time;
+        Scanner input= new Scanner(System.in); ;
+        System.out.println("Please Enter end time , example : HH:MM ");
+        time= input.next();
+        return (Instant.parse(date+"T"+time+":00.00Z"));
     }
 
     public String getType() {

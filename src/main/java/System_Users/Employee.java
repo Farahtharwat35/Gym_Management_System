@@ -47,10 +47,6 @@ public class Employee extends Person {
         this.password = password;
     }
 
-    public static void viewGymClassesList() {
-        System.out.print(Administrator.getGymClassesList());
-    }
-
 
     //finding gym class method only used by the other two methods
     public static Gym_Class findGymClass(String gymClassName) {

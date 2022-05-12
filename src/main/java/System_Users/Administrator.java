@@ -6,13 +6,6 @@ import java.time.Instant;
 import java.util.*;
 import gym_system.gym_management_system.GymSystem;
 
-
-// fuction for checking id
-// function for find person
-//make function find class in Main
-// will do function for finding trainer by national id in Main
-// will do function for finding class in Main from array list
-// function in Main takes the reply and displays the menu or stays in the view
 public class Administrator  {
    private String password;
    private String username;
@@ -39,15 +32,6 @@ public class Administrator  {
         this.password=password;
     }
 
-    // down cast administartor to person to be easy in personfinder()
-    public static List<Gym_Class> getGymClassesList() {
-        return gymClassesList;
-    }
-    public static void setGymClassesList(List<Gym_Class> gymClassesList) {
-        Administrator.gymClassesList = gymClassesList;
-    }
-
-
 // will do function for finding trainer by national id in Main
 // will do function for finding class in Main from array list
     public void assign_trainer_to_class () {
@@ -55,22 +39,24 @@ public class Administrator  {
         Scanner input =new Scanner(System.in);
         String trainer_id=input.nextLine();
         System.out.println("Please enter class type :");
-        String class_type= input.nextLine();
+        String class_type= input.nextLine().toUpperCase(Locale.ROOT);
         Trainer assigned_trainer=findTrainer(trainer_id);
-        List<Gym_Class> assigned_trainer_classes=assigned_trainer.getGymClasses();
         Gym_Class assigned_class=findClass(class_type);
         boolean is_available = true;
         if (assigned_class==null || assigned_trainer==null) {
             System.out.println ("No such trainer or class found ! Please try again !");
         }
         else {
+            List<Gym_Class> assigned_trainer_classes=assigned_trainer.getGymClasses();
         for (int i=0 ; i<assigned_trainer.getGymClasses().size() ; i++ ) {
             if (assigned_trainer.getGymClasses().isEmpty()){
               assigned_class.setTrainer(assigned_trainer);
                 assigned_trainer_classes.add(assigned_class);
                 System.out.println("ASSIGN SUCCESS");
                 break;
-            } else if ((((assigned_class.getStart_time().isBefore(assigned_trainer.getGymClasses().get(i).getStart_time()))&&(assigned_class.getEnd_time().isBefore(assigned_trainer.getGymClasses().get(i).getStart_time())))||assigned_class.getStart_time().isAfter(assigned_trainer.getGymClasses().get(i).getStart_time()))) {
+            } else if (!(((assigned_class.getStart_time().isBefore(assigned_trainer.getGymClasses().get(i).getStart_time()))&&
+                    (assigned_class.getEnd_time().isBefore(assigned_trainer.getGymClasses().get(i).getStart_time())))||
+                    assigned_class.getStart_time().isAfter(assigned_trainer.getGymClasses().get(i).getStart_time()))) {
                 is_available=false;
                 break;
             }
@@ -141,25 +127,31 @@ public void edit_trainer (){
                 System.out.println("Please enter a trainer name :");
                 String name = second_input.nextLine();
                 edited_trainer.set_name(name);
+                System.out.println("Trainer's name is set to " + edited_trainer.get_name());
                 break;
             case ("I"):
                 System.out.println("Please enter trainer new NationalID :");
                 String nationalID= second_input.nextLine();
                 edited_trainer.set_national_id (nationalID);
+                System.out.println("Trainer's nationalId is set to " + edited_trainer.get_national_id());
                 break;
             case ("G"):
                 System.out.println("Please enter trainer gender :");
                 String gender= second_input.nextLine();
                 edited_trainer.set_gender(gender);
+                System.out.println("Trainer's gender is set to " + edited_trainer.get_gender());
                 break;
             case ("P"):
                 System.out.println("Please trainer phone_number : ");
                 String phone_number= second_input.nextLine();
                 edited_trainer.set_phone_number(phone_number);
+                System.out.println("Trainer's phone_number is set to " + edited_trainer.getPhone_number());
                 break;
             default:
                 System.out.println("Please enter a valid choice !");
-        }}}
+        }}
+
+    }
 
     
     //make function find class in Main
@@ -167,8 +159,6 @@ public void edit_trainer (){
         String name = "";
         String day = "";
         String time = "";
-        Instant start_time ;
-        Instant end_time;
         String description = "";
         int maxMemberCount = 0;
         Scanner myScanner =new Scanner(System.in);
@@ -177,19 +167,16 @@ public void edit_trainer (){
         Gym_Class new_class = findClass(class_name);
 
         if (new_class==null) {
-            System.out.println("Enter class day :");
-            day = myScanner.nextLine();
-            System.out.println("Enter class start time :");
-            start_time = Instant.parse(myScanner.nextLine());
-            System.out.println("Enter class end time :");
-            end_time = Instant.parse(myScanner.nextLine());
+            Instant start_time = Gym_Class.get_instant();
+            Instant end_time = Gym_Class.get_instant(start_time);
             System.out.println("Enter class description : ");
             description = myScanner.nextLine();
-            System.out.println("Enter class maximum member  : ");
+            System.out.println("Enter class maximum member count  : ");
             maxMemberCount = myScanner.nextInt();
             myScanner.nextLine();
 
            GymSystem.getGym_classes().add(new Gym_Class(class_name, description, maxMemberCount,start_time,end_time));
+           System.out.println("Class " + new_class.getType() + "has been added successfully!");
         }
         else {
             System.out.println("Class : " + class_name + " already exists");
@@ -197,18 +184,16 @@ public void edit_trainer (){
     }
     // for entring a number ; we do exceptions?
     public void edit_class (){
-        System.out.println("Enter class name");
+        System.out.println("Enter class name: ");
         Scanner myScanner = new Scanner(System.in);
         String class_name = myScanner.nextLine().toUpperCase(Locale.ROOT);
-        class_name = myScanner.nextLine().toUpperCase(Locale.ROOT);
         Gym_Class edited_class = findClass(class_name);
         if (edited_class == null){
             System.out.println("No result matches");
         }
         else {
             System.out.println("Edit class name (N)");
-            System.out.println("Edit class start time (S)");
-            System.out.println("Edit class end time (E)");
+            System.out.println("Edit class time and date (S)");
             System.out.println("Edit class description (D)");
             System.out.println("Edit class members limited number (N)");
             System.out.println("Edit class trainer (T)");
@@ -219,30 +204,28 @@ public void edit_trainer (){
             switch(choice) {
                 case ("N"):
                     System.out.println("Please enter a Class name :");
-                    String class_type = second_input.nextLine();
+                    String class_type = myScanner.nextLine().toUpperCase(Locale.ROOT);
                     edited_class.setType(class_type);
+                    System.out.println("Class name is set to: " + class_type);
                     break;
-                case ("S"):
-                    System.out.println("Please enter a start time for the Class :");
-                    String start_time= second_input.nextLine();
-                    Instant start =Instant.parse(start_time);
-                    edited_class.setStart_time (start);
-                    break;
-               case ("E"):
-                   System.out.println("Please enter an end time for the Class :");
-                   String end_time= second_input.nextLine();
-                   Instant end =Instant.parse(end_time);
-                   edited_class.setStart_time(end);
+               case ("S"):
+                   Instant start_time = Gym_Class.get_instant();
+                   Instant end_time =Gym_Class.get_instant(start_time);
+                   edited_class.setStart_time(start_time);
+                   edited_class.setEnd_time(end_time);
+                   System.out.println("Class schedule is set on : " + start_time.toString().substring(0,10) + "from  " + start_time.toString().substring(11,16) +  " to " + end_time.toString().substring(11,16) );
                     break;
                 case ("D"):
                     System.out.println("Please enter a description : ");
-                    String description= second_input.nextLine();
+                    String description= myScanner.nextLine().toUpperCase(Locale.ROOT);;
                     edited_class.setDescription(description);
+                    System.out.println("Class description is set to: " + description);
                     break;
                 case ("M"):
                     System.out.println("Please enter a maximum number : ");
-                    int maxnumber= second_input.nextInt();
+                    int maxnumber= myScanner.nextInt();
                     edited_class.setMembers_limited_number(maxnumber);
+                    System.out.println("Class maximum members count is set to: " + maxnumber);
                     break;
                 default:
                     System.out.println("Please enter a valid choice !");
@@ -251,9 +234,9 @@ public void edit_trainer (){
     }
     // after making the function of view_member in specific class in Main (it sorts te classes list and returns the class to this function)
     public void view_members_in_specific_class () {
-        Scanner input =new Scanner(System.in);
         System.out.println("Please enter a valid class type : ");
-        String specific_class= input.nextLine();
+        Scanner input =new Scanner(System.in);
+        String specific_class= input.nextLine().toUpperCase(Locale.ROOT);
         Gym_Class assigned_class=findClass(specific_class);
         if (assigned_class==null) {
             System.out.println ("No such class found ! Please try again !");
@@ -262,7 +245,7 @@ public void edit_trainer (){
                 "-------------------------------------------------------------\n");
 
         System.out.format("%40s\n", "Class name: " + assigned_class.getType());
-        System.out.format("%60s\n", "Class description: " + assigned_class.getDescription());
+        System.out.format("%40s\n", "Class description: " + assigned_class.getDescription());
         if (!assigned_class.getClass_members().isEmpty()) {
             System.out.format("%16s%16s%16s%32s\n", "First Name",
                     "Last Name",
@@ -285,7 +268,7 @@ public void edit_trainer (){
         if (!GymSystem.getMembers().isEmpty()) {
             System.out.println("\n---------------------------------------------------------------------" +
                     "-------------------------------------------------------------\n");
-            System.out.format("%16s%16s%16s\n", "First Name",
+            System.out.format("%16s%16s%16s\n",
                     "Name",
                     "National ID",
                     "Gender" ,
@@ -306,44 +289,23 @@ public void edit_trainer (){
 
     public void view_members_in_specific_membership () {
         Scanner myScanner = new Scanner(System.in);
+        boolean is_found=false;
         System.out.println("Enter the membership, \"Pay as You go\", \"Open\" or \"Term\" membership :");
-        String enteredMembership = myScanner.next();
+        String enteredMembership = myScanner.nextLine().toUpperCase(Locale.ROOT);
         System.out.println("Members of the selected membership type: ");
         for (Member P : GymSystem.getMembers()) {
+            System.out.println(P.getMembership_type());
             if (P.getMembership_type().equals(enteredMembership)) {
-                System.out.println(P.get_name() + "/n");
+                System.out.println("Members using this membership are : " + P.get_name());
+                is_found=true;
+                break;
             }
         }
+        if (!is_found){
+            System.out.println("No members using this membership type");
+        }
     }
-//    public void view_members_in_specific_membership (List<Member> members) {
-//        Scanner input_membership = new Scanner(System.in);
-//        System.out.println("Please enter a valid membership : Pay as You go,Open,Term ");
-//        for (int i = 0; i < members.size(); i++) {
-//            Member member = (Member) members.get(i);
-//  to rizk        if (member.getMembershipType().equals(membership)){
-//              membersInSpecificMemberShip.add(member);
-//         }
-//        }
-//        if (!membersInSpecificMemberShip.isEmpty()) {
-//            System.out.println("\n---------------------------------------------------------------------" +
-//                    "-------------------------------------------------------------\n");
-//            System.out.format("%16s%16s%16s%32s\n", "First Name",
-//                    "Last Name",
-//                    "National ID",
-//                    "Membership Type");
 //
-//            for (Member member : membersInSpecificMemberShip) {
-//                System.out.format("%16s%16s%16s%32s\n",
-//                        member.get_name(),
-//                        member.get_national_id());
-//                       //rizk //member.getMembershipType());
-//            }
-//            System.out.println("\n---------------------------------------------------------------------" +
-//                    "-------------------------------------------------------------\n");
-//        }else {
-//            System.out.println("There are no members currently in the class");
-//        }
-//    }
     public void delete_trainer( ) {
         System.out.println("Please enter trainer nationalId :");
         Scanner delete_trainer_id =new Scanner(System.in);
@@ -352,60 +314,68 @@ public void edit_trainer (){
         if (delete_trainer!=null) {
             for (int i = 0; i < GymSystem.getTrainers().size(); i++) {
                     GymSystem.getTrainers().remove(delete_trainer);
-                    System.out.println("\nTrainer: " +
-                            delete_trainer.get_name() + " has been deleted successfully ! \n");
+                    System.out.println("Trainer " + delete_trainer.get_name() + " has been deleted successfully ! \n");
             }
         }
         else {
-        System.out.println("\nNo Such Trainer " + delete_trainer.get_name() + " "+
-              " Found\n"); }
+        System.out.println("No Such Trainer " + delete_trainer.get_name() + " Found\n"); }
     }
     public void delete_class() {
         System.out.println("Please enter class type :");
         Scanner class_type_input  =new Scanner(System.in);
-        String class_type = class_type_input.nextLine();
+        String class_type = class_type_input.nextLine().toUpperCase();
         Gym_Class delete_class =findClass(class_type);
         if (delete_class !=null) {
             for (int i = 0; i < GymSystem.getGym_classes().size(); i++) {
                 GymSystem.getGym_classes().remove(delete_class);
-                System.out.println("\nClass: " +
-                        delete_class.getType() + " has been deleted successfully ! \n");
+                System.out.println("Class " +  delete_class.getType() + " has been deleted successfully ! \n");
             }
         }
         else {
-            System.out.println("\nNo Such Class " + " "+
-                    " Found\n"); }
+            System.out.println("No Such Class " + " Found\n"); }
     }
 
-    public Trainer findTrainer ( String national_id ) {
-        for (Trainer P : GymSystem.getTrainers() ) {
-            if (P.get_national_id().equals(national_id))
-            {
-                return P;
+    private Member findMember (String national_id) {
+        boolean is_found=false;
+        Member assigned_member=null;
+        for (Member C : GymSystem.getMembers() ) {
+            if (C.get_national_id().equals(national_id)) {
+                is_found=true ;
+                assigned_member=C;
+                break;
             }
 
         }
-        return null;
+        return assigned_member;
     }
-    public Member findMember ( String national_id ) {
-        for (Member M : GymSystem.getMembers()) {
-            if (M.get_national_id().equals(national_id))
-            {
-                return M;
-            }
 
-        }
-        return null;
-    }
     private Gym_Class findClass ( String class_name ) {
+        boolean is_found=false;
+        Gym_Class assigned_class=null;
+
         for (Gym_Class C : GymSystem.getGym_classes() ) {
             if (C.getType().equals(class_name)) {
-                return C ;
+                is_found=true ;
+              assigned_class=C;
+                break;
             }
-        }
-        return null;
-    }
 
+        }
+           return assigned_class;
+    }
+    private Trainer findTrainer (String national_id) {
+        boolean is_found=false;
+        Trainer assigned_trainer=null;
+        for (Trainer C : GymSystem.getTrainers() ) {
+            if (C.get_national_id().equals(national_id)) {
+                is_found=true ;
+                assigned_trainer=C;
+                break;
+            }
+
+        }
+        return assigned_trainer;
+    }
     public void add_trainer () {
         String name = "";
         String national_id = "";
@@ -430,8 +400,4 @@ public void edit_trainer (){
         }
 
     }
-
-
-    // function in Main takes the reply and displays the menu or stays in the view
-
 }
