@@ -18,7 +18,7 @@ public class Administrator  {
     }
     
     public String getUsername () {
-        return this.username;
+        return this.username.toUpperCase(Locale.ROOT);
     }
 
     public String getPassword () {
@@ -26,7 +26,7 @@ public class Administrator  {
     }
 
     public void setUsername (String username) {
-        this.username=username;
+        this.username=username.toUpperCase(Locale.ROOT);
     }
     public void setPassword (String password) {
         this.password=password;
