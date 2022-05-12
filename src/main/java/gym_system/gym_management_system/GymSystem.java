@@ -46,9 +46,10 @@ public class GymSystem {
 
     public Employee employeeLogin() {
         Scanner input = new Scanner(System.in);
-        System.out.println("Please Enter the Employee's Username : ");
+        System.out.println("Please Enter the following data to login : ");
+        System.out.println("Enter the Employee's Username : ");
         String Username= input.next().toUpperCase(Locale.ROOT);;
-        System.out.println("Please Enter the Employee's Password : ");
+        System.out.println("Enter the Employee's Password : ");
         String Password= input.next();
         for (Employee P : employees) {
             if (P.getUsername().equals(Username) && P.getPassword().equals(Password)) {
@@ -69,6 +70,7 @@ public class GymSystem {
         String username = "";
         String password = "";
         Scanner myScanner = new Scanner(System.in);
+        System.out.println("Please Enter the following data to register an Employee:");
         System.out.println("Enter the new Employee's nationalId:");
         national_id = myScanner.nextLine();
         Employee new_employee = findEmployee(employees, national_id);
@@ -148,7 +150,7 @@ public class GymSystem {
 //    admin1.assign_trainer_to_class(trainer1,class1);
 //    System.out.println(trainer1.getGymClasses());
 
-            adminLogin();
+//            adminLogin();
 
 //
 
@@ -159,7 +161,7 @@ public class GymSystem {
 
         Gym_Class fitness= new Gym_Class("fitness","fitness",5, null, null);
         gym_classes.add(fitness);
-        Member member1= new Member("member1", "1111", "male", "0101010","Pay as You go");
+        Member member1= new Member("member1", "1111", "male", "0101010","Open");
         members.add(member1);
         Member member2= new Member("member2", "2222", "female", "0101010","Open");
         members.add(member2);
@@ -167,7 +169,6 @@ public class GymSystem {
 //        employees.add(employee1);
         employeeRegister();
         employeeLogin();
-            //the one Employee logged into the system
         while(loggedInEmployee ==null){ loggedInEmployee = employeeLogin();}
         loggedInEmployee.addMember();
         loggedInEmployee.membersOfMembershipType();

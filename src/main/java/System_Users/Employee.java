@@ -246,7 +246,7 @@ public class Employee extends Person {
     public void membersOfMembershipType() {
         boolean found = false;
         Scanner myScanner = new Scanner(System.in);
-        System.out.println("Enter the membership, \"Pay as You go\", \"Open\" or \"Term\" membership :");
+        System.out.println("Enter the membership name to search, \"Pay as You go\", \"Open\" or \"Term\" membership :");
         String enteredMembership = myScanner.next();
         System.out.println("Members of the selected membership type: ");
         for (Member P : GymSystem.getMembers()) {
