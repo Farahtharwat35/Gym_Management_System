@@ -20,6 +20,7 @@ public class GymSystem {
     protected static List<Gym_Class> gym_classes = new ArrayList<>();
 
     Administrator admin1 = new Administrator("123", "farouha");
+    Employee loggedInEmployee = null;
     public GymSystem (){
         Employee employee1 = new Employee("Anas","123","male","1643","anas","123");
         Employee employee2 = new Employee("Ezz","124","male","1643","anass","1234");
@@ -28,7 +29,6 @@ public class GymSystem {
 
     }
     Scanner myScanner =new Scanner(System.in);
-
     public static List<Employee> getEmployees() {
         return employees;
     }
@@ -37,9 +37,6 @@ public class GymSystem {
         return trainers;
     }
 
-
-
-
     public static List<Member> getMembers() {
         return members;
     }
@@ -47,8 +44,6 @@ public class GymSystem {
     public static List<Gym_Class> getGym_classes() {
         return gym_classes;
     }
-
-    Employee loggedInEmployee = null;
 
     public void manage_trainers (){
 
@@ -194,8 +189,9 @@ public class GymSystem {
             }
         }
     }
+
     /**
-     * Employee methods
+     * Employees methods
      */
 
     public Employee employeeLogin() {
@@ -276,22 +272,14 @@ public class GymSystem {
         return false;
     }
 
-
+    /**
+     * Signout Method
+     */
      public void signout () {
-//         System.out.println("Do you really want to sign out ? Y/N ");
-//         Scanner signout = new Scanner(System.in);
-//         String reply = signout.nextLine();
-//         if (reply == "Y") {
              loggedInEmployee = null;
              status = false;
              System.out.println("Signed out successfully");
-
          }
-
-
-    public void run_system() {
-
-        }
 
 
 
