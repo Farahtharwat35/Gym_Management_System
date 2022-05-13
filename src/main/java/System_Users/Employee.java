@@ -21,21 +21,20 @@ public class Employee extends Person {
     public String getPassword() {
         return password;
     }
-    private static Gym_Class findGymClass(String gymClassName) {
-        for (Gym_Class P : GymSystem.getGym_classes()) {
-            if (P.getType().equals(gymClassName)) {
-                return P;
-            }
-        }
-        return null;
-    }
+
+
     private static Member findMember(String national_id) {
-        for (Member P : GymSystem.getMembers()) {
-            if (P.get_national_id().equals(national_id)) {
-                return P;
+        boolean is_found=false;
+        Member assigned_member=null;
+        for (Member C : GymSystem.getMembers() ) {
+            if (C.get_national_id().equals(national_id)) {
+                is_found=true ;
+                assigned_member=C;
+                break;
             }
+
         }
-        return null;
+        return assigned_member;
     }
     public void addMember() {
         String memberName = "";
@@ -185,7 +184,7 @@ public class Employee extends Person {
         System.out.println(memberOfClass.getMemberAttendedClasses());
     }
 
-    private Gym_Class findClass ( String class_name ) {
+    public static Gym_Class findGymClass (String class_name) {
         boolean is_found=false;
         Gym_Class assigned_class=null;
         for (Gym_Class C : GymSystem.getGym_classes() ) {
@@ -194,6 +193,7 @@ public class Employee extends Person {
                 assigned_class=C;
                 break;
             }
+
         }
         return assigned_class;
     }
@@ -202,7 +202,7 @@ public class Employee extends Person {
         System.out.println("Please enter a valid class type : ");
         Scanner input =new Scanner(System.in);
         String specific_class= input.nextLine().toUpperCase(Locale.ROOT);
-        Gym_Class assigned_class=findClass(specific_class);
+        Gym_Class assigned_class=findGymClass(specific_class);
         if (assigned_class==null) {
             System.out.println ("No such class found ! Please try again !");
         }

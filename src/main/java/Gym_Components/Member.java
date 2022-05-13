@@ -37,20 +37,18 @@ public class Member extends Person {
         this.membership_type =type.toUpperCase(Locale.ROOT) ;
     }
 
-    public List<Gym_Class> getAttendedClasses() {
-        return memberAttendedClasses;
-    }
-    public void setMemberClasses(List<Gym_Class> memberClasses) {
-        this.memberAttendedClasses = memberClasses;
-    }
-
     public List<Gym_Class> getMemberAttendedClasses() {
-        return memberAttendedClasses;
+        return this.memberAttendedClasses=memberAttendedClasses;
     }
 
     public Trainer getTrainer() {
         return trainer;
     }
+
+    public void setMemberAttendedClasses(List<Gym_Class> memberAttendedClasses) {
+        this.memberAttendedClasses = memberAttendedClasses;
+    }
+
     public void setTrainer(Trainer trainer) {
         this.trainer = trainer;
     }

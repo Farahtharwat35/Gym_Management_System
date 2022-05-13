@@ -24,18 +24,14 @@ public class GymSystem {
     Administrator admin1 = new Administrator("123", "farouha");
     Employee loggedInEmployee = null;
     public GymSystem (){ // created for testing
-        Employee employee1 = new Employee("Anas","302087010230","male","01010006287","anas","123");
-        Employee employee2 = new Employee("Ezz","3020102582847","male","01010006281","anass","1234");
-        employees.add(employee1);
+        Employee employee1 = new Employee("ANAS","302087010230","male","01010006287","anas","123");
+        Employee employee2 = new Employee("EZZ","3020102582847","male","01010006281","anass","1234");
+        GymSystem.getEmployees().add(employee1);
         employees.add(employee2);
-//        Instant start_time1 = Gym_Class.get_instant();
-//        Instant end_time1 = Gym_Class.get_instant(start_time1);
-//        Gym_Class class1=new Gym_Class("yoga","low",10,start_time1,end_time1);
-//        gym_classes.add(class1);
-//        Instant start_time2 = Gym_Class.get_instant();
-//        Instant end_time2 = Gym_Class.get_instant(start_time2);
-//        Gym_Class class2=new Gym_Class("dance","high",10,start_time2,end_time2);
-//        gym_classes.add(class2);
+        Gym_Class class1=new Gym_Class("YOGA","low",10,null ,null);
+        gym_classes.add(class1);
+        Gym_Class class2=new Gym_Class("dance","high",10,null,null);
+        gym_classes.add(class2);
         Trainer trainer1 = new Trainer("Ahmed", "3020509010259", "male", "01010006286");
         GymSystem.getTrainers().add(trainer1);
         Trainer trainer2 = new Trainer("Fathy", "3020607080901", "male", "01010006289");
