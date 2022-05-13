@@ -22,7 +22,7 @@ public class GymSystem {
     protected static List<Gym_Class> gym_classes = new ArrayList<>();
 
     Administrator admin1 = new Administrator("123", "farouha");
-
+    Employee loggedInEmployee = null;
     public GymSystem (){
         Employee employee1 = new Employee("Anas","123","male","1643","anas","123");
         Employee employee2 = new Employee("Ezz","124","male","1643","anass","1234");
@@ -31,7 +31,6 @@ public class GymSystem {
         Instant start_time = Gym_Class.get_instant();
         Instant end_time = Gym_Class.get_instant(start_time);
         Gym_Class class1=new Gym_Class("yoga","low",10,start_time,end_time);
-        Employee loggedInEmployee = null;
     }
     Scanner myScanner =new Scanner(System.in);
     public static List<Employee> getEmployees() {
