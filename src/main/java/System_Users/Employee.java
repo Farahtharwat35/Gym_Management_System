@@ -14,7 +14,6 @@ public class Employee extends Person {
         super(name, national_id, gender, phone_number);
         this.username = username.toUpperCase(Locale.ROOT);
         this.password = password;
-        System.out.println("Employee Created Successfully");
     }
 
     public String getUsername() {
@@ -33,8 +32,6 @@ public class Employee extends Person {
         this.password = password;
     }
 
-
-    //finding gym class method only used by the other two methods
     public static Gym_Class findGymClass(String gymClassName) {
         for (Gym_Class P : GymSystem.getGym_classes()) {
             if (P.getType().equals(gymClassName)) {
@@ -226,7 +223,7 @@ public class Employee extends Person {
         if(found== false)   System.out.println("No Members currently in the class");
 
     }
-    
+
     public void viewMemberInfo() {
         boolean found = false;
         String national_id;

@@ -238,6 +238,7 @@ public class GymSystem {
             System.out.println("Enter Employee's password :");
             password = myScanner.nextLine();
             employees.add(new Employee(name, national_id, gender, phone_number, username, password));
+            System.out.println(name + " has been registered successfully!");
         } else {
             System.out.println("Trainer : " + new_employee + " already exists");
         }
