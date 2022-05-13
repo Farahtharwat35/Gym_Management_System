@@ -102,21 +102,25 @@ public class Employee extends Person {
                     System.out.println("Please enter Member's new name :");
                     String name = myScanner.nextLine().toUpperCase(Locale.ROOT);
                     edited_member.set_name(name);
+                    System.out.println("Name edited successfully");
                     break;
                 case ("I"):
                     System.out.println("Please enter member's new NationalID :");
                     String nationalID = myScanner.nextLine();
                     edited_member.set_national_id(nationalID);
+                    System.out.println("ID edited successfully");
                     break;
                 case ("G"):
                     System.out.println("Please enter member's gender :");
                     String gender = myScanner.nextLine().toUpperCase(Locale.ROOT);
                     edited_member.set_gender(gender);
+                    System.out.println("Gender edited successfully");
                     break;
                 case ("P"):
                     System.out.println("Please member's phone_number : ");
                     String phone_number = myScanner.nextLine();
                     edited_member.set_phone_number(phone_number);
+                    System.out.println("Phone number edited successfully");
                     break;
                 case ("M"):
 
@@ -126,6 +130,7 @@ public class Employee extends Person {
                         enteredMembership = myScanner.nextLine().toUpperCase(Locale.ROOT);
                     }
                     edited_member.setMembership_type(enteredMembership);
+                    System.out.println("Membership edited successfully");
                 default:
                     System.out.println("Please enter a valid choice !");
             }
@@ -139,6 +144,7 @@ public class Employee extends Person {
         for (Member P : GymSystem.getMembers()) {
             if (P.get_national_id().equals(national_id)) {
                 GymSystem.getMembers().remove(P);
+                System.out.println("Member deleted successfully");
             } else {
                 System.out.println(P.get_name() + "Not Found");
             }
@@ -158,6 +164,7 @@ public class Employee extends Person {
         gym_class.addMemberToClass(addedMember);
         addedMember.getMemberAttendedClasses().add(gym_class);
         gym_class.addMemberToClass(addedMember);
+        System.out.println("Member added to the class successfully");
     }
 
     public static void removeMemberFromClass() {
@@ -165,7 +172,6 @@ public class Employee extends Person {
         System.out.println("Please fill the following data to remove a member to a class:");
         System.out.println("Please enter the Class name");
         Scanner myScanner = new Scanner(System.in);
-        System.out.println("Please enter the Class name");
         gymClassName = myScanner.nextLine().toUpperCase(Locale.ROOT);
         Gym_Class gym_class = findGymClass(gymClassName);
         System.out.println("Please enter the member's national ID");
@@ -174,6 +180,7 @@ public class Employee extends Person {
 
         gym_class.EmployeeRemoveClass_members(memberToBeRemoved);
         memberToBeRemoved.getMemberAttendedClasses().remove(gym_class);
+        System.out.println("Member removed from class successfully");
     }
 
     public static void viewMemberClasses() {
