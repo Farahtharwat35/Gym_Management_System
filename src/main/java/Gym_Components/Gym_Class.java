@@ -10,11 +10,8 @@ public class Gym_Class {
     private String description;
     private Trainer trainer;
     private int members_limited_number;
-    private int members_count;
     private Instant start_time;
     private Instant end_time;
-
-
     private static List<Member> class_members;
     public Gym_Class(String type, String description, int members_limited_number,Instant start_time, Instant end_time) {
         this.type=type.toUpperCase(Locale.ROOT);
@@ -25,10 +22,53 @@ public class Gym_Class {
         this.class_members = new ArrayList<>();
     }
 
-   static public Instant get_instant () {
+    public String getType() {
+        return type.toUpperCase(Locale.ROOT);
+    }
+    public void setType(String type) {
+        this.type = type.toUpperCase(Locale.ROOT);
+    }
+    public String getDescription() {
+        return description;
+    }
+    public void setDescription(String description) {
+        this.description = description;
+    }
+    public void setTrainer(Trainer trainer) {
+        this.trainer = trainer;
+    }
+    public void setMembers_limited_number(int members_limited_number) {
+        this.members_limited_number = members_limited_number;
+    }
+    public Instant getStart_time() {
+        return start_time;
+    }
+    public void setStart_time(Instant start_time) {
+        this.start_time = start_time;
+    }
+    public void addMemberToClass(Member member){
+        class_members.add(member);
+    }
+    @Override
+    public String toString (){
+        return "Class: " +getDescription()+ " type: " + getType()+ "\n";
+    }
+    public Instant getEnd_time() {
+        return end_time;
+    }
+    public void setEnd_time(Instant end_time) {
+        this.end_time = end_time;
+    }
+    public static List<Member> getClass_members() {
+        return class_members;
+    }
+    public void EmployeeRemoveClass_members(Member member) {
+        class_members.remove(member);
+    }
+    static public Instant get_instant () {
         String date=null;
         String time;
-         Scanner input= new Scanner(System.in); ;
+        Scanner input= new Scanner(System.in); ;
         System.out.println("Please Enter date , example : YYYY-MM-DD ");
         date= input.next();
         System.out.println("Please Enter start time , example : HH:MM ");
@@ -43,64 +83,4 @@ public class Gym_Class {
         time= input.next();
         return (Instant.parse(date+"T"+time+":00.00Z"));
     }
-
-    public String getType() {
-        return type.toUpperCase(Locale.ROOT);
-    }
-
-    public void setType(String type) {
-        this.type = type.toUpperCase(Locale.ROOT);
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public Trainer getTrainer() {
-        return trainer;
-    }
-
-    public void setTrainer(Trainer trainer) {
-        this.trainer = trainer;
-    }
-    public void setMembers_limited_number(int members_limited_number) {
-        this.members_limited_number = members_limited_number;
-    }
-    public Instant getStart_time() {
-        return start_time;
-    }
-
-    public void setStart_time(Instant start_time) {
-        this.start_time = start_time;
-    }
-
-    public void addMemberToClass(Member member){
-        class_members.add(member);
-    }
-
-    @Override
-    public String toString (){
-        return "Class: " +getDescription()+ " type: " + getType()+ "\n";
-    }
-
-    public Instant getEnd_time() {
-        return end_time;
-    }
-
-    public void setEnd_time(Instant end_time) {
-        this.end_time = end_time;
-    }
-
-    public static List<Member> getClass_members() {
-        return class_members;
-    }
-
-    public void EmployeeRemoveClass_members(Member member) {
-        class_members.remove(member);
-    }
-
 }
