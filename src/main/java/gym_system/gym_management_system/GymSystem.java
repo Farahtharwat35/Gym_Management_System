@@ -23,9 +23,9 @@ public class GymSystem {
 
     Administrator admin1 = new Administrator("123", "farouha");
     Employee loggedInEmployee = null;
-    public GymSystem (){
-        Employee employee1 = new Employee("Anas","123","male","1643","anas","123");
-        Employee employee2 = new Employee("Ezz","124","male","1643","anass","1234");
+    public GymSystem (){ // created for testing
+        Employee employee1 = new Employee("Anas","302087010230","male","01010006287","anas","123");
+        Employee employee2 = new Employee("Ezz","3020102582847","male","01010006281","anass","1234");
         employees.add(employee1);
         employees.add(employee2);
         Instant start_time1 = Gym_Class.get_instant();
@@ -36,6 +36,10 @@ public class GymSystem {
         Instant end_time2 = Gym_Class.get_instant(start_time2);
         Gym_Class class2=new Gym_Class("dance","high",10,start_time2,end_time2);
         gym_classes.add(class2);
+        Trainer trainer1 = new Trainer("Ahmed", "3020509010259", "male", "01010006286");
+        GymSystem.getTrainers().add(trainer1);
+        Trainer trainer2 = new Trainer("Fathy", "3020607080901", "male", "01010006289");
+        GymSystem.getTrainers().add(trainer1);
     }
     Scanner myScanner =new Scanner(System.in);
     public static List<Employee> getEmployees() {

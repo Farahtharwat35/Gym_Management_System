@@ -135,7 +135,7 @@ public class Employee extends Person {
     public void deleteMember() {
         Scanner myScanner = new Scanner(System.in);
         System.out.println("Enter member's National_ID to delete: ");
-        String national_id = myScanner.nextLine().toUpperCase(Locale.ROOT);
+        String national_id = myScanner.nextLine();
         for (Member P : GymSystem.getMembers()) {
             if (P.get_national_id().equals(national_id)) {
                 GymSystem.getMembers().remove(P);
