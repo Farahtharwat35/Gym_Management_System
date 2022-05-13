@@ -9,6 +9,7 @@ import gym_system.gym_management_system.GymSystem;
 public class Administrator  {
    private String password;
    private String username;
+
    private static List<Gym_Class> gymClassesList = new ArrayList<Gym_Class>();
 
 
@@ -32,8 +33,6 @@ public class Administrator  {
         this.password=password;
     }
 
-// will do function for finding trainer by national id in Main
-// will do function for finding class in Main from array list
     public void assign_trainer_to_class () {
         System.out.println("Please enter trainer NationalID :");
         Scanner input =new Scanner(System.in);
