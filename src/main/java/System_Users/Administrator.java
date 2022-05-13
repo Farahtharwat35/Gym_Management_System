@@ -394,6 +394,7 @@ public void edit_trainer (){
             System.out.println("Enter trainer phone number :");
             phone_number = myScanner.nextLine();
             GymSystem.getTrainers().add(new Trainer(name, national_id, gender,phone_number));
+            System.out.println(name + " has been added successfully!");
         }
         else {
             System.out.println("Trainer : " + new_trainer + " already exists");
