@@ -1,10 +1,8 @@
 package System_Users;
 import Gym_Components.Gym_Class;
 import Gym_Components.Member;
-import Gym_Components.Trainer;
 import gym_system.gym_management_system.GymSystem;
 import java.util.*;
-import  Gym_Components.Member;
 
 public class Employee extends Person {
     private String username;
@@ -15,24 +13,13 @@ public class Employee extends Person {
         this.username = username.toUpperCase(Locale.ROOT);
         this.password = password;
     }
-
     public String getUsername() {
         return username.toUpperCase(Locale.ROOT);
     }
-
-    public void setUsername(String username) {
-        this.username = username.toUpperCase(Locale.ROOT);
-    }
-
     public String getPassword() {
         return password;
     }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public static Gym_Class findGymClass(String gymClassName) {
+    private static Gym_Class findGymClass(String gymClassName) {
         for (Gym_Class P : GymSystem.getGym_classes()) {
             if (P.getType().equals(gymClassName)) {
                 return P;
@@ -40,8 +27,7 @@ public class Employee extends Person {
         }
         return null;
     }
-
-    public static Member findMember(String national_id) {
+    private static Member findMember(String national_id) {
         for (Member P : GymSystem.getMembers()) {
             if (P.get_national_id().equals(national_id)) {
                 return P;
@@ -49,7 +35,6 @@ public class Employee extends Person {
         }
         return null;
     }
-
     public void addMember() {
         String memberName = "";
         String memberNational_id = "";
@@ -123,7 +108,6 @@ public class Employee extends Person {
                     System.out.println("Phone number edited successfully");
                     break;
                 case ("M"):
-
                     System.out.println("Enter the membership, \"Pay as You go\", \"Open\" or \"Term\" membership :");
                     String enteredMembership = myScanner.nextLine().toUpperCase(Locale.ROOT);
                     while(IsMembershipTypeAvailable(enteredMembership)==false) {
@@ -230,7 +214,6 @@ public class Employee extends Person {
         if(found== false)   System.out.println("No Members currently in the class");
 
     }
-
     public void viewMemberInfo() {
         boolean found = false;
         String national_id;

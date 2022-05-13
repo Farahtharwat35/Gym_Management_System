@@ -351,14 +351,12 @@ public void edit_trainer (){
     private Gym_Class findClass ( String class_name ) {
         boolean is_found=false;
         Gym_Class assigned_class=null;
-
         for (Gym_Class C : GymSystem.getGym_classes() ) {
             if (C.getType().equals(class_name)) {
                 is_found=true ;
               assigned_class=C;
                 break;
             }
-
         }
            return assigned_class;
     }

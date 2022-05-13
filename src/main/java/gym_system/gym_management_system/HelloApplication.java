@@ -36,7 +36,6 @@ public class HelloApplication extends Application {
  */
         Administrator admin1 = new Administrator( "123", "farouha");
         Trainer trainer1 = new Trainer("Ahmed", "302050", "female", "01010600");
-
         GymSystem.getTrainers().add(trainer1);
 
       Instant start_time = Gym_Class.get_instant();
