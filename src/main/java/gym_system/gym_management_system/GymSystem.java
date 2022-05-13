@@ -5,6 +5,8 @@ import Gym_Components.Member;
 import Gym_Components.Trainer;
 import System_Users.Administrator;
 import System_Users.Employee;
+
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -20,13 +22,16 @@ public class GymSystem {
     protected static List<Gym_Class> gym_classes = new ArrayList<>();
 
     Administrator admin1 = new Administrator("123", "farouha");
-    Employee loggedInEmployee = null;
+
     public GymSystem (){
         Employee employee1 = new Employee("Anas","123","male","1643","anas","123");
         Employee employee2 = new Employee("Ezz","124","male","1643","anass","1234");
         employees.add(employee1);
         employees.add(employee2);
-
+        Instant start_time = Gym_Class.get_instant();
+        Instant end_time = Gym_Class.get_instant(start_time);
+        Gym_Class class1=new Gym_Class("yoga","low",10,start_time,end_time);
+        Employee loggedInEmployee = null;
     }
     Scanner myScanner =new Scanner(System.in);
     public static List<Employee> getEmployees() {

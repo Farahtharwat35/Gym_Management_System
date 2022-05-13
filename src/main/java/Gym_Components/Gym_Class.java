@@ -11,9 +11,7 @@ public class Gym_Class {
     private Trainer trainer;
     private int members_limited_number;
     private int members_count;
-    //private List<Member> members;
     private Instant start_time;
-
     private Instant end_time;
 
 
@@ -25,16 +23,15 @@ public class Gym_Class {
         this.start_time=start_time;
         this.end_time=end_time;
         this.class_members = new ArrayList<>();
-        //this.members=members
     }
 
    static public Instant get_instant () {
         String date=null;
         String time;
-       Scanner input= new Scanner(System.in); ;
+         Scanner input= new Scanner(System.in); ;
         System.out.println("Please Enter date , example : YYYY-MM-DD ");
         date= input.next();
-       System.out.println("Please Enter start time , example : HH:MM ");
+        System.out.println("Please Enter start time , example : HH:MM ");
         time= input.next();
         return (Instant.parse(date+"T"+time+":00.00Z"));
     }
@@ -70,23 +67,9 @@ public class Gym_Class {
     public void setTrainer(Trainer trainer) {
         this.trainer = trainer;
     }
-
-    public int getMembers_limited_number() {
-        return members_limited_number;
-    }
-
     public void setMembers_limited_number(int members_limited_number) {
         this.members_limited_number = members_limited_number;
     }
-
-    public int getMembers_count() {
-        return members_count;
-    }
-
-    public void setMembers_count(int members_count) {
-        this.members_count = members_count;
-    }
-
     public Instant getStart_time() {
         return start_time;
     }
@@ -95,20 +78,14 @@ public class Gym_Class {
         this.start_time = start_time;
     }
 
-
-
     public void addMemberToClass(Member member){
         class_members.add(member);
-
-
     }
 
     @Override
     public String toString (){
         return "Class: " +getDescription()+ " type: " + getType()+ "\n";
     }
-
-
 
     public Instant getEnd_time() {
         return end_time;
@@ -120,11 +97,6 @@ public class Gym_Class {
 
     public static List<Member> getClass_members() {
         return class_members;
-    }
-
-
-    public void setClass_members(List<Member> class_members) {
-        this.class_members = class_members;
     }
 
     public void EmployeeRemoveClass_members(Member member) {
