@@ -1,8 +1,10 @@
 package System_Users;
 import Gym_Components.Gym_Class;
 import Gym_Components.Member;
+import Gym_Components.Trainer;
 import gym_system.gym_management_system.GymSystem;
 import java.util.*;
+
 
 public class Employee extends Person {
     private String username;
@@ -115,19 +117,22 @@ public class Employee extends Person {
             }
         }
     }
-
-    public void deleteMember() {
-        Scanner myScanner = new Scanner(System.in);
-        System.out.println("Enter member's National_ID to delete: ");
-        String national_id = myScanner.nextLine();
-        for (Member P : GymSystem.getMembers()) {
-            if (P.get_national_id().equals(national_id)) {
-                GymSystem.getMembers().remove(P);
-            } else {
-                System.out.println(P.get_name() + "Not Found");
+    public void deleteMember( ) {
+        System.out.println("Please enter Member nationalId :");
+        Scanner delete_member_id =new Scanner(System.in);
+        String member_id= delete_member_id.nextLine();
+        Member delete_member=findMember(member_id);
+        if (delete_member!=null) {
+            for (int i = 0; i < GymSystem.getMembers().size(); i++) {
+                GymSystem.getMembers().remove(delete_member);
+                System.out.println("Member " + delete_member.get_name() + " has been deleted successfully ! \n");
             }
         }
+        else {
+            System.out.println("No Such Member " + delete_member.get_name() + " Found\n");
+        }
     }
+
 
     public static void addMemberToClass() {
         String national_id,gymClassName;
@@ -142,6 +147,8 @@ public class Employee extends Person {
         gym_class.addMemberToClass(addedMember);
         addedMember.getMemberAttendedClasses().add(gym_class);
         gym_class.addMemberToClass(addedMember);
+        System.out.println("member  added class successfully:");
+
     }
 
     public static void removeMemberFromClass() {
@@ -169,20 +176,50 @@ public class Employee extends Person {
         System.out.println(memberOfClass.getMemberAttendedClasses());
     }
 
-    public void viewMembersInGymClass() {
-        Scanner myScanner = new Scanner(System.in);
-        System.out.println("Write the gym class:");
-        String className = myScanner.next().toUpperCase(Locale.ROOT);
-        for (Gym_Class P : GymSystem.getGym_classes()) {
-            if (P.getType().equals(className)) {
-                System.out.println("Members of the selected gym class:    ");
-                Gym_Class.getClass_members();
-            }
-            else {
-                System.out.println("Invalid Class Name!");
+    private Gym_Class findClass ( String class_name ) {
+        boolean is_found=false;
+        Gym_Class assigned_class=null;
+        for (Gym_Class C : GymSystem.getGym_classes() ) {
+            if (C.getType().equals(class_name)) {
+                is_found=true ;
+                assigned_class=C;
+                break;
             }
         }
+        return assigned_class;
     }
+
+    public void viewMembersInGymClass () {
+        System.out.println("Please enter a valid class type : ");
+        Scanner input =new Scanner(System.in);
+        String specific_class= input.nextLine().toUpperCase(Locale.ROOT);
+        Gym_Class assigned_class=findClass(specific_class);
+        if (assigned_class==null) {
+            System.out.println ("No such class found ! Please try again !");
+        }
+        System.out.println("\n---------------------------------------------------------------------" +
+                "-------------------------------------------------------------\n");
+
+        System.out.format("%40s\n", "Class name: " + assigned_class.getType());
+        System.out.format("%40s\n", "Class description: " + assigned_class.getDescription());
+        if (!assigned_class.getClass_members().isEmpty()) {
+            System.out.format("%16s%16s%16s%32s\n", "First Name",
+                    "Last Name",
+                    "National ID",
+                    "Membership Type");
+            for (int i = 0; i < assigned_class.getClass_members().size(); i++) {
+                System.out.format("%16s%16s%16s%32s\n",
+                        assigned_class.getClass_members().get(i).get_name(),
+                        assigned_class.getClass_members().get(i).get_national_id());
+                //membership //specific_class.getClass_members().get(i).get_name(),
+            }
+        }else {
+            System.out.println("There are no members currently in this class");
+        }
+        System.out.println("\n---------------------------------------------------------------------" +
+                "-------------------------------------------------------------\n");
+    }
+
 
     public boolean IsMembershipTypeAvailable(String enteredType){
         for(int i=0; i<Member.membershipTypeOptions.length; i++){
