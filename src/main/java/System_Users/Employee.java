@@ -32,11 +32,11 @@ public class Employee extends Person {
 
     //getters and setters
     public String getUsername() {
-        return username;
+        return username.toUpperCase(Locale.ROOT);
     }
 
     public void setUsername(String username) {
-        this.username = username;
+        this.username = username.toUpperCase(Locale.ROOT);
     }
 
     public String getPassword() {
@@ -85,15 +85,15 @@ public class Employee extends Person {
 
         if (new_member == null) {
             System.out.println("Enter member's name :");
-            memberName = myScanner.nextLine();
+            memberName = myScanner.nextLine().toUpperCase(Locale.ROOT);
             System.out.println("Enter member's gender :");
-            memberGender = myScanner.nextLine();
+            memberGender = myScanner.nextLine().toUpperCase(Locale.ROOT);
             System.out.println("Enter member's phone number :");
             memberPhoneNumber = myScanner.nextLine();
             System.out.println("Enter the membership, \"Pay as You go\", \"Open\" or \"Term\" membership :");
-            String enteredMembership = myScanner.nextLine();
+            String enteredMembership = myScanner.nextLine().toUpperCase(Locale.ROOT);
             while(IsMembershipTypeAvailable(enteredMembership)==false) {
-                enteredMembership = myScanner.nextLine();
+                enteredMembership = myScanner.nextLine().toUpperCase(Locale.ROOT);
             }
             GymSystem.getMembers().add(new Member(memberName, memberNational_id, memberGender, memberPhoneNumber, enteredMembership));
             System.out.println("Member " + memberName+ " added successfully");
@@ -106,7 +106,7 @@ public class Employee extends Person {
     public void editMember() {
         System.out.println("Enter member's national ID");
         Scanner myScanner = new Scanner(System.in);
-        String member_id = myScanner.nextLine().toUpperCase(Locale.ROOT);
+        String member_id = myScanner.nextLine();
         Member edited_member = findMember(member_id);
         if (edited_member == null) {
             System.out.println("No result matches");
@@ -116,57 +116,36 @@ public class Employee extends Person {
             System.out.println("Edit member's gender (G)");
             System.out.println("Edit member's phone_number (P)");
             System.out.println("Edit member's Membership type (M)");
-            Scanner first_input = new Scanner(System.in);
-            String choice = first_input.nextLine();
-            Scanner second_input = new Scanner(System.in);
-            Scanner third_input = new Scanner(System.in);
-
+            String choice = myScanner.nextLine();
             switch (choice) {
                 case ("N"):
                     System.out.println("Please enter Member's new name :");
-                    String name = second_input.nextLine();
+                    String name = myScanner.nextLine().toUpperCase(Locale.ROOT);
                     edited_member.set_name(name);
                     break;
                 case ("I"):
                     System.out.println("Please enter member's new NationalID :");
-                    String nationalID = second_input.nextLine();
+                    String nationalID = myScanner.nextLine();
                     edited_member.set_national_id(nationalID);
                     break;
                 case ("G"):
                     System.out.println("Please enter member's gender :");
-                    String gender = second_input.nextLine();
+                    String gender = myScanner.nextLine().toUpperCase(Locale.ROOT);
                     edited_member.set_gender(gender);
                     break;
                 case ("P"):
                     System.out.println("Please member's phone_number : ");
-                    String phone_number = second_input.nextLine();
+                    String phone_number = myScanner.nextLine();
                     edited_member.set_phone_number(phone_number);
                     break;
                 case ("M"):
 
                     System.out.println("Enter the membership, \"Pay as You go\", \"Open\" or \"Term\" membership :");
-                    String enteredMembership = myScanner.nextLine();
+                    String enteredMembership = myScanner.nextLine().toUpperCase(Locale.ROOT);
                     while(IsMembershipTypeAvailable(enteredMembership)==false) {
-                        enteredMembership = myScanner.nextLine();
+                        enteredMembership = myScanner.nextLine().toUpperCase(Locale.ROOT);
                     }
                     edited_member.setMembership_type(enteredMembership);
-//                    switch (enteredMembership.toUpperCase(Locale.ROOT)) {
-//                        case ("Pay as You go"):
-//                            edited_member.setMembership_type("PAYG");
-//                            break;
-//                        case ("Open"):
-//                            edited_member.setMembership_type("Open");
-//                            break;
-//                        case ("Term"):
-//                            edited_member.setMembership_type("Term");
-//                            break;
-//                        default:
-//                            System.out.println("Please enter a valid choice !");
-//
-//                    }
-
-
-                    //
                 default:
                     System.out.println("Please enter a valid choice !");
             }
@@ -193,12 +172,12 @@ public class Employee extends Person {
         Scanner myScanner = new Scanner(System.in);
         System.out.println("Please fill the following data to add a member to a class:");
         System.out.println("Please enter the Class name");
-        gymClassName = myScanner.nextLine();
+        gymClassName = myScanner.nextLine().toUpperCase();
         Gym_Class gym_class = findGymClass(gymClassName);
         System.out.println("Please enter the member's national ID");
         national_id = myScanner.nextLine();
          Member addedMember = findMember(national_id);
-        gym_class.addMemberToClass(addedMember);    //findmember returns the member if it exists
+        gym_class.addMemberToClass(addedMember);
         addedMember.getMemberAttendedClasses().add(gym_class);
         gym_class.addMemberToClass(addedMember);
     }
@@ -209,7 +188,7 @@ public class Employee extends Person {
         System.out.println("Please enter the Class name");
         Scanner myScanner = new Scanner(System.in);
         System.out.println("Please enter the Class name");
-        gymClassName = myScanner.nextLine();
+        gymClassName = myScanner.nextLine().toUpperCase(Locale.ROOT);
         Gym_Class gym_class = findGymClass(gymClassName);
         System.out.println("Please enter the member's national ID");
         national_id = myScanner.nextLine();
@@ -261,7 +240,7 @@ public class Employee extends Person {
         boolean found = false;
         Scanner myScanner = new Scanner(System.in);
         System.out.println("Enter the membership name to search, \"Pay as You go\", \"Open\" or \"Term\" membership :");
-        String enteredMembership = myScanner.next();
+        String enteredMembership = myScanner.next().toUpperCase(Locale.ROOT);
         System.out.println("Members of the selected membership type: ");
         for (Member P : GymSystem.getMembers()) {
             if (P.getMembership_type().equals(enteredMembership)) {
