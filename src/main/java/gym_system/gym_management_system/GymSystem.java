@@ -40,6 +40,10 @@ public class GymSystem {
         GymSystem.getTrainers().add(trainer1);
         Trainer trainer2 = new Trainer("Fathy", "3020607080901", "male", "01010006289");
         GymSystem.getTrainers().add(trainer1);
+        Member member1 = new Member("Mazen","30208101047689","male","01064887164","OPEN");
+        getMembers().add(member1);
+        Member member2 = new Member("Maha","302081010446543","female","0106487831","PAY AS YOU GO");
+        getMembers().add(member2);
     }
     Scanner myScanner =new Scanner(System.in);
     public static List<Employee> getEmployees() {
