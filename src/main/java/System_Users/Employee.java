@@ -1,36 +1,22 @@
 package System_Users;
-//import Gym_Components.Gym_Class;
 import Gym_Components.Gym_Class;
 import Gym_Components.Member;
 import Gym_Components.Trainer;
 import gym_system.gym_management_system.GymSystem;
-
 import java.util.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
-
 import  Gym_Components.Member;
-
 
 public class Employee extends Person {
     private String username;
     private String password;
 
-
-    //constructors
-
-
     public Employee(String name, String national_id, String gender, String phone_number, String username, String password) {
         super(name, national_id, gender, phone_number);
         this.username = username.toUpperCase(Locale.ROOT);
         this.password = password;
-//        this.gymClassesList=gymClassesList;
         System.out.println("Employee Created Successfully");
     }
 
-
-    //getters and setters
     public String getUsername() {
         return username.toUpperCase(Locale.ROOT);
     }
@@ -58,14 +44,11 @@ public class Employee extends Person {
         return null;
     }
 
-    //  finding/ adding/removing members
-    //finding method only used by the other two methods
     public static Member findMember(String national_id) {
         for (Member P : GymSystem.getMembers()) {
             if (P.get_national_id().equals(national_id)) {
                 return P;
             }
-
         }
         return null;
     }
@@ -165,8 +148,6 @@ public class Employee extends Person {
         }
     }
 
-
-    //adding/removing members from gym_classes
     public static void addMemberToClass() {
         String national_id,gymClassName;
         Scanner myScanner = new Scanner(System.in);
@@ -207,10 +188,6 @@ public class Employee extends Person {
         System.out.println(memberOfClass.getMemberAttendedClasses());
     }
 
-
-
-
-    //view all members in a specific gym class
     public void viewMembersInGymClass() {
         Scanner myScanner = new Scanner(System.in);
         System.out.println("Write the gym class:");
@@ -226,7 +203,6 @@ public class Employee extends Person {
         }
     }
 
-
     public boolean IsMembershipTypeAvailable(String enteredType){
         for(int i=0; i<Member.membershipTypeOptions.length; i++){
             if( enteredType.equals(Member.membershipTypeOptions[i])) return  true;
@@ -235,7 +211,6 @@ public class Employee extends Person {
         return  false;
     }
 
-    //view all members of a specific membership type
     public void membersOfMembershipType() {
         boolean found = false;
         Scanner myScanner = new Scanner(System.in);
@@ -251,9 +226,7 @@ public class Employee extends Person {
         if(found== false)   System.out.println("No Members currently in the class");
 
     }
-
-
-    //view a member info
+    
     public void viewMemberInfo() {
         boolean found = false;
         String national_id;
