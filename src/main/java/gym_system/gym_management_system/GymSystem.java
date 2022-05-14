@@ -21,7 +21,8 @@ public class GymSystem {
     protected static List<Member> members = new ArrayList<Member>();
     protected static List<Gym_Class> gym_classes = new ArrayList<>();
 
-    Administrator admin1 = new Administrator("123", "farouha");
+    Administrator admin1 = new Administrator("", "");
+    Administrator admin2 = new Administrator("123", "farouha");
     Employee loggedInEmployee = null;
     public GymSystem (){ // created for testing
         Employee employee1 = new Employee("ANAS","302087010230","male","01010006287","anas","123");
@@ -35,7 +36,7 @@ public class GymSystem {
         Trainer trainer1 = new Trainer("Ahmed", "3020509010259", "male", "01010006286");
         GymSystem.getTrainers().add(trainer1);
         Trainer trainer2 = new Trainer("Fathy", "3020607080901", "male", "01010006289");
-        GymSystem.getTrainers().add(trainer1);
+        GymSystem.getTrainers().add(trainer2);
         Member member1 = new Member("Mazen","30208101047689","male","01064887164","OPEN");
         getMembers().add(member1);
         Member member2 = new Member("Maha","302081010446543","female","0106487831","PAY AS YOU GO");
@@ -70,23 +71,23 @@ public class GymSystem {
         int X = myScanner.nextInt();
         switch (X) {
             case 1: {
-                admin1.add_trainer();
+//                admin1.add_trainer();
                 break;
             }
             case 2: {
-                admin1.edit_trainer();
+//                admin1.edit_trainer();
                 break;
             }
             case 3: {
-                admin1.delete_trainer();
+//                admin1.delete_trainer();
                 break;
             }
             case 4: {
-                admin1.assign_trainer_to_class();
+//                admin1.assign_trainer_to_class();
                 break;
             }
             case 5: {
-                admin1.assign_trainer_to_member();
+//                admin1.assign_trainer_to_member();
                 break;
             }
             case 6: {
@@ -207,25 +208,27 @@ public class GymSystem {
      * Employees methods
      */
 
-    public Employee employeeLogin() {
-        Scanner input = new Scanner(System.in);
-        System.out.println("Please Enter the following data to login : ");
-        System.out.println("Enter the Employee's Username : ");
-        String Username = input.next().toUpperCase(Locale.ROOT);
+    public Employee employeeLogin(String username, String password) {
 
-        System.out.println("Enter the Employee's Password : ");
-        String Password = input.next();
         for (Employee P : employees) {
-            if (P.getUsername().equals(Username) && P.getPassword().equals(Password)) {
-                System.out.println("Welcome " + P.get_name());
+            if (P.getUsername().equals(username) && P.getPassword().equals(password)) {
+                //System.out.println("Welcome " + P.get_name());
                 return P;
             }
         }
-        System.out.println("Invalid Username or Password!");
         return null;
     }
 
-
+    public boolean checkid(String national_id)
+    {
+        Employee new_employee = findEmployee(employees, national_id);
+        if (new_employee == null) {
+        return true;
+        }
+        else {
+            return false;
+        }
+    }
     public void employeeRegister() {
         String name = "";
         String national_id = "";

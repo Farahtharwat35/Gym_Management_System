@@ -33,25 +33,19 @@ public class Administrator  {
         this.password=password;
     }
 
-    public void assign_trainer_to_class () {
-        System.out.println("Please enter trainer NationalID :");
-        Scanner input =new Scanner(System.in);
-        String trainer_id=input.nextLine();
-        System.out.println("Please enter class type :");
-        String class_type= input.nextLine().toUpperCase(Locale.ROOT);
-        Trainer assigned_trainer=findTrainer(trainer_id);
-        Gym_Class assigned_class=findClass(class_type);
+    public boolean assign_trainer_to_class (Trainer assigned_trainer, Gym_Class assigned_class) {
+//        Trainer assigned_trainer=findTrainer(trainer_id);
+//        Gym_Class assigned_class=findClass(class_type);
         boolean is_available = true;
-        if (assigned_class==null || assigned_trainer==null) {
-            System.out.println ("No such trainer or class found ! Please try again !");
-        }
-        else {
+//        if (assigned_class==null || assigned_trainer==null) {
+//            System.out.println ("No such trainer or class found ! Please try again !");
+//        }
+//        else {
             List<Gym_Class> assigned_trainer_classes=assigned_trainer.getGymClasses();
         for (int i=0 ; i<assigned_trainer.getGymClasses().size() ; i++ ) {
             if (assigned_trainer.getGymClasses().isEmpty()){
               assigned_class.setTrainer(assigned_trainer);
                 assigned_trainer_classes.add(assigned_class);
-                System.out.println("ASSIGN SUCCESS");
                 break;
             } else if (!(((assigned_class.getStart_time().isBefore(assigned_trainer.getGymClasses().get(i).getStart_time()))&&
                     (assigned_class.getEnd_time().isBefore(assigned_trainer.getGymClasses().get(i).getStart_time())))||
@@ -63,47 +57,40 @@ public class Administrator  {
         if (is_available){
             assigned_class.setTrainer(assigned_trainer);
             assigned_trainer_classes.add(assigned_class);
-            System.out.println("ASSIGN SUCCESS");
+            return true;
         }
         else {
-            System.out.println("ASSIGN FAIL");
-        } }
+            return false;
+        } //}
     }
-    public void assign_trainer_to_member () {
-            Scanner input = new Scanner(System.in);
-            System.out.println("Please enter trainer nationalId :");
-            String trainer_national_id = input.next();
-            System.out.println("Please enter member nationalId :");
-             String member_national_id = input.next();
-            Trainer assigned_trainer=findTrainer(trainer_national_id);
-            Member assigned_member= findMember(member_national_id);
-        if (assigned_trainer==null || assigned_member==null) {
-            System.out.println ("No such trainer or member found ! Please try again !");
-        }
-            else {
+    public boolean assign_trainer_to_member (Trainer assigned_trainer, Member assigned_member) {
+
+//        if (assigned_trainer==null || assigned_member==null) {
+//            System.out.println ("No such trainer or member found ! Please try again !");
+//        }
+//            else {
             if (assigned_trainer.getMembers().isEmpty()) {
                 assigned_trainer.getMembers().add(assigned_member);
                 assigned_member.setTrainer(assigned_trainer);
-                System.out.println("TRAINER ASSIGNED SUCCESSFULLY");
+                return true;
             }
             else {
-                if (assigned_member.getTrainer()!=null){
-                    if (assigned_member.getTrainer () == assigned_trainer ) {
-                        System.out.println ("TRAINER ALREADY EXISTS");
-                    }
-                    else {
+                if (assigned_member.getTrainer() != null) {
+                    if (assigned_member.getTrainer() == assigned_trainer) {
+                        return false;
+                    } else {
                         assigned_member.setTrainer(assigned_trainer);
-                        List <Member> trainer_members= assigned_trainer.getMembers();
-                       trainer_members.add(assigned_member);
-                        System.out.println ("TRAINER ASSIGNED SUCCESSFULLY");
+                        List<Member> trainer_members = assigned_trainer.getMembers();
+                        trainer_members.add(assigned_member);
+                        return true;
                     }
-                }
-            }}
+                } else return false;
+            }
+            //}
         }
 
 
 public void edit_trainer (){
-
 
     System.out.println("Enter trainer nationalId : ");
     Scanner myScanner = new Scanner(System.in);
@@ -305,10 +292,8 @@ public void edit_trainer (){
         }
     }
 //
-    public void delete_trainer( ) {
-        System.out.println("Please enter trainer nationalId :");
-        Scanner delete_trainer_id =new Scanner(System.in);
-        String trainer_id= delete_trainer_id.nextLine();
+    public void delete_trainer(String trainer_id) {
+
         Trainer delete_trainer=findTrainer(trainer_id);
         if (delete_trainer!=null) {
             for (int i = 0; i < GymSystem.getTrainers().size(); i++) {
@@ -334,7 +319,7 @@ public void edit_trainer (){
             System.out.println("No Such Class " + " Found\n"); }
     }
 
-    private Member findMember (String national_id) {
+    public Member findMember (String national_id) {
         boolean is_found=false;
         Member assigned_member=null;
         for (Member C : GymSystem.getMembers() ) {
@@ -348,7 +333,7 @@ public void edit_trainer (){
         return assigned_member;
     }
 
-    private Gym_Class findClass ( String class_name ) {
+    public Gym_Class findClass ( String class_name ) {
         boolean is_found=false;
         Gym_Class assigned_class=null;
         for (Gym_Class C : GymSystem.getGym_classes() ) {
@@ -360,7 +345,7 @@ public void edit_trainer (){
         }
            return assigned_class;
     }
-    private Trainer findTrainer (String national_id) {
+    public Trainer findTrainer (String national_id) {
         boolean is_found=false;
         Trainer assigned_trainer=null;
         for (Trainer C : GymSystem.getTrainers() ) {
@@ -373,29 +358,40 @@ public void edit_trainer (){
         }
         return assigned_trainer;
     }
-    public void add_trainer () {
-        String name = "";
-        String national_id = "";
-        String phone_number = "";
-        String gender = "";
-        Scanner myScanner =new Scanner(System.in);
-        System.out.println("Enter trainer nationalId:");
-        national_id = myScanner.nextLine();
-        Trainer new_trainer = findTrainer(national_id);
 
-        if (new_trainer==null) {
-            System.out.println("Enter trainer name :");
-            name = myScanner.nextLine();
-            System.out.println("Enter trainer gender :");
-            gender = myScanner.nextLine();
-            System.out.println("Enter trainer phone number :");
-            phone_number = myScanner.nextLine();
-            GymSystem.getTrainers().add(new Trainer(name, national_id, gender,phone_number));
-            System.out.println(name + " has been added successfully!");
+    public boolean checktrainer_id(String national_id){
+        Trainer new_trainer = findTrainer(national_id);
+        if(new_trainer==null)
+        {
+            return true;
         }
         else {
-            System.out.println("Trainer : " + new_trainer + " already exists");
+            return false;
         }
-
     }
+//    public void add_trainer () {
+//        String name = "";
+//        String national_id = "";
+//        String phone_number = "";
+//        String gender = "";
+//        Scanner myScanner =new Scanner(System.in);
+//        System.out.println("Enter trainer nationalId:");
+//        national_id = myScanner.nextLine();
+//        Trainer new_trainer = findTrainer(national_id);
+//
+//        if (new_trainer==null) {
+//            System.out.println("Enter trainer name :");
+//            name = myScanner.nextLine();
+//            System.out.println("Enter trainer gender :");
+//            gender = myScanner.nextLine();
+//            System.out.println("Enter trainer phone number :");
+//            phone_number = myScanner.nextLine();
+//            GymSystem.getTrainers().add(new Trainer(name, national_id, gender,phone_number));
+//            System.out.println(name + " has been added successfully!");
+//        }
+//        else {
+//            System.out.println("Trainer : " + new_trainer + " already exists");
+//        }
+//
+//    }
 }
