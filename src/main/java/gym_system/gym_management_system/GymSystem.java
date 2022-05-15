@@ -7,6 +7,7 @@ import System_Users.Administrator;
 import System_Users.Employee;
 
 import java.time.Instant;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -29,9 +30,9 @@ public class GymSystem {
         Employee employee2 = new Employee("EZZ","3020102582847","male","01010006281","anass","1234");
         GymSystem.getEmployees().add(employee1);
         employees.add(employee2);
-        Gym_Class class1=new Gym_Class("YOGA","low",10,null ,null);
+        Gym_Class class1=new Gym_Class("YOGA","low", "Friday", 10, LocalTime.parse("11:00") ,LocalTime.parse("13:00"));
         gym_classes.add(class1);
-        Gym_Class class2=new Gym_Class("dance","high",10,null,null);
+        Gym_Class class2=new Gym_Class("dance","high", "Tuesday", 10,null,null);
         gym_classes.add(class2);
         Trainer trainer1 = new Trainer("Ahmed", "3020509010259", "male", "01010006286");
         GymSystem.getTrainers().add(trainer1);
@@ -107,7 +108,7 @@ public class GymSystem {
         int X = myScanner.nextInt();
         switch (X) {
             case 1: {
-                admin1.open_class();
+//                admin1.open_class();
                 break;
             }
             case 2: {

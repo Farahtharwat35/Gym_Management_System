@@ -141,32 +141,32 @@ public void edit_trainer (){
 
     
     //make function find class in Main
-    public void open_class (){
-        String name = "";
-        String day = "";
-        String time = "";
-        String description = "";
-        int maxMemberCount = 0;
-        Scanner myScanner =new Scanner(System.in);
-        System.out.println("Enter class name : ");
-        String class_name = myScanner.nextLine().toUpperCase(Locale.ROOT);
-        Gym_Class new_class = findClass(class_name);
-
-        if (new_class==null) {
-            Instant start_time = Gym_Class.get_instant();
-            Instant end_time = Gym_Class.get_instant(start_time);
-            System.out.println("Enter class description : ");
-            description = myScanner.nextLine();
-            System.out.println("Enter class maximum member count  : ");
-            maxMemberCount = myScanner.nextInt();
-            myScanner.nextLine();
-
-           GymSystem.getGym_classes().add(new Gym_Class(class_name, description, maxMemberCount,start_time,end_time));
-           System.out.println("Class " + new_class.getType() + "has been added successfully!");
-        }
-        else {
-            System.out.println("Class : " + class_name + " already exists");
-        }
+    public void open_class (String class_name, String day, String time, String description, int maxMemberCount){
+//        String name = "";
+//        String day = "";
+//        String time = "";
+//        String description = "";
+//        int maxMemberCount = 0;
+//        Scanner myScanner =new Scanner(System.in);
+//        System.out.println("Enter class name : ");
+//        String class_name = myScanner.nextLine().toUpperCase(Locale.ROOT);
+//        Gym_Class new_class = findClass(class_name);
+//
+//        if (new_class==null) {
+//            Instant start_time = Gym_Class.get_instant();
+//            Instant end_time = Gym_Class.get_instant(start_time);
+//            System.out.println("Enter class description : ");
+//            description = myScanner.nextLine();
+//            System.out.println("Enter class maximum member count  : ");
+//            maxMemberCount = myScanner.nextInt();
+//            myScanner.nextLine();
+//
+//           GymSystem.getGym_classes().add(new Gym_Class(class_name, description, maxMemberCount,start_time,end_time));
+//           System.out.println("Class " + new_class.getType() + "has been added successfully!");
+//        }
+//        else {
+//            System.out.println("Class : " + class_name + " already exists");
+//        }
     }
     // for entring a number ; we do exceptions?
     public void edit_class (){
@@ -195,11 +195,11 @@ public void edit_trainer (){
                     System.out.println("Class name is set to: " + class_type);
                     break;
                case ("S"):
-                   Instant start_time = Gym_Class.get_instant();
-                   Instant end_time =Gym_Class.get_instant(start_time);
-                   edited_class.setStart_time(start_time);
-                   edited_class.setEnd_time(end_time);
-                   System.out.println("Class schedule is set on : " + start_time.toString().substring(0,10) + "from  " + start_time.toString().substring(11,16) +  " to " + end_time.toString().substring(11,16) );
+//                   Instant start_time = Gym_Class.get_instant();
+//                   Instant end_time =Gym_Class.get_instant(start_time);
+//                   edited_class.setStart_time(start_time);
+//                   edited_class.setEnd_time(end_time);
+//                   System.out.println("Class schedule is set on : " + start_time.toString().substring(0,10) + "from  " + start_time.toString().substring(11,16) +  " to " + end_time.toString().substring(11,16) );
                     break;
                 case ("D"):
                     System.out.println("Please enter a description : ");

@@ -4,7 +4,7 @@ import java.util.*;
 public class Main {
     public static void main (String[] args) {
         welcomePage welcomepage = new welcomePage();
-        GymSystem Gym_Management_System= new GymSystem();
+//        GymSystem Gym_Management_System= new GymSystem();
 //        int X;
 //        Scanner myScanner = new Scanner(System.in);
 //        do {
