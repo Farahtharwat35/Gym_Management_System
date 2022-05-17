@@ -76,9 +76,9 @@ public class employeeregisterWindow extends JFrame {
                 Gym_Management_System.employees.add(new Employee(name, national_id, gender, phone_number, username, password));
 
                 dispose();
-                employeeWindow employeewindow = new employeeWindow();
-                employeewindow.txtHome.setForeground(new Color(75, 181, 67));
-                employeewindow.txtHome.setText("Account Created Successfully");
+                employeeloginWindow employeeloginwindow = new employeeloginWindow();
+                employeeloginwindow.lbl_invalid_employee_login.setForeground(new Color(75, 181, 67));
+                employeeloginwindow.lbl_invalid_employee_login.setText("Account Created Successfully");
 
             }
         });

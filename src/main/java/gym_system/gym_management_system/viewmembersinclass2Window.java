@@ -3,18 +3,21 @@ package gym_system.gym_management_system;
 import Gym_Components.Gym_Class;
 
 import javax.swing.*;
-import javax.swing.text.*;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.Document;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.io.PrintStream;
 import java.util.Locale;
-import java.io.*;
 
-public class viewmembersinclassWindow extends JFrame {
+public class viewmembersinclass2Window extends JFrame {
     private JTextField txt_name;
     private JTextPane textPane1;
     private JButton btn_search;
-    private JPanel viewmembersinclassPanel;
+    private JPanel viewmembersinclass2Panel;
     private JLabel lbl_viewmemberinclass;
     public JButton backToMenuButton;
 
@@ -57,9 +60,9 @@ public class viewmembersinclassWindow extends JFrame {
     GymSystem Gym_Managment_System = new GymSystem();
 
 
-    viewmembersinclassWindow() {
+    viewmembersinclass2Window() {
 
-        setContentPane(viewmembersinclassPanel);
+        setContentPane(viewmembersinclass2Panel);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(420, 420);
         setTitle("View Members in a Class");
@@ -116,7 +119,7 @@ public class viewmembersinclassWindow extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 dispose();
-                adminWindow adminwindow = new adminWindow();
+                employeemanagmentWindow employeemanagmentwindow = new employeemanagmentWindow();
             }
         });
     }

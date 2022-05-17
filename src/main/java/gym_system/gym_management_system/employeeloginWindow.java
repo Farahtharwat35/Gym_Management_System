@@ -1,6 +1,7 @@
 package gym_system.gym_management_system;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Locale;
@@ -13,6 +14,7 @@ public class employeeloginWindow extends JFrame{
     private JLabel lbl_employee_password;
     public JLabel lbl_invalid_employee_login;
     private JPanel employeeloginPanel;
+    private JButton registerButton;
     GymSystem Gym_Management_System= new GymSystem();
 
     employeeloginWindow(){
@@ -29,6 +31,7 @@ public class employeeloginWindow extends JFrame{
                 String Password = txt_employee_pass.getText();
                 if(Gym_Management_System.employeeLogin(Username, Password)==null)
                 {
+                    lbl_invalid_employee_login.setForeground(new Color(255,0,0));
                     lbl_invalid_employee_login.setText("Invalid Username or Password!");
                 }
                 else {
@@ -39,6 +42,13 @@ public class employeeloginWindow extends JFrame{
 
 
                 }
+            }
+        });
+        registerButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dispose();
+                employeeregisterWindow employeeregisterwindow = new employeeregisterWindow();
             }
         });
     }

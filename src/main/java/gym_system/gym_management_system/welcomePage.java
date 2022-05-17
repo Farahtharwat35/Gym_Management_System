@@ -29,7 +29,7 @@ public class welcomePage extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 dispose();
-                employeeWindow employeewindow = new employeeWindow();
+                employeeloginWindow employeeloginwindow = new employeeloginWindow();
             }
         });
     }

@@ -45,6 +45,7 @@ public class classesmanagmentWindow extends JFrame{
         btn_view_members_in_class.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                dispose();
                 viewmembersinclassWindow viewmembersinclasswindow = new viewmembersinclassWindow();
             }
         });
