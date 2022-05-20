@@ -298,7 +298,6 @@ public class GymSystem {
      public static void signout () {
              loggedInEmployee = null;
              status = false;
-             System.out.println("Signed out successfully");
          }
 
 
