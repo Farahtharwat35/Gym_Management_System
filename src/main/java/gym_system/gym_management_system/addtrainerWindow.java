@@ -1,6 +1,7 @@
 package gym_system.gym_management_system;
 
 import Gym_Components.Trainer;
+import System_Users.Administrator;
 
 import javax.swing.*;
 import java.awt.*;
@@ -18,24 +19,24 @@ public class addtrainerWindow extends JFrame {
     private JPasswordField txt_pass;
     private JComboBox gender_combobox;
     private JButton btn_submit;
-
-    GymSystem Gym_Management_System= new GymSystem();
+    private JButton resetButton;
+    private JButton backToMenuButton;
 
     addtrainerWindow(){
         setContentPane(addtrainerPanel);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(420,420);
-        setTitle("Employee Register");
+        setLocationRelativeTo(null);
+        setTitle("Add Trainer");
         setVisible(true);
-
 
         checkButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String national_id = txt_national_id.getText();
-                if(Gym_Management_System.admin1.checktrainer_id(national_id) == true)
+                if(Administrator.checktrainer_id(national_id) == true)
                 {
-                    lbl_add_trainer.setText("No Employee was found was this ID");
+                    lbl_add_trainer.setText("No Trainer was found was this ID");
                     lbl_add_trainer.setForeground(new Color(75, 181, 67));
                     txt_name.setEnabled(true);
                     gender_combobox.setEnabled(true);
@@ -43,6 +44,7 @@ public class addtrainerWindow extends JFrame {
                     btn_submit.setEnabled(true);
                     txt_national_id.setEnabled(false);
                     checkButton.setVisible(false);
+                    resetButton.setVisible(true);
                 }
                 else
                 {
@@ -70,6 +72,20 @@ public class addtrainerWindow extends JFrame {
                 adminwindow.lbl_admin_home.setForeground(new Color(75, 181, 67));
                 adminwindow.lbl_admin_home.setText(name +" was added successfully");
 
+            }
+        });
+        resetButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dispose();
+                addtrainerWindow addtrainerwindow = new addtrainerWindow();
+            }
+        });
+        backToMenuButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dispose();
+                trainermanagmentWindow trainermanagmentwindow= new trainermanagmentWindow();
             }
         });
     }

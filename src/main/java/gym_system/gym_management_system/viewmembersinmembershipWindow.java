@@ -55,7 +55,6 @@ public class viewmembersinmembershipWindow extends JFrame{
         System.setErr(new PrintStream(out, true));
     }
 
-    GymSystem Gym_Managment_System = new GymSystem();
 
 
     viewmembersinmembershipWindow() {
@@ -65,6 +64,7 @@ public class viewmembersinmembershipWindow extends JFrame{
         setSize(420, 420);
         setTitle("View Members in a Membership");
         setVisible(true);
+        setLocationRelativeTo(null);
 
 
         searchButton.addActionListener(new ActionListener() {
@@ -93,7 +93,7 @@ public class viewmembersinmembershipWindow extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 dispose();
-                adminWindow adminwindow = new adminWindow();
+                membersmanagmentWindow membersmanagmentwindow = new membersmanagmentWindow();
             }
         });
     }

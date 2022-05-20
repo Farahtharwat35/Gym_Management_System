@@ -1,11 +1,10 @@
 package gym_system.gym_management_system;
 
 import Gym_Components.Member;
-import Gym_Components.Trainer;
-import System_Users.Administrator;
 import System_Users.Employee;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -16,14 +15,16 @@ public class removememberWindow extends JFrame{
     private JLabel lbl_delete_assure;
     private JButton cancelButton;
     private JButton deleteButton;
+    private JButton backToMenuButton;
 
 
     removememberWindow(){
         setContentPane(removememberPanel);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(420,420);
-        setTitle("Employee Register");
+        setTitle("Delete Member");
         setVisible(true);
+        setLocationRelativeTo(null);
         deleteButton.setVisible(false);
         cancelButton.setVisible(false);
         lbl_delete_assure.setVisible(false);
@@ -33,12 +34,24 @@ public class removememberWindow extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 String delete_member_id = txt_nationalid.getText();
-                deleteButton.setVisible(true);
-                cancelButton.setVisible(true);
-                lbl_delete_assure.setVisible(true);
                 Member delete_member= Employee.findMember(delete_member_id);
-                String message = "Are you sure you want to remove " + delete_member.get_name();
-                lbl_delete_assure.setText(message);
+
+                if(delete_member != null){
+                    deleteButton.setVisible(true);
+                    cancelButton.setVisible(true);
+                    lbl_delete_assure.setVisible(true);
+                    txt_nationalid.setEnabled(false);
+                    String message = "Are you sure you want to remove " + delete_member.get_name();
+                    lbl_delete_assure.setText(message);
+                    lbl_delete_assure.setForeground(new Color(0,0,0));
+                }
+                else{
+                    deleteButton.setVisible(false);
+                    cancelButton.setVisible(false);
+                    lbl_delete_assure.setVisible(true);
+                    lbl_delete_assure.setText("No Member was found was this ID");
+                    lbl_delete_assure.setForeground(new Color(255,0,0));
+                }
             }
         });
         deleteButton.addActionListener(new ActionListener() {
@@ -54,6 +67,13 @@ public class removememberWindow extends JFrame{
             }
         });
         cancelButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dispose();
+                employeemanagmentWindow employeemanagmentwindow = new employeemanagmentWindow();
+            }
+        });
+        backToMenuButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 dispose();

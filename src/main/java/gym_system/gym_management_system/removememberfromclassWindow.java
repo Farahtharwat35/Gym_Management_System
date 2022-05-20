@@ -24,6 +24,7 @@ public class removememberfromclassWindow extends JFrame{
         setSize(420, 420);
         setTitle("Remove Member from Class");
         setVisible(true);
+        setLocationRelativeTo(null);
 
 
         addButton.addActionListener(new ActionListener() {
@@ -44,17 +45,33 @@ public class removememberfromclassWindow extends JFrame{
                     lbl_add_member_to_class.setText("No Class exists with this name");
                     lbl_add_member_to_class.setForeground(new Color(255,0,0));
                 }
-                //else if(member wasn't in the class أصلًا){
-                //}
+
 
                 else{
-                    gym_class.EmployeeRemoveClass_members(memberToBeRemoved);
-                    memberToBeRemoved.getMemberAttendedClasses().remove(gym_class);
 
-                    dispose();
-                    employeemanagmentWindow employeemanagmentwindow = new employeemanagmentWindow();
-                    employeemanagmentwindow.lbl_employee_management_home.setText(memberToBeRemoved.get_name() + " was removed successfully from " + gym_class.getType());
-                    employeemanagmentwindow.lbl_employee_management_home.setForeground(new Color(75, 181, 67));
+                    boolean is_found=false;
+                    for (Gym_Class C : memberToBeRemoved.getMemberAttendedClasses() ) {
+                        if (C.getType().equals(gym_class.getType())) {
+                            is_found=true ;
+                            break;
+                        }
+
+                    }
+                    if(is_found==false){
+                        lbl_add_member_to_class.setText(memberToBeRemoved.get_name() + " is not assigned to " + gym_class.getType());
+                        lbl_add_member_to_class.setForeground(new Color(255,0,0));
+
+                    }
+                    else {
+                        gym_class.EmployeeRemoveClass_members(memberToBeRemoved);
+                        memberToBeRemoved.getMemberAttendedClasses().remove(gym_class);
+                        dispose();
+                        employeemanagmentWindow employeemanagmentwindow = new employeemanagmentWindow();
+                        employeemanagmentwindow.lbl_employee_management_home.setText(memberToBeRemoved.get_name() + " was removed successfully from " + gym_class.getType());
+                        employeemanagmentwindow.lbl_employee_management_home.setForeground(new Color(75, 181, 67));
+                    }
+
+
                 }
 
             }

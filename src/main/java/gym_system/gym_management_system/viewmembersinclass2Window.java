@@ -1,6 +1,7 @@
 package gym_system.gym_management_system;
 
 import Gym_Components.Gym_Class;
+import System_Users.Administrator;
 
 import javax.swing.*;
 import javax.swing.text.BadLocationException;
@@ -57,7 +58,7 @@ public class viewmembersinclass2Window extends JFrame {
         System.setErr(new PrintStream(out, true));
     }
 
-    GymSystem Gym_Managment_System = new GymSystem();
+
 
 
     viewmembersinclass2Window() {
@@ -67,13 +68,14 @@ public class viewmembersinclass2Window extends JFrame {
         setSize(420, 420);
         setTitle("View Members in a Class");
         setVisible(true);
+        setLocationRelativeTo(null);
 
 
         btn_search.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String specific_class= txt_name.getText().toUpperCase(Locale.ROOT);
-                Gym_Class assigned_class=Gym_Managment_System.admin1.findClass(specific_class);
+                Gym_Class assigned_class= Administrator.findClass(specific_class);
                 if (assigned_class==null) {
                     lbl_viewmemberinclass.setText("No such class found ! Please try again !");
                     lbl_viewmemberinclass.setForeground(new Color(255, 0, 0));

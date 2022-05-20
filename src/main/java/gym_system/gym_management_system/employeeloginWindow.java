@@ -15,21 +15,22 @@ public class employeeloginWindow extends JFrame{
     public JLabel lbl_invalid_employee_login;
     private JPanel employeeloginPanel;
     private JButton registerButton;
-    GymSystem Gym_Management_System= new GymSystem();
+
 
     employeeloginWindow(){
         setContentPane(employeeloginPanel);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(420,420);
-        setTitle("Admin Test");
+        setTitle("Employee Login");
         setVisible(true);
+        setLocationRelativeTo(null);
 
         btn_employee_login.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String Username = txt_employee_user.getText().toUpperCase(Locale.ROOT);
                 String Password = txt_employee_pass.getText();
-                if(Gym_Management_System.employeeLogin(Username, Password)==null)
+                if(GymSystem.employeeLogin(Username, Password)==null)
                 {
                     lbl_invalid_employee_login.setForeground(new Color(255,0,0));
                     lbl_invalid_employee_login.setText("Invalid Username or Password!");
@@ -37,7 +38,7 @@ public class employeeloginWindow extends JFrame{
                 else {
                     lbl_invalid_employee_login.setText("");
                     dispose();
-                    Gym_Management_System.loggedInEmployee =  Gym_Management_System.employeeLogin(Username, Password);
+                    GymSystem.loggedInEmployee =  GymSystem.employeeLogin(Username, Password);
                     employeemanagmentWindow employeemanagmentwindow = new employeemanagmentWindow();
 
 

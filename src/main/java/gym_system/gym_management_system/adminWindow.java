@@ -11,14 +11,14 @@ public class adminWindow extends JFrame{
     private JButton btn_Members_Management;
     private JButton btn_admin_signout;
     public JLabel lbl_admin_home;
-    GymSystem Gym_Management_System= new GymSystem();
 
     adminWindow(){
         setContentPane(adminPanel);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(420,420);
-        setTitle("Admin Test");
+        setTitle("Admin");
         setVisible(true);
+        setLocationRelativeTo(null);
 
         btn_Trainers_Management.addActionListener(new ActionListener() {
             @Override
@@ -45,7 +45,7 @@ public class adminWindow extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 dispose();
-                Gym_Management_System.signout();
+                GymSystem.signout();
                 welcomePage welcomepage = new welcomePage();
                 welcomepage.txtHome.setText("Signed out successfully");
             }

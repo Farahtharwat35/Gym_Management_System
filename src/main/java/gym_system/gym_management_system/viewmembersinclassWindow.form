@@ -30,7 +30,9 @@
             <preferred-size width="150" height="50"/>
           </grid>
         </constraints>
-        <properties/>
+        <properties>
+          <editable value="false"/>
+        </properties>
       </component>
       <component id="39a51" class="javax.swing.JButton" binding="btn_search">
         <constraints>

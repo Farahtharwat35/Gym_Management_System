@@ -16,6 +16,7 @@ public class welcomePage extends JFrame{
         setSize(420,420);
         setTitle("Gym_6");
         setVisible(true);
+        setLocationRelativeTo(null);
 
         logAdmin.addActionListener(new ActionListener() {
             @Override

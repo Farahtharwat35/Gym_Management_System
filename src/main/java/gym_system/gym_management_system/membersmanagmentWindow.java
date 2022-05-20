@@ -10,15 +10,16 @@ public class membersmanagmentWindow extends JFrame{
     private JButton btn_view_all_members_infos;
     private JButton btn_managemembers_signout;
     private JPanel membersmanagmentPanel;
+    private JButton backToMenuButton;
 
-    GymSystem Gym_Management_System = new GymSystem();
 
     membersmanagmentWindow(){
         setContentPane(membersmanagmentPanel);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(420,420);
-        setTitle("Admin Test");
+        setTitle("Member Management");
         setVisible(true);
+        setLocationRelativeTo(null);
 
         btn_view_members_in_specific_class.addActionListener(new ActionListener() {
             @Override
@@ -45,9 +46,16 @@ public class membersmanagmentWindow extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 dispose();
-                Gym_Management_System.signout();
+                GymSystem.signout();
                 welcomePage welcomepage = new welcomePage();
                 welcomepage.txtHome.setText("Signed out successfully");
+            }
+        });
+        backToMenuButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dispose();
+                adminWindow adminwindow = new adminWindow();
             }
         });
     }

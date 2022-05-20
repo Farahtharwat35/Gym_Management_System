@@ -2,6 +2,7 @@ package gym_system.gym_management_system;
 
 import Gym_Components.Gym_Class;
 import Gym_Components.Member;
+import Gym_Components.Trainer;
 import System_Users.Employee;
 
 import javax.swing.*;
@@ -22,6 +23,7 @@ public class addmembertoclassWindow extends JFrame {
         setContentPane(addmembertoclassPanel);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(420, 420);
+        setLocationRelativeTo(null);
         setTitle("Add Member to Class");
         setVisible(true);
 
@@ -44,13 +46,29 @@ public class addmembertoclassWindow extends JFrame {
                     lbl_add_member_to_class.setText("No Class exists with this name");
                     lbl_add_member_to_class.setForeground(new Color(255,0,0));
                 }
-                else {
-                    addedMember.getMemberAttendedClasses().add(gym_class);
-                    gym_class.addMemberToClass(addedMember);
-                    dispose();
-                    employeemanagmentWindow employeemanagmentwindow = new employeemanagmentWindow();
-                    employeemanagmentwindow.lbl_employee_management_home.setText(addedMember.get_name() + " was added successfully to " + gym_class.getType());
-                    employeemanagmentwindow.lbl_employee_management_home.setForeground(new Color(75, 181, 67));
+                else{
+                    boolean is_found=false;
+                    for (Gym_Class C : addedMember.getMemberAttendedClasses() ) {
+                        if (C.getType().equals(gym_class.getType())) {
+                            is_found=true ;
+                            break;
+                        }
+
+                    }
+                    if(is_found==true){
+                        lbl_add_member_to_class.setText(addedMember.get_name() + " is already assigned to " + gym_class.getType());
+                        lbl_add_member_to_class.setForeground(new Color(255,0,0));
+
+                    }
+                    else {
+                        addedMember.getMemberAttendedClasses().add(gym_class);
+                        gym_class.addMemberToClass(addedMember);
+                        dispose();
+                        employeemanagmentWindow employeemanagmentwindow = new employeemanagmentWindow();
+                        employeemanagmentwindow.lbl_employee_management_home.setText(addedMember.get_name() + " was added successfully to " + gym_class.getType());
+                        employeemanagmentwindow.lbl_employee_management_home.setForeground(new Color(75, 181, 67));
+                    }
+
                 }
 
             }

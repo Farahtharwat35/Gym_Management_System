@@ -56,7 +56,6 @@ public class viewallmembers2Window extends JFrame {
         System.setErr(new PrintStream(out, true));
     }
 
-    GymSystem Gym_Managment_System = new GymSystem();
 
 
     viewallmembers2Window() {
@@ -66,6 +65,7 @@ public class viewallmembers2Window extends JFrame {
         setSize(420, 420);
         setTitle("View All Members");
         setVisible(true);
+        setLocationRelativeTo(null);
 
         redirectSystemStreams();
         if (!GymSystem.getMembers().isEmpty()) {

@@ -21,23 +21,23 @@ public class employeeregisterWindow extends JFrame {
     private JPanel employeeregisterPanel;
     private JComboBox gender_combobox;
     private JLabel lbl_employee_register;
-    private JButton button1;
+    private JButton backToLoginButton;
 
-    GymSystem Gym_Management_System= new GymSystem();
 
     employeeregisterWindow(){
         setContentPane(employeeregisterPanel);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(420,420);
-        setTitle("Employee Register");
+        setTitle("Employee Registration");
         setVisible(true);
+        setLocationRelativeTo(null);
 
 
         checkButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String national_id = txt_national_id.getText();
-                if(Gym_Management_System.checkid(national_id) == true)
+                if(GymSystem.checkid(national_id) == true)
                 {
                     lbl_employee_register.setText("No Employee was found was this ID");
                     lbl_employee_register.setForeground(new Color(75, 181, 67));
@@ -73,13 +73,20 @@ public class employeeregisterWindow extends JFrame {
                 String phone_number = txt_phone.getText();
                 String username = txt_user.getText();
                 String password = txt_pass.getText();
-                Gym_Management_System.employees.add(new Employee(name, national_id, gender, phone_number, username, password));
+                GymSystem.employees.add(new Employee(name, national_id, gender, phone_number, username, password));
 
                 dispose();
                 employeeloginWindow employeeloginwindow = new employeeloginWindow();
                 employeeloginwindow.lbl_invalid_employee_login.setForeground(new Color(75, 181, 67));
                 employeeloginwindow.lbl_invalid_employee_login.setText("Account Created Successfully");
 
+            }
+        });
+        backToLoginButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dispose();
+                employeeloginWindow employeeloginwindow = new employeeloginWindow();
             }
         });
     }

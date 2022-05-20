@@ -17,23 +17,24 @@ public class edittrainerWindow extends JFrame{
     private JLabel lbl_add_trainer;
     private JComboBox gender_combobox;
     private JButton btn_submit;
+    private JButton backToMenuButton;
 
-    GymSystem Gym_Management_System= new GymSystem();
 
     edittrainerWindow(){
         setContentPane(addtrainerPanel);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(420,420);
-        setTitle("Employee Register");
+        setTitle("Edit Trainer");
         setVisible(true);
+        setLocationRelativeTo(null);
 
 
         checkButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String national_id = txt_national_id.getText();
-                Trainer edited_trainer = Gym_Management_System.admin1.findTrainer(national_id);
-                if(Gym_Management_System.admin1.checktrainer_id(national_id) == false)
+                Trainer edited_trainer = Administrator.findTrainer(national_id);
+                if(Administrator.checktrainer_id(national_id) == false)
                 {
                     lbl_add_trainer.setText("Trainer was found");
                     lbl_add_trainer.setForeground(new Color(75, 181, 67));
@@ -69,7 +70,7 @@ public class edittrainerWindow extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 String national_id = txt_national_id.getText();
-                Trainer edited_trainer = Gym_Management_System.admin1.findTrainer(national_id);
+                Trainer edited_trainer = Administrator.findTrainer(national_id);
                 String name = txt_name.getText();
                 String gender = (String) gender_combobox.getItemAt(gender_combobox.getSelectedIndex());
                 String phone_number = txt_phone.getText();
@@ -81,6 +82,13 @@ public class edittrainerWindow extends JFrame{
                 adminwindow.lbl_admin_home.setForeground(new Color(75, 181, 67));
                 adminwindow.lbl_admin_home.setText(name +"'s data was edited successfully");
 
+            }
+        });
+        backToMenuButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dispose();
+                trainermanagmentWindow trainermanagmentwindow = new trainermanagmentWindow();
             }
         });
     }

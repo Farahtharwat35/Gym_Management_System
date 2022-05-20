@@ -1,5 +1,7 @@
 package gym_system.gym_management_system;
 
+import System_Users.Administrator;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -13,25 +15,25 @@ public class adminloginWindow extends JFrame{
     private JLabel lbl_adminlogin;
     private JPanel adminloginPanel;
 
-    GymSystem Gym_Management_System= new GymSystem();
 
     adminloginWindow()
     {
         setContentPane(adminloginPanel);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(420,420);
-        setTitle("Admin Test");
+        setLocationRelativeTo(null);
+        setTitle("Admin Login");
         setVisible(true);
         btn_admin_login.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String Username = txt_user.getText().toUpperCase(Locale.ROOT);
                 String Password = txt_pass.getText();
-                if (Gym_Management_System.admin1.getUsername().equals(Username) && Gym_Management_System.admin1.getPassword().equals(Password)) {
+                if (Administrator.getUsername().equals(Username) && Administrator.getPassword().equals(Password)) {
                     dispose();
                     adminWindow adminwindow = new adminWindow();
-                    adminwindow.lbl_admin_home.setText("Welcome " + Gym_Management_System.admin1.getUsername());
-                    Gym_Management_System.status = true;
+                    adminwindow.lbl_admin_home.setText("Welcome " + Administrator.getUsername());
+                    GymSystem.status = true;
                 }
                 else {
                     lbl_adminlogin.setText("Invalid Username or Password!");

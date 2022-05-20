@@ -12,13 +12,15 @@ public class trainermanagmentWindow extends JFrame{
     private JButton btn_assign_trainer_to_member;
     private JButton btn_trainermanagment_signout;
     private JPanel trainermanagmentPanel;
-    GymSystem Gym_Management_System = new GymSystem();
+    private JButton backToMenuButton;
+
     trainermanagmentWindow(){
         setContentPane(trainermanagmentPanel);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(420,420);
-        setTitle("Admin Test");
+        setTitle("Trainer Management");
         setVisible(true);
+        setLocationRelativeTo(null);
 
         btn_add_trainer.addActionListener(new ActionListener() {
             @Override
@@ -59,9 +61,16 @@ public class trainermanagmentWindow extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 dispose();
-                Gym_Management_System.signout();
+                GymSystem.signout();
                 welcomePage welcomepage = new welcomePage();
                 welcomepage.txtHome.setText("Signed out successfully");
+            }
+        });
+        backToMenuButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dispose();
+                adminWindow adminwindow = new adminWindow();
             }
         });
     }

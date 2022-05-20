@@ -11,14 +11,15 @@ public class classesmanagmentWindow extends JFrame{
     private JButton btn_view_members_in_class;
     private JButton btn_classesmanagment_signout;
     private JPanel classesmanagmentPanel;
+    private JButton backToMenuButton;
 
-    GymSystem Gym_Management_System = new GymSystem();
 
     classesmanagmentWindow(){
         setContentPane(classesmanagmentPanel);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(420,420);
-        setTitle("Admin Test");
+        setTitle("Classes Management");
+        setLocationRelativeTo(null);
         setVisible(true);
 
         btn_open_class.addActionListener(new ActionListener() {
@@ -42,20 +43,21 @@ public class classesmanagmentWindow extends JFrame{
                 removeclassWindow removeclasswindow = new removeclassWindow();
             }
         });
-        btn_view_members_in_class.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                dispose();
-                viewmembersinclassWindow viewmembersinclasswindow = new viewmembersinclassWindow();
-            }
-        });
+
         btn_classesmanagment_signout.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 dispose();
-                Gym_Management_System.signout();
+                GymSystem.signout();
                 welcomePage welcomepage = new welcomePage();
                 welcomepage.txtHome.setText("Signed out successfully");
+            }
+        });
+        backToMenuButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dispose();
+                adminWindow adminwindow= new adminWindow();
             }
         });
     }

@@ -15,14 +15,15 @@ public class employeemanagmentWindow extends JFrame{
     private JPanel employeemanagmentPanel;
     public JLabel lbl_employee_management_home;
     private JButton btn_employeemanagment_delete_member;
-    GymSystem Gym_Management_System = new GymSystem();
+
 
     employeemanagmentWindow() {
         setContentPane(employeemanagmentPanel);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(420, 420);
-        setTitle("Admin Test");
+        setTitle("Employee");
         setVisible(true);
+        setLocationRelativeTo(null);
         btn_employeemanagment_add_member.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -55,7 +56,7 @@ public class employeemanagmentWindow extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 dispose();
-                Gym_Management_System.signout();
+                GymSystem.signout();
                 welcomePage welcomepage = new welcomePage();
                 welcomepage.txtHome.setText("Signed out successfully");
             }

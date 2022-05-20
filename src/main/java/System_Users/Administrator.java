@@ -7,8 +7,8 @@ import java.util.*;
 import gym_system.gym_management_system.GymSystem;
 
 public class Administrator  {
-   private String password;
-   private String username;
+   private static String password;
+   private static String username;
 
    private static List<Gym_Class> gymClassesList = new ArrayList<Gym_Class>();
 
@@ -18,22 +18,22 @@ public class Administrator  {
         this.username=username.toUpperCase(Locale.ROOT);
     }
     
-    public String getUsername () {
-        return this.username.toUpperCase(Locale.ROOT);
+    public static String getUsername() {
+        return Administrator.username.toUpperCase(Locale.ROOT);
     }
 
-    public String getPassword () {
-        return this.password;
+    public static String getPassword() {
+        return Administrator.password;
     }
 
-    public void setUsername (String username) {
-        this.username=username.toUpperCase(Locale.ROOT);
+    public static void setUsername (String username) {
+        Administrator.username=username.toUpperCase(Locale.ROOT);
     }
-    public void setPassword (String password) {
-        this.password=password;
+    public static void setPassword (String password) {
+        Administrator.password=password;
     }
 
-    public boolean assign_trainer_to_class (Trainer assigned_trainer, Gym_Class assigned_class) {
+    public static boolean assign_trainer_to_class (Trainer assigned_trainer, Gym_Class assigned_class) {
 //        Trainer assigned_trainer=findTrainer(trainer_id);
 //        Gym_Class assigned_class=findClass(class_type);
         boolean is_available = true;
@@ -63,7 +63,7 @@ public class Administrator  {
             return false;
         } //}
     }
-    public boolean assign_trainer_to_member (Trainer assigned_trainer, Member assigned_member) {
+    public static boolean assign_trainer_to_member (Trainer assigned_trainer, Member assigned_member) {
 
 //        if (assigned_trainer==null || assigned_member==null) {
 //            System.out.println ("No such trainer or member found ! Please try again !");
@@ -90,7 +90,7 @@ public class Administrator  {
         }
 
 
-public void edit_trainer (){
+public static void edit_trainer (){
 
     System.out.println("Enter trainer nationalId : ");
     Scanner myScanner = new Scanner(System.in);
@@ -141,7 +141,7 @@ public void edit_trainer (){
 
     
     //make function find class in Main
-    public void open_class (String class_name, String day, String time, String description, int maxMemberCount){
+    public static void open_class (String class_name, String day, String time, String description, int maxMemberCount){
 //        String name = "";
 //        String day = "";
 //        String time = "";
@@ -169,7 +169,7 @@ public void edit_trainer (){
 //        }
     }
     // for entring a number ; we do exceptions?
-    public void edit_class (){
+    public static void edit_class (){
         System.out.println("Enter class name: ");
         Scanner myScanner = new Scanner(System.in);
         String class_name = myScanner.nextLine().toUpperCase(Locale.ROOT);
@@ -219,7 +219,7 @@ public void edit_trainer (){
         }
     }
     // after making the function of view_member in specific class in Main (it sorts te classes list and returns the class to this function)
-    public void view_members_in_specific_class () {
+    public static void view_members_in_specific_class () {
         System.out.println("Please enter a valid class type : ");
         Scanner input =new Scanner(System.in);
         String specific_class= input.nextLine().toUpperCase(Locale.ROOT);
@@ -250,7 +250,7 @@ public void edit_trainer (){
                 "-------------------------------------------------------------\n");
     }
 
-    public void view_all_members_infos () {
+    public static void view_all_members_infos () {
         if (!GymSystem.getMembers().isEmpty()) {
             System.out.println("\n---------------------------------------------------------------------" +
                     "-------------------------------------------------------------\n");
@@ -273,7 +273,7 @@ public void edit_trainer (){
         }
     }
 
-    public void view_members_in_specific_membership () {
+    public static void view_members_in_specific_membership () {
         Scanner myScanner = new Scanner(System.in);
         boolean is_found=false;
         System.out.println("Enter the membership, \"Pay as You go\", \"Open\" or \"Term\" membership :");
@@ -292,7 +292,7 @@ public void edit_trainer (){
         }
     }
 //
-    public void delete_trainer(String trainer_id) {
+    public static void delete_trainer(String trainer_id) {
 
         Trainer delete_trainer=findTrainer(trainer_id);
         if (delete_trainer!=null) {
@@ -304,7 +304,7 @@ public void edit_trainer (){
         else {
         System.out.println("No Such Trainer " + delete_trainer.get_name() + " Found\n"); }
     }
-    public void delete_class() {
+    public static void delete_class() {
         System.out.println("Please enter class type :");
         Scanner class_type_input  =new Scanner(System.in);
         String class_type = class_type_input.nextLine().toUpperCase();
@@ -319,7 +319,7 @@ public void edit_trainer (){
             System.out.println("No Such Class " + " Found\n"); }
     }
 
-    public Member findMember (String national_id) {
+    public static Member findMember (String national_id) {
         boolean is_found=false;
         Member assigned_member=null;
         for (Member C : GymSystem.getMembers() ) {
@@ -333,7 +333,7 @@ public void edit_trainer (){
         return assigned_member;
     }
 
-    public Gym_Class findClass ( String class_name ) {
+    public static Gym_Class findClass ( String class_name ) {
         boolean is_found=false;
         Gym_Class assigned_class=null;
         for (Gym_Class C : GymSystem.getGym_classes() ) {
@@ -345,7 +345,7 @@ public void edit_trainer (){
         }
            return assigned_class;
     }
-    public Trainer findTrainer (String national_id) {
+    public static Trainer findTrainer (String national_id) {
         boolean is_found=false;
         Trainer assigned_trainer=null;
         for (Trainer C : GymSystem.getTrainers() ) {
@@ -359,7 +359,7 @@ public void edit_trainer (){
         return assigned_trainer;
     }
 
-    public boolean checktrainer_id(String national_id){
+    public static boolean checktrainer_id(String national_id){
         Trainer new_trainer = findTrainer(national_id);
         if(new_trainer==null)
         {

@@ -22,17 +22,29 @@ public class GymSystem {
     protected static List<Member> members = new ArrayList<Member>();
     protected static List<Gym_Class> gym_classes = new ArrayList<>();
 
-    Administrator admin1 = new Administrator("", "");
-    Administrator admin2 = new Administrator("123", "farouha");
-    Employee loggedInEmployee = null;
-     public GymSystem (){ // created for testing
+    static Administrator admin1 = new Administrator("", "");
+    static Employee loggedInEmployee = null;
+    public GymSystem (){ // created for testing
         Employee employee1 = new Employee("ANAS","302087010230","male","01010006287","anas","123");
         Employee employee2 = new Employee("EZZ","3020102582847","male","01010006281","anass","1234");
-        Employee employee3 = new Employee("EZZ","3020102582847","male","01010006281","","");
-        GymSystem.getEmployees().add(employee1);
+        Employee employee3 = new Employee("EZZ","3020102582841","male","01010006282","","");
+        employees.add(employee1);
         employees.add(employee2);
         employees.add(employee3);
+        Gym_Class class1=new Gym_Class("YOGA","low","Wednesday", 10,null ,null);
+        gym_classes.add(class1);
+        Gym_Class class2=new Gym_Class("dance","high", "Tuesday", 10,null,null);
+        gym_classes.add(class2);
+        Trainer trainer1 = new Trainer("Ahmed", "3020509010259", "male", "01010006286");
+        GymSystem.getTrainers().add(trainer1);
+        Trainer trainer2 = new Trainer("Fathy", "3020607080901", "male", "01010006289");
+        GymSystem.getTrainers().add(trainer2);
+        Member member1 = new Member("Mazen","30208101047689","male","01064887164","OPEN");
+        getMembers().add(member1);
+        Member member2 = new Member("Maha","302081010446543","female","0106487831","PAY AS YOU GO");
+        getMembers().add(member2);
     }
+
     Scanner myScanner =new Scanner(System.in);
     public static List<Employee> getEmployees() {
         return employees;
@@ -199,7 +211,7 @@ public class GymSystem {
      * Employees methods
      */
 
-    public Employee employeeLogin(String username, String password) {
+    public static Employee employeeLogin(String username, String password) {
 
         for (Employee P : employees) {
             if (P.getUsername().equals(username) && P.getPassword().equals(password)) {
@@ -210,7 +222,7 @@ public class GymSystem {
         return null;
     }
 
-    public boolean checkid(String national_id)
+    public static boolean checkid(String national_id)
     {
         Employee new_employee = findEmployee(employees, national_id);
         if (new_employee == null) {
@@ -251,7 +263,7 @@ public class GymSystem {
         }
     }
 
-    public Employee findEmployee(List<Employee> employees, String national_id) {
+    public static Employee findEmployee(List<Employee> employees, String national_id) {
         for (Employee P : employees) {
             if (P.get_national_id().equals(national_id)) {
                 return P;
@@ -263,15 +275,15 @@ public class GymSystem {
     /**
      * Admin Methods
      */
-    boolean status= false;
-    public boolean adminLogin() {
+    static boolean status= false;
+    public static boolean adminLogin() {
         Scanner input = new Scanner(System.in);
         System.out.println("Please Enter Admin Username : ");
         String Username = input.next().toUpperCase(Locale.ROOT);
         System.out.println("Please Enter Admin Password : ");
         String Password = input.next();
-        if (admin1.getUsername().equals(Username) && admin1.getPassword().equals(Password)) {
-            System.out.println("Welcome " + admin1.getUsername());
+        if (Administrator.getUsername().equals(Username) && Administrator.getPassword().equals(Password)) {
+            System.out.println("Welcome " + Administrator.getUsername());
             status = true;
             return true;
 
@@ -283,7 +295,7 @@ public class GymSystem {
     /**
      * Signout Method
      */
-     public void signout () {
+     public static void signout () {
              loggedInEmployee = null;
              status = false;
              System.out.println("Signed out successfully");

@@ -29,6 +29,7 @@ public class addmemberWindow extends JFrame {
         setContentPane(addmemberPanel);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(420, 420);
+        setLocationRelativeTo(null);
         setTitle("Add Member");
         setVisible(true);
         txt_name.setEnabled(false);

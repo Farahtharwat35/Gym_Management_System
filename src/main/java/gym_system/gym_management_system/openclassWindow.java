@@ -1,6 +1,7 @@
 package gym_system.gym_management_system;
 
 import Gym_Components.Gym_Class;
+import System_Users.Administrator;
 
 import javax.swing.*;
 import java.awt.*;
@@ -26,10 +27,10 @@ public class openclassWindow extends JFrame {
     private JButton submitButton;
     private JComboBox comboBox1;
     private JTextField txt_time2;
+    private JButton backToMenuButton;
     LocalTime start_time;
     LocalTime end_time;
 
-    GymSystem Gym_Managment_System = new GymSystem();
 
 
     openclassWindow() {
@@ -39,6 +40,7 @@ public class openclassWindow extends JFrame {
         setSize(420, 420);
         setTitle("Open Class");
         setVisible(true);
+        setLocationRelativeTo(null);
 
         submitButton.addActionListener(new ActionListener() {
             @Override
@@ -66,7 +68,7 @@ public class openclassWindow extends JFrame {
 
                         String description = txt_description.getText();
                         int maxMemberCount = (Integer) (spin_max.getValue());
-                        Gym_Class new_class = Gym_Managment_System.admin1.findClass(class_name);
+                        Gym_Class new_class = Administrator.findClass(class_name);
 
                         if (new_class == null) {
                             Gym_Class open_class = new Gym_Class(class_name, description, day, maxMemberCount, start_time, end_time);
@@ -108,6 +110,13 @@ public class openclassWindow extends JFrame {
                 super.focusGained(e);
                 txt_time2.setText("");
                 txt_time2.setForeground(Color.black);
+            }
+        });
+        backToMenuButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dispose();
+                classesmanagmentWindow classesmanagmentwindow = new classesmanagmentWindow();
             }
         });
     }

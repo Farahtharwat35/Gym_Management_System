@@ -34,6 +34,7 @@ public class editmemberWindow extends JFrame{
         setSize(420, 420);
         setTitle("Edit Member");
         setVisible(true);
+        setLocationRelativeTo(null);
         txt_name.setEnabled(false);
         txt_phone.setEnabled(false);
         submitButton.setEnabled(false);
