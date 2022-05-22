@@ -164,8 +164,9 @@ public class GymSystem {
         System.out.println("Add Member to a Class      (4)");
         System.out.println("Remove Member from a Class (5)");
         System.out.println("View Members in a class    (6)");
-        System.out.println("View Members info          (7)");
-        System.out.println("Sign out                   (8)");
+        System.out.println("View a Member's info          (7)");
+        System.out.println("View members in specific membership (8)");
+        System.out.println("Sign out                   (9)");
         int X = myScanner.nextInt();
         switch (X) {
             case 1: {
@@ -197,6 +198,10 @@ public class GymSystem {
                 break;
             }
             case 8: {
+                loggedInEmployee.membersOfMembershipType();
+                break;
+            }
+            case 9: {
                 signout();
                 break;
             }
