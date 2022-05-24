@@ -70,16 +70,6 @@ public class viewallmembers2Window extends JFrame {
         setLocationRelativeTo(null);
 
         redirectSystemStreams();
-        if (!GymSystem.getMembers().isEmpty()) {
-
-
-            for (Person member : GymSystem.getMembers()) {
-
-            }
-
-        }else {
-            System.out.println("There are no members available !");
-        }
 
 
         searchButton.addActionListener(new ActionListener() {
