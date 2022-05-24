@@ -11,7 +11,7 @@ package gym_system.gym_management_system;
         import java.io.PrintStream;
         import java.awt.event.ActionEvent;
         import java.awt.event.ActionListener;
-        import java.util.Locale;
+        import java.util.Scanner;
 
 public class viewallmembers2Window extends JFrame {
     private JPanel viewallmembers2Panel;
@@ -19,6 +19,8 @@ public class viewallmembers2Window extends JFrame {
     private JTextPane textPane1;
 
     private JButton backToMenuButton;
+    private JButton searchButton;
+    private JTextField textField1;
 
     private void updateTextPane(final String text) {
         SwingUtilities.invokeLater(new Runnable() {
@@ -63,34 +65,55 @@ public class viewallmembers2Window extends JFrame {
         setContentPane(viewallmembers2Panel);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(420, 420);
-        setTitle("View All Members");
+        setTitle("View A Member's info");
         setVisible(true);
         setLocationRelativeTo(null);
 
         redirectSystemStreams();
         if (!GymSystem.getMembers().isEmpty()) {
-            System.out.println("\n------------------------------------" + "All Members info" +
-                    "------------------------------------\n");
-            System.out.format("%16s\t%24s\t%6s\t%11s\n",
-                    "Name",
-                    "National ID",
-                    "Gender" ,
-                    "Phone_Number"
-            );
+
 
             for (Person member : GymSystem.getMembers()) {
-                System.out.format("%16s%24s\t%6s\t%11s\n",
-                        member.get_name(),
-                        member.get_national_id(),
-                        member.get_gender(),
-                        member.getPhone_number());
+
             }
-            System.out.println("\n-----------------------------------------------" +
-                    "-----------------------------------------------\n");
+
         }else {
             System.out.println("There are no members available !");
         }
 
+
+        searchButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("\n---------------------------------------" + "Member info" +
+                        "---------------------------------------\n");
+                System.out.format("%16s\t%24s\t%6s\t%11s\n",
+                        "Name",
+                        "National ID",
+                        "Gender" ,
+                        "Phone Number"
+                );
+
+                boolean found = false;
+                String national_id = textField1.getText();
+                for (Member P : GymSystem.getMembers()) {
+                    if (P.get_national_id().equals(national_id)){
+//                        System.out.println(P);
+                        System.out.format("%16s%24s\t%6s\t%11s\n",
+                                P.get_name(),
+                                P.get_national_id(),
+                                P.get_gender(),
+                                P.getPhone_number());
+                        found=true;
+                    }
+                }
+                System.out.println("\n-----------------------------------------------" +
+                        "-----------------------------------------------\n");
+
+                if(found==false)     System.out.println("Member Not Found");
+
+            }
+        });
 
         backToMenuButton.addActionListener(new ActionListener() {
             @Override

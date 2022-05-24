@@ -15,6 +15,7 @@ public class employeemanagmentWindow extends JFrame{
     private JPanel employeemanagmentPanel;
     public JLabel lbl_employee_management_home;
     private JButton btn_employeemanagment_delete_member;
+    private JButton viewMembersInAButton;
 
 
     employeemanagmentWindow() {
@@ -80,6 +81,13 @@ public class employeemanagmentWindow extends JFrame{
             public void actionPerformed(ActionEvent e) {
                 dispose();
                 viewallmembers2Window viewallmembers2window = new viewallmembers2Window();
+            }
+        });
+        viewMembersInAButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dispose();
+                viewmembersinmembership2Window viewmembersinmembership2window = new viewmembersinmembership2Window();
             }
         });
     }
