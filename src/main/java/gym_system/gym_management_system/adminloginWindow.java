@@ -27,6 +27,7 @@ public class adminloginWindow extends JFrame{
         btn_admin_login.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+
                 String Username = txt_user.getText().toUpperCase(Locale.ROOT);
                 String Password = txt_pass.getText();
                 if (Administrator.getUsername().equals(Username) && Administrator.getPassword().equals(Password)) {
