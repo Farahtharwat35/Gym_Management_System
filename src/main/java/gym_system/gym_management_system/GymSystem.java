@@ -22,7 +22,7 @@ public class GymSystem {
     protected static List<Member> members = new ArrayList<Member>();
     protected static List<Gym_Class> gym_classes = new ArrayList<>();
 
-    static Administrator admin1 = new Administrator("", "");
+    static Administrator admin1 = new Administrator("123", "fofo");
     static Employee loggedInEmployee = null;
     public GymSystem (){ // created for testing
         Employee employee1 = new Employee("ANAS","302087010230","male","01010006287","anas","123");
@@ -31,9 +31,9 @@ public class GymSystem {
         employees.add(employee1);
         employees.add(employee2);
         employees.add(employee3);
-        Gym_Class class1=new Gym_Class("YOGA","low","Wednesday", 10,null ,null);
+        Gym_Class class1=new Gym_Class("YOGA","low","Wednesday", 10,LocalTime.parse( "11:00:00.00" ) ,LocalTime.parse( "13:00:00.00" ));
         gym_classes.add(class1);
-        Gym_Class class2=new Gym_Class("dance","high", "Tuesday", 10,null,null);
+        Gym_Class class2=new Gym_Class("dance","high", "Tuesday", 10,LocalTime.parse( "11:00:00.00" ) ,LocalTime.parse( "13:00:00.00"));
         gym_classes.add(class2);
         Trainer trainer1 = new Trainer("Ahmed", "3020509010259", "male", "01010006286");
         GymSystem.getTrainers().add(trainer1);

@@ -30,21 +30,29 @@ public class employeeloginWindow extends JFrame{
             public void actionPerformed(ActionEvent e) {
                 String Username = txt_employee_user.getText().toUpperCase(Locale.ROOT);
                 String Password = txt_employee_pass.getText();
-                if(GymSystem.employeeLogin(Username, Password)==null)
-                {
-                    lbl_invalid_employee_login.setForeground(new Color(255,0,0));
-                    lbl_invalid_employee_login.setText("Invalid Username or Password!");
-                }
-                else {
-                    lbl_invalid_employee_login.setText("");
-                    dispose();
-                    GymSystem.loggedInEmployee =  GymSystem.employeeLogin(Username, Password);
-                    employeemanagmentWindow employeemanagmentwindow = new employeemanagmentWindow();
+                try {
+                    if (((Username.isEmpty()) || (Password.isEmpty()))) {
+
+                        throw new NullPointerException("Please Complete missing data");
+                    } else {
+                        if (GymSystem.employeeLogin(Username, Password) == null) {
+                            lbl_invalid_employee_login.setForeground(new Color(255, 0, 0));
+                            lbl_invalid_employee_login.setText("Invalid Username or Password!");
+                        } else {
+                            lbl_invalid_employee_login.setText("");
+                            dispose();
+                            GymSystem.loggedInEmployee = GymSystem.employeeLogin(Username, Password);
+                            employeemanagmentWindow employeemanagmentwindow = new employeemanagmentWindow();
 
 
+                        }
+                    }
+                } catch (Exception x) {
+                    lbl_invalid_employee_login.setText(x.getMessage());
+                    lbl_invalid_employee_login.setForeground(new Color(255, 0, 0));
+
                 }
-            }
-        });
+            }});
         registerButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

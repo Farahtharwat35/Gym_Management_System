@@ -106,11 +106,12 @@ public class employeeregisterWindow extends JFrame {
                     }
                       else {
                         GymSystem.employees.add(new Employee(name, national_id, gender, phone_number, username, password));
+                        dispose();
+                        employeeloginWindow employeeloginwindow = new employeeloginWindow();
+                        employeeloginwindow.lbl_invalid_employee_login.setForeground(new Color(75, 181, 67));
+                        employeeloginwindow.lbl_invalid_employee_login.setText("Account Created Successfully");
                     }
-                    dispose();
-                    employeeloginWindow employeeloginwindow = new employeeloginWindow();
-                    employeeloginwindow.lbl_invalid_employee_login.setForeground(new Color(75, 181, 67));
-                    employeeloginwindow.lbl_invalid_employee_login.setText("Account Created Successfully");
+
                 }
                 catch (Exception x){
                     lbl_employee_register.setText(x.getMessage());
@@ -130,9 +131,4 @@ public class employeeregisterWindow extends JFrame {
         });
     }
 
-}
-class InvalidID extends Exception {
-    public InvalidID (String msg){
-        super(msg);
-    }
 }

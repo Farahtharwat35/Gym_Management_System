@@ -34,7 +34,16 @@ public class assigntrainertomemberWindow extends JFrame {
                 String member_national_id = txt_member.getText();
                 Trainer assigned_trainer= Administrator.findTrainer(trainer_national_id);
                 Member assigned_member= Administrator.findMember(member_national_id);
-
+                try {
+                    if (trainer_national_id.isEmpty() ||member_national_id.isEmpty() ){
+                        throw new NullPointerException("Please Enter missing data !");
+                    }
+                    long input1 = Long.parseLong(member_national_id);
+                    long input2 = Long.parseLong(trainer_national_id);
+                    if ((trainer_national_id.length() != 14) || (member_national_id.length() != 14) ){
+                        throw new InvalidID ("National ID size is not 14 numbers !");
+                    }
+                    else {
                 if (assigned_trainer==null) {
                     lbl_assign_trainer.setText("No such trainer was found ! Please try again !");
                     lbl_assign_trainer.setForeground(new Color(255, 0, 0));
@@ -57,9 +66,21 @@ public class assigntrainertomemberWindow extends JFrame {
                     String message = assigned_trainer.get_name()+ " wasn't assigned to " + assigned_member.get_name() + "\n As " + assigned_trainer.get_name() + " is not available.";
                     adminwindow.lbl_admin_home.setText(message);
                     adminwindow.lbl_admin_home.setForeground(new Color(255, 0, 0));
-                }
+                } }
             }
-        });
+                catch (NumberFormatException n ){
+                    lbl_assign_trainer.setText(n.getMessage());
+                    lbl_assign_trainer.setForeground(new Color(255,0,0));
+                }
+                catch (InvalidID z){
+                    lbl_assign_trainer.setText(z.getMessage());
+                    lbl_assign_trainer.setForeground(new Color(255,0,0));
+                }
+                catch (NullPointerException f){
+                    lbl_assign_trainer.setText(f.getMessage());
+                    lbl_assign_trainer.setForeground(new Color(255,0,0));
+                }
+        }});
         backToMenuButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

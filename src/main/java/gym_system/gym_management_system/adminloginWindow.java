@@ -30,16 +30,31 @@ public class adminloginWindow extends JFrame{
 
                 String Username = txt_user.getText().toUpperCase(Locale.ROOT);
                 String Password = txt_pass.getText();
-                if (Administrator.getUsername().equals(Username) && Administrator.getPassword().equals(Password)) {
-                    dispose();
-                    adminWindow adminwindow = new adminWindow();
-                    adminwindow.lbl_admin_home.setText("Welcome " + Administrator.getUsername());
-                    GymSystem.status = true;
+                try {
+                if (((Username.isEmpty())|| (Password.isEmpty()))) {
+
+                    throw new NullPointerException("Please Complete missing data");
                 }
                 else {
-                    lbl_adminlogin.setText("Invalid Username or Password!");
-                    lbl_adminlogin.setForeground(new Color(255, 0, 0));
+                    if (Administrator.getUsername().equals(Username) && Administrator.getPassword().equals(Password)) {
+                        dispose();
+                        adminWindow adminwindow = new adminWindow();
+                        adminwindow.lbl_admin_home.setText("Welcome " + Administrator.getUsername());
+                        GymSystem.status = true;
+                    }
+                    else {
+                        lbl_adminlogin.setText("Invalid Username or Password!");
+                        lbl_adminlogin.setForeground(new Color(255, 0, 0));
+                    }
                 }
+                }
+                catch (Exception x){
+                    lbl_adminlogin.setText(x.getMessage());
+                    lbl_adminlogin.setForeground(new Color(255, 0, 0));
+
+                }
+
+
             }
         });
     }
