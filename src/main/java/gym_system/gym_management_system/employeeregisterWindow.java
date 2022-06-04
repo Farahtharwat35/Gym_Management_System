@@ -46,7 +46,7 @@ public class employeeregisterWindow extends JFrame {
                         if ((national_id.length() != 14)){
                             throw new InvalidID ("National ID size is not 14 numbers !");
                         }
-                        if(GymSystem.checkid(national_id) == true)
+                        else if(GymSystem.checkid(national_id) == true)
                         {
                             lbl_employee_register.setText("No Employee was found was this ID");
                             lbl_employee_register.setForeground(new Color(75, 181, 67));

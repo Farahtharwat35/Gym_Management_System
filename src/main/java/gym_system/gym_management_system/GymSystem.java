@@ -22,11 +22,11 @@ public class GymSystem {
     protected static List<Member> members = new ArrayList<Member>();
     protected static List<Gym_Class> gym_classes = new ArrayList<>();
 
-    static Administrator admin1 = new Administrator("123", "fofo");
+    static Administrator admin1 = new Administrator("admin", "admin");
     static Employee loggedInEmployee = null;
     public GymSystem (){ // created for testing
         Employee employee1 = new Employee("ANAS","302087010230","male","01010006287","anas","123");
-        Employee employee2 = new Employee("EZZ","3020102582847","male","01010006281","anass","1234");
+        Employee employee2 = new Employee("EZZ","30201025828470","male","01010006281","anass","1234");
         Employee employee3 = new Employee("EZZ","3020102582841","male","01010006282","","");
         employees.add(employee1);
         employees.add(employee2);
@@ -35,13 +35,13 @@ public class GymSystem {
         gym_classes.add(class1);
         Gym_Class class2=new Gym_Class("dance","high", "Tuesday", 10,LocalTime.parse( "11:00:00.00" ) ,LocalTime.parse( "13:00:00.00"));
         gym_classes.add(class2);
-        Trainer trainer1 = new Trainer("Ahmed", "3020509010259", "male", "01010006286");
+        Trainer trainer1 = new Trainer("Ahmed", "30205090102590", "male", "01010006286");
         GymSystem.getTrainers().add(trainer1);
         Trainer trainer2 = new Trainer("Fathy", "3020607080901", "male", "01010006289");
         GymSystem.getTrainers().add(trainer2);
         Member member1 = new Member("Mazen","30208101047689","male","01064887164","OPEN");
         getMembers().add(member1);
-        Member member2 = new Member("Maha","302081010446543","female","0106487831","PAY AS YOU GO");
+        Member member2 = new Member("Maha","30208101044654","female","0106487831","PAY AS YOU GO");
         getMembers().add(member2);
     }
 
