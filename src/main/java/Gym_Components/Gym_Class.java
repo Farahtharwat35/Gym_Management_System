@@ -1,5 +1,6 @@
 package Gym_Components;
 import java.time.Instant;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.*;
 import java.util.List;
@@ -10,16 +11,26 @@ public class Gym_Class {
     private String description;
     private Trainer trainer;
     private int members_limited_number;
-    private Instant start_time;
-    private Instant end_time;
+    private LocalTime start_time;
+    private LocalTime end_time;
+
+    private String day;
     private static List<Member> class_members;
-    public Gym_Class(String type, String description, int members_limited_number,Instant start_time, Instant end_time) {
+    public Gym_Class(String type, String description, String day,int members_limited_number, LocalTime start_time, LocalTime end_time) {
         this.type=type.toUpperCase(Locale.ROOT);
         this.description=description;
         this.members_limited_number=members_limited_number;
         this.start_time=start_time;
         this.end_time=end_time;
+        this.day=day;
         this.class_members = new ArrayList<>();
+    }
+
+    public String getDay() {
+        return day;
+    }
+    public void setDay(String day) {
+        this.day = day;
     }
 
     public String getType() {
@@ -40,10 +51,11 @@ public class Gym_Class {
     public void setMembers_limited_number(int members_limited_number) {
         this.members_limited_number = members_limited_number;
     }
-    public Instant getStart_time() {
+    public int getMembers_limited_number(){return members_limited_number;}
+    public LocalTime getStart_time() {
         return start_time;
     }
-    public void setStart_time(Instant start_time) {
+    public void setStart_time(LocalTime start_time) {
         this.start_time = start_time;
     }
     public void addMemberToClass(Member member){
@@ -53,10 +65,10 @@ public class Gym_Class {
     public String toString (){
         return "Class: " +getDescription()+ " type: " + getType()+ "\n";
     }
-    public Instant getEnd_time() {
+    public LocalTime getEnd_time() {
         return end_time;
     }
-    public void setEnd_time(Instant end_time) {
+    public void setEnd_time(LocalTime end_time) {
         this.end_time = end_time;
     }
     public static List<Member> getClass_members() {
@@ -65,14 +77,14 @@ public class Gym_Class {
     public void EmployeeRemoveClass_members(Member member) {
         class_members.remove(member);
     }
-    static public Instant get_instant () {
-        String date=null;
-        String time;
-        Scanner input= new Scanner(System.in); ;
-        System.out.println("Please Enter date , example : YYYY-MM-DD ");
-        date= input.next();
-        System.out.println("Please Enter start time , example : HH:MM ");
-        time= input.next();
+    static public Instant get_instant (String date, String time) {
+//        String date=null;
+//        String time;
+//        Scanner input= new Scanner(System.in); ;
+//        System.out.println("Please Enter date , example : YYYY-MM-DD ");
+//        date= input.next();
+//        System.out.println("Please Enter start time , example : HH:MM ");
+//        time= input.next();
         return (Instant.parse(date+"T"+time+":00.00Z"));
     }
     static public Instant get_instant (Instant mydate) {

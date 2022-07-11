@@ -23,7 +23,7 @@ public class Employee extends Person {
     }
 
 
-    private static Member findMember(String national_id) {
+    public static Member findMember(String national_id) {
         boolean is_found=false;
         Member assigned_member=null;
         for (Member C : GymSystem.getMembers() ) {
